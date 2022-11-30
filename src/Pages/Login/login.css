@@ -1,0 +1,66 @@
+.logincontainer{
+    
+    background-image: linear-gradient(45deg, #c6ffdd, #fbd786, #f7797d);
+    height: 100vh;
+    padding-top: 142px;
+}
+
+.login-card{
+    margin-left: 32px;
+    margin-right: 32px;
+    box-shadow: #c17474 -3px 0px 17px 1px !important;
+    position: relative;
+}
+
+.login-logo{
+    height: 134px;
+    width: 134px;
+    position: absolute;
+    top: -71px;
+    right: 0;
+    left: 34%;
+}
+
+@media only screen and (max-width: 768px){
+    .login-logo{
+        height: 134px;
+        width: 134px;
+        position: absolute;
+        top: -71px;
+        right: 0;
+        left: 32%;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .login-logo{
+        height: 134px;
+        width: 134px;
+        position: absolute;
+        top: -71px;
+        right: 0;
+        left: 32%;
+    }
+}
+
+@media only screen and (min-width: 590px) and (max-width: 753px){
+    .login-logo{
+        height: 134px;
+        width: 134px;
+        position: absolute;
+        top: -71px;
+        right: 0;
+        left: 39%;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 416px){
+    .login-logo{
+        height: 134px;
+        width: 134px;
+        position: absolute;
+        top: -71px;
+        right: 0;
+        left: 24%;
+    }
+}
