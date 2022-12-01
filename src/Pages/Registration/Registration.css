@@ -1,0 +1,65 @@
+
+
+
+
+.registrationcontainer{
+    height: 100vh;
+    padding-top: 142px;
+    background-image: linear-gradient(45deg, #c6ffdd, #e6b13b, #6d9dc2);
+    position: relative;
+}
+
+
+
+.registr-logo{
+    height: 134px;
+    width: 134px;
+    position: absolute;
+    top: -71px;
+    right: 0;
+    left: 34%;
+}
+
+@media only screen and (min-width: 768px){
+    .registr-logo{
+        height: 134px;
+        width: 145px;
+        position: absolute;
+        top: -71px;
+        right: 0;
+        left: 32%;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .registr-logo{
+        height: 134px;
+        width: 134px;
+        position: absolute;
+        top: -71px;
+        right: 0;
+        left: 30%;
+    }
+}
+
+@media only screen and (min-width: 590px) and (max-width: 753px){
+    .registr-logo{
+        height: 134px;
+        width: 134px;
+        position: absolute;
+        top: -71px;
+        right: 0;
+        left: 29%;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 416px){
+    .registr-logo{
+        height: 134px;
+        width: 134px;
+        position: absolute;
+        top: -71px;
+        right: 0;
+        left: 24%;
+    }
+}

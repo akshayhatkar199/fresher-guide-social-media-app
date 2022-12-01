@@ -78,7 +78,7 @@ const Login = () => {
           },
         ]}
       >
-        <Input style={{  width: "100%"}} />
+        <Input style={{  width: "100%" }} />
       </Form.Item>
 
       <Form.Item
