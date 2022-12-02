@@ -1,0 +1,94 @@
+.main-footer{
+    background-color: #2f3e4d;
+    height: 62px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer-icon{
+    margin: 29px;
+    color: white;
+    font-size: 16px;
+    margin-top: 24px;
+    margin-left: 33px;
+}
+
+.desktop-footer{
+    background-color: #bbc6d2;
+}
+
+.footer-menu{
+    background-color: #bbc6d2;
+    color: white;
+    border-right: 0 !important;
+    text-align: center;
+
+}
+
+.footer-heading{
+    font-size: 23px;
+    font-weight: 700;
+}
+
+/* > 576 px */
+@media only screen and (max-width: 576px){
+    .main-footer{
+        display: block;
+    }
+    .desktop-footer{
+        display: none;
+    }
+
+ }
+ 
+ /* > 576 px */
+ @media only screen and (min-width: 576px){
+    .main-footer{
+        display: block;
+    }
+    .desktop-footer{
+        display: none;
+    }
+
+ }
+ /* > 768 px */
+ @media only screen and (min-width: 768px){
+    .main-footer{
+        display: none;
+    }
+    .desktop-footer{
+        display: block;
+    }
+     
+ }
+ /* > 992 px */
+ @media only screen and (min-width: 992px){
+    .main-footer{
+        display: none;
+    }
+    .desktop-footer{
+        display: block;
+    }
+
+ }
+ /* > 1200 px */
+ @media only screen and (min-width: 1200px){
+    .main-footer{
+        display: none;
+    }
+    .desktop-footer{
+        display: block;
+    }
+
+ }
+ /* > 1400 px */
+ @media only screen and (min-width: 1400px){
+    .main-footer{
+        display: none;
+    }
+    .desktop-footer{
+        display: block;
+    }
+
+ }
