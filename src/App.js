@@ -10,9 +10,10 @@ function App() {
       <BrowserRouter>
       <>
        <Routes>
+          <Route exact path="/" element= { <Login />}/>
           <Route path="/home" element={<Home />} />
-              <Route  path="/login" element= { <Login />}/>
-            <Route  path="/registration" element= {<Registration />}/>
+          <Route  path="/login" element= { <Login />}/>
+          <Route  path="/registration" element= {<Registration />}/>
        
         </Routes>
      

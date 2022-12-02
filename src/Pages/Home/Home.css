@@ -1,0 +1,174 @@
+
+.mean-header{
+    background-color: slategrey;
+    height: 70px;
+      
+}
+
+.img-fluid{
+    margin-top: 11px;
+    margin-left: 24px;
+}
+
+.header-home-icons{
+         color: white;
+         margin-bottom: 16px;
+         margin-left: 3px;
+         font-size: 17px;
+         margin-top: 24px
+}
+
+.user-image{
+    border-radius: 50%;
+    height: 40px;
+    width: 43px;
+    margin-top: 12px;
+    margin-right: 14px;
+}
+
+.col2-header{
+    float: right;
+}
+
+.message-icon{
+    margin-right: 35px;
+    margin-left: -94px;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+.header{
+    display: inline-flex;
+}
+
+.bell-icon{
+    margin-right: 47px;
+    margin-left: -11px;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+
+.header-span-text{
+    float: right;
+    margin-top: 13px;
+    margin-left: 13px;
+    margin-right: 20px;
+}
+
+/* < 428 px */
+@media only screen and (max-width: 428px){
+   .bell-icon{
+    visibility: hidden;
+   }
+   .user-image {
+    margin-top: -15px;
+ }
+    .message-icon{
+        visibility: hidden;
+    }
+
+}
+
+/* < 576 px */
+@media only screen and (max-width: 576px){
+    .header-span-text{
+        display:none;
+    }
+    .header-input{
+        display:none;
+    }
+    .header-home-icons{
+        display:none;
+    }
+
+    .message-icon{
+        visibility: hidden;
+    }
+
+}
+/* > 576 px */
+@media only screen and (min-width: 576px){
+    .header-span-text{
+        display:none;
+    }
+    .header-input{
+        display:none;
+    }
+    .header-home-icons{
+        display:none;
+    }
+    .message-icon{
+        visibility: hidden;
+    }
+}
+/* > 768 px */
+@media only screen and (min-width: 768px){
+
+    .header-span-text{
+        display:none;
+    }
+    .header-input{
+        display:none;
+    }
+    .header-home-icons{
+        display:none;
+    }
+    .message-icon{
+        visibility: hidden;
+    }
+}
+/* > 992 px */
+@media only screen and (min-width: 992px){
+    .header-span-text{
+        display:block;
+    }
+
+    .header-input{
+        display:block;
+    }
+
+    .header-home-icons{
+        display:block;
+    }
+
+    .message-icon{
+        visibility: visible;
+    }
+}
+/* > 1200 px */
+@media only screen and (min-width: 1200px){
+    .header-span-text{
+        display:block;
+    }
+
+    .header-input{
+        display:block;
+    }
+
+    .header-home-icons{
+        display:block;
+    }
+
+    .message-icon{
+        visibility: visible;
+    }
+}
+/* > 1400 px */
+@media only screen and (min-width: 1400px){
+    .header-span-text{
+        display:block;
+    }
+
+    .header-input{
+        display:block;
+    }
+
+    .header-home-icons{
+        display:block;
+    }
+
+    .message-icon{
+        visibility: visible;
+    }
+}
