@@ -2,7 +2,7 @@
 import React from 'react'
 import { Col, Row,  } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faComment, faThumbsUp} from '@fortawesome/free-solid-svg-icons'
+import {  faComment, faThumbsUp,faEllipsis} from '@fortawesome/free-solid-svg-icons'
 import Image1 from '../../images/user.jpg';
 import Image2 from '../../images/post-image.jpg';
 
@@ -63,7 +63,7 @@ const Postcard = () => {
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      <FontAwesomeIcon icon={faThumbsUp} className="card-like"/>Like
+      <FontAwesomeIcon icon={faThumbsUp} className="card-like"/>Like 
       </Col>
 
         <Col
@@ -86,7 +86,7 @@ const Postcard = () => {
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      <FontAwesomeIcon icon={faThumbsUp} className="dott-comment"/>Like
+      <FontAwesomeIcon icon={faEllipsis} className="dott-comment"/>
       </Col>
 
       </Row>

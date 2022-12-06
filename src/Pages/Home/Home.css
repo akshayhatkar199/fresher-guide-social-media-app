@@ -59,17 +59,21 @@ hr{
     padding-right: 10px;
     color: #2f3e4d;
     font-size: 17px;
+    margin-left: 8px;
 }
 
 .card-comment{
     padding-right: 10px;
     color: #2f3e4d;
     font-size: 17px;
+    margin-left: 4px;
 }
 .dott-comment{
-    padding-right: 9px;
+    padding-right: 10px;
     color: #2f3e4d;
-    font-size: 17px;
+    font-size: 30px;
+    margin-left: 35px;
+    margin-top: -3px;
 }
 
 .post-desc{
@@ -176,7 +180,9 @@ hr{
  }
  /* > 1400 px */
  @media only screen and (min-width: 1400px){
-  
+    .home-container-1{
+        display: block;
+    }
     .home-container-3{
         display: block;
        }

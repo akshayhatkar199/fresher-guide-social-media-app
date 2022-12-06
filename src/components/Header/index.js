@@ -54,7 +54,7 @@ const Header = () => {
       
       <div className='col2-header'>
       <Link to ="/message"> <FontAwesomeIcon icon={ faMessage} className="message-icon"  /></Link>
-      <FontAwesomeIcon icon={ faBell} className="bell-icon"  />
+      <Link to= '/notification'> <FontAwesomeIcon icon={ faBell} className="bell-icon"  /></Link>
        
       <label className='header-online-label'></label> <img src={Image3} alt="logo" className="user-image"></img>   
       <div className='header-span-text'>

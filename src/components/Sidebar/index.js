@@ -91,7 +91,7 @@ const Sidebar = () => {
       >
       <div className="left-side-icone">
       <div className='icone-back'>
-      <FontAwesomeIcon icon={faBell} className="icone-size" />
+     <Link to= '/notification'> <FontAwesomeIcon icon={faBell} className="icone-size" /></Link>
       </div>
       </div>
 

@@ -143,7 +143,7 @@ const Footer = () => {
       xxl={{span: 6}}
       >
       <div className=''>
-      <FontAwesomeIcon icon={ faBell} className="footer-icon"  />
+      <Link to= '/notification'>  <FontAwesomeIcon icon={ faBell} className="footer-icon"  /></Link>
   
       </div>
       </Col>
