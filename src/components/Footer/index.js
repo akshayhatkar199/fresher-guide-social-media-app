@@ -1,6 +1,7 @@
 import React from 'react'
 import './footer.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {Link } from "react-router-dom";
 import Image2 from '../../images/he-logo.png';
 import {  faHome,faMessage,faBell ,faUser} from '@fortawesome/free-solid-svg-icons'
 import { Col, Row , Menu } from 'antd';
@@ -110,7 +111,7 @@ const Footer = () => {
       xxl={{span: 6}}
       >
       <div className=''>
-      <FontAwesomeIcon icon={faHome} className="footer-icon" />
+      <Link to="/home"><FontAwesomeIcon icon={faHome} className="footer-icon" /></Link>
       
       
       </div>
@@ -125,7 +126,8 @@ const Footer = () => {
       xxl={{span: 6}}
       >
       <div className=''>
-      <FontAwesomeIcon icon={ faMessage} className="footer-icon"  />
+
+      <Link to="/message"> <FontAwesomeIcon icon={ faMessage} className="footer-icon"  /></Link>
      
       
   

@@ -1,7 +1,11 @@
 
 .mean-header{
-    background-color: #2f3e4d;
+    /* background-color: #2f3e4d; */
+    background-image: linear-gradient(45deg, #ffffff, #fbd786, #f7797d);
     height: 70px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
       
 }
 
@@ -17,7 +21,17 @@
          font-size: 17px;
          margin-top: 24px
 }
-
+.header-online-label{
+    width: 10px;
+    height: 10px;
+    background: green;
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    border: 2px solid white;
+    /* left: 47px; */
+    bottom: 45px; 
+}
 .user-image{
     border-radius: 50%;
     height: 40px;
@@ -28,6 +42,7 @@
 
 .col2-header{
     float: right;
+    /* position: relative; */
 }
 
 .message-icon{
@@ -55,6 +70,22 @@
     margin-left: 13px;
     margin-right: 20px;
 }
+
+/* < 445px */
+@media only screen and (max-width: 445px){
+    .header-online-label{
+        width: 10px;
+        height: 10px;
+        background: green;
+        position: absolute;
+        border-radius: 50%;
+        z-index: 1;
+        border: 2px solid white;
+        left: -1px;
+        bottom: 47px;
+    }
+ 
+ }
 
 /* < 428 px */
 @media only screen and (max-width: 428px){

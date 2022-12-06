@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faHome,faMessage,faBell} from '@fortawesome/free-solid-svg-icons'
 import {NotificationOutlined } from '@ant-design/icons'
 import Image2 from '../../images/he-logo.png';
+import Image4  from '../../images/logo-college-removebg-preview.png';
 import Image3 from '../../images/user.jpg';
 import './header.css'
 const { Search } = Input;
@@ -30,14 +31,14 @@ const Header = () => {
       >
       <div className='header'>
     
-      <img src={Image2} alt="logo" className="img-fluid "></img> 
+      <img src={Image4} alt="logo" className="img-fluid " style={{height: "57px" ,width: "163px"}}></img> 
 
       
       <Search placeholder="input search text" className= "header-input" onSearch={onSearch} enterButton style={{
         width: "50%", margin: "18px"
       }}/>   
 
-      <FontAwesomeIcon icon={faHome} className="header-home-icons" />
+  <Link to="/home"> <FontAwesomeIcon icon={faHome} className="header-home-icons" /></Link>
   
       </div>
       </Col>
@@ -52,10 +53,10 @@ const Header = () => {
       >
       
       <div className='col2-header'>
-      <FontAwesomeIcon icon={ faMessage} className="message-icon"  />
+      <Link to ="/message"> <FontAwesomeIcon icon={ faMessage} className="message-icon"  /></Link>
       <FontAwesomeIcon icon={ faBell} className="bell-icon"  />
        
-      <img src={Image3} alt="logo" className="user-image"></img>   
+      <label className='header-online-label'></label> <img src={Image3} alt="logo" className="user-image"></img>   
       <div className='header-span-text'>
       <span style={{color: "white"}}>Josephin water </span><br />
       <span style={{color: " #ffc5c5"}}> active now</span>

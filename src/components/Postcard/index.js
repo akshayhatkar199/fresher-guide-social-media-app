@@ -6,6 +6,7 @@ import {  faComment, faThumbsUp} from '@fortawesome/free-solid-svg-icons'
 import Image1 from '../../images/user.jpg';
 import Image2 from '../../images/post-image.jpg';
 
+
 import { Card } from 'antd';
 
 const Postcard = () => {
@@ -55,27 +56,37 @@ const Postcard = () => {
 <div className='like-comment'>
       <Row>
       <Col
-            xs={{span: 12}}
-            sm={{span: 12}}
-            md={{span: 12}}
-            lg={{span: 12}}
-            xl={{span: 12}}
-            xxl={{span: 12}}
+            xs={{span: 8}}
+            sm={{span: 8}}
+            md={{span: 8}}
+            lg={{span: 8}}
+            xl={{span: 8}}
+            xxl={{span: 8}}
       >
       <FontAwesomeIcon icon={faThumbsUp} className="card-like"/>Like
       </Col>
 
         <Col
-            xs={{span: 12}}
-            sm={{span: 12}}
-            md={{span: 12}}
-            lg={{span: 12}}
-            xl={{span: 12}}
-            xxl={{span: 12}}
+            xs={{span: 8}}
+            sm={{span: 8}}
+            md={{span: 8}}
+            lg={{span: 8}}
+            xl={{span: 8}}
+            xxl={{span: 8}}
       >
       <FontAwesomeIcon icon={ faComment} className="card-comment"/> 
       Coment
 
+      </Col>
+      <Col
+            xs={{span: 8}}
+            sm={{span: 8}}
+            md={{span: 8}}
+            lg={{span: 8}}
+            xl={{span: 8}}
+            xxl={{span: 8}}
+      >
+      <FontAwesomeIcon icon={faThumbsUp} className="dott-comment"/>Like
       </Col>
 
       </Row>
