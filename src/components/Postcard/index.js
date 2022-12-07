@@ -5,9 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faComment, faThumbsUp,faEllipsis} from '@fortawesome/free-solid-svg-icons'
 import Image1 from '../../images/user.jpg';
 import Image2 from '../../images/post-image.jpg';
-
-
 import { Card } from 'antd';
+import { Link } from 'react-router-dom';
 
 const Postcard = () => {
   return (
@@ -86,7 +85,7 @@ const Postcard = () => {
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      <FontAwesomeIcon icon={faEllipsis} className="dott-comment"/>
+      <Link to="/creatpost" ><FontAwesomeIcon icon={faEllipsis} className="dott-comment"/></Link>
       </Col>
 
       </Row>

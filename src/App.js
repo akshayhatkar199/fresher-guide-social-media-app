@@ -3,6 +3,7 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Notification from './Pages/Notification';
 import Registration from './Pages/Registration';
+import Creatpost from './Pages/Creatpost'
 import Message from './Pages/Message';
 
 import {BrowserRouter, Route, Routes, } from "react-router-dom";
@@ -19,8 +20,9 @@ function App() {
           <Route  path="/login" element= { <Login />}/>
           <Route  path="/registration" element= {<Registration />}/>
           <Route path="/message" element={<Message />}/>
-           <Route path="/notification" element={< Notification/>}/> 
-       
+          <Route path="/notification" element={< Notification/>}/> 
+          <Route path="/creatpost" element={<Creatpost/>}/>
+
         </Routes>
      
       </>
