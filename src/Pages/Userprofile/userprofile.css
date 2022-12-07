@@ -1,17 +1,16 @@
 
 .main-profileimg{
     margin-top: 16px;
-    width: 100%;
+    width: 99%;
     height: 100%;
    
 }
 
-.profole-div{
-    margin-right: 23px;
+.profile-div{
     position: relative;
 }
 
-.user-box{
+/* .user-box{
     background-color: #ffffff;
     border-radius: 5px;
     transform: translateY(-50%);
@@ -22,11 +21,29 @@
     top: 166px;
     width: 193px;
     height: 219px;
+} */
+
+.profile-head{
+    padding-top: 21px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #cecece;
+    padding-left: 12px;
+    font-style: oblique;
+    font-weight: 900;
+}
+
+.profil-post-head{
+    padding-top: 21px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #cecece;
+    padding-left: 12px;
+    background-color: white;
+    font-style: oblique;
+    font-weight: 900;
 }
 
 .profile-about{
-    margin-top: 18px;
-    margin-right: 15px;
+    margin: 15px;
     border-radius: 10px;
     background: white;
 }
@@ -39,6 +56,10 @@
     position: absolute;
     right: 65px;
     top: 2px;
+}
+
+.button-profile{
+    margin-top: 54px
 }
 
 .text-div{
@@ -61,6 +82,49 @@
 }
 
 .profil-post{
-    margin-right: 22px;
-    margin-top: 19px;
+    margin: 15px;
 }
+
+
+
+/* > 576 px */
+@media only screen and (max-width: 576px){
+   
+    
+    
+ }
+
+/* > 576 px */
+@media only screen and (min-width: 576px){
+    
+    
+    
+    
+ }
+ /* > 768 px */
+ @media only screen and (min-width: 768px){
+    
+    
+   
+    
+ }
+ /* > 992 px */
+ @media only screen and (min-width: 992px){
+   
+    
+     
+ }
+ /* > 1200 px */
+ @media only screen and (min-width: 1200px){
+    
+    
+     
+       
+ }
+ /* > 1400 px */
+ @media only screen and (min-width: 1400px){
+    
+    
+     
+       
+ }
