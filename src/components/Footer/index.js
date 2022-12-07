@@ -158,7 +158,7 @@ const Footer = () => {
       >
       <div className=''>
       
-      <FontAwesomeIcon icon= {faUser}  className="footer-icon"/>
+      <Link to="/userprofile"><FontAwesomeIcon icon= {faUser}  className="footer-icon"/></Link>
   
       </div>
       </Col>

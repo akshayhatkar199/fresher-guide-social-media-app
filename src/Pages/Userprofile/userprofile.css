@@ -1,0 +1,66 @@
+
+.main-profileimg{
+    margin-top: 16px;
+    width: 100%;
+    height: 100%;
+   
+}
+
+.profole-div{
+    margin-right: 23px;
+    position: relative;
+}
+
+.user-box{
+    background-color: #ffffff;
+    border-radius: 5px;
+    transform: translateY(-50%);
+    padding: 15px;
+    width: 100%;
+    position: absolute;
+    left: 40px;
+    top: 166px;
+    width: 193px;
+    height: 219px;
+}
+
+.profile-about{
+    margin-top: 18px;
+    margin-right: 15px;
+    border-radius: 10px;
+    background: white;
+}
+.profile-user-image{
+    border-radius: 50%;
+    height: 68px;
+    width: 71px;
+    margin-top: 12px;
+    margin-right: 14px;
+    position: absolute;
+    right: 65px;
+    top: 2px;
+}
+
+.text-div{
+    margin-top: 78px;
+    line-height: 23px;
+    text-align: center;
+}
+
+.cover-button{
+    position: absolute;
+    right: -1000px;
+    top: 241px;
+}
+
+.edit-button{
+    height: 40px;
+    width: 111%;
+    background: white;
+    color: #0e7cc9;
+}
+
+.profil-post{
+    margin-right: 22px;
+    margin-top: 19px;
+}

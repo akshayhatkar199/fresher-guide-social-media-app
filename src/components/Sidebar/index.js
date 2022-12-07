@@ -59,7 +59,7 @@ const Sidebar = () => {
       >
       <div className="left-side-icone">
       <div className='icone-back'>
-      <FontAwesomeIcon icon={faUser} className="icone-size" />
+      <Link to="/userprofile"> <FontAwesomeIcon icon={faUser} className="icone-size" /></Link>
       </div>
       </div>
 
