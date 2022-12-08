@@ -1,0 +1,15 @@
+.main-updateprofile{
+    margin: 17px;
+    background-color: white;
+    padding: 13px;
+    border-radius: 11px;
+}
+
+.updateprofile-head{
+    font-weight: bolder;
+    padding-top: -5px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #cecece;
+    padding-left: 12px;
+    font-style: oblique;
+}

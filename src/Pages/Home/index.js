@@ -140,8 +140,9 @@ const Home = () => {
     renderItem={(item) => (
       <List.Item>
         <List.Item.Meta
-          avatar={<div><label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
+          avatar={<div> <label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
           title={<a href="https://ant.design">{item.title}</a>}
+          
           description="Ant Design, a design language for background applications, is refined by Ant UED Team"
         />
       </List.Item>
@@ -163,6 +164,7 @@ const Home = () => {
       xxl={{span: 11}}
       >
       <div className='home-container-2'>
+     
       <Postcard/>
       
       <Postcard/>
@@ -205,6 +207,8 @@ const Home = () => {
       </List.Item>
     )}
   />
+   
+
 
       </div>
       </Col>

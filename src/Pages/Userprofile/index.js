@@ -126,7 +126,9 @@ const Userprofile = () => {
    </div>
    </div> */}
 
- 
+   <Link to="/updateprofile">update profile</Link>
+   <br />
+   <Link to="/creatpost" >creat post</Link>
      
   </div>
 

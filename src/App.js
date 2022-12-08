@@ -5,6 +5,7 @@ import Notification from './Pages/Notification';
 import Registration from './Pages/Registration';
 import Creatpost from './Pages/Creatpost'
 import Userprofile from './Pages/Userprofile'
+import Updateprofile from './Pages/Updateprofile'
 import Message from './Pages/Message';
 
 import {BrowserRouter, Route, Routes, } from "react-router-dom";
@@ -24,7 +25,7 @@ function App() {
           <Route path="/notification" element={< Notification/>}/> 
           <Route path="/creatpost" element={<Creatpost/>}/>
           <Route path="/userprofile" element={<Userprofile/>}/>
-
+          <Route path="/updateprofile" element={<Updateprofile/>}/>
 
         </Routes>
      

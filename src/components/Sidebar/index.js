@@ -14,6 +14,7 @@ const Sidebar = () => {
     
     <FontAwesomeIcon icon={faBars}  className="icone-size" />
     
+    
     <div style={{marginRight: "21px"}}>
     <hr />
     </div>

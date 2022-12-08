@@ -70,6 +70,7 @@ const Registration = () => {
         label="Name"
         name="name"
         
+        
         rules={[
           {
             required: true,
@@ -99,24 +100,48 @@ const Registration = () => {
       <Form.Item label="College" >
         <Select>
           <Select.Option value="KIT College">KIT College</Select.Option>
-          <Select.Option value="KIT College">D Y Patil Polytechnic, Kolhapur College</Select.Option>
-          <Select.Option value="KIT College">Bharati Vidyapeeth  College</Select.Option>
-          <Select.Option value="KIT College">Sanjay Ghodawat College</Select.Option>
+          <Select.Option value=">D Y Patil Polytechnic, Kolhapur College">D Y Patil Polytechnic, Kolhapur College</Select.Option>
+          <Select.Option value="Bharati Vidyapeeth  College">Bharati Vidyapeeth  College</Select.Option>
+          <Select.Option value="Sanjay Ghodawat College">Sanjay Ghodawat College</Select.Option>
 
         </Select>
         
       </Form.Item>
        
-       
 
       <Form.Item
-        label="Password"
         name="password"
+        label="Password"
         rules={[
           {
             required: true,
             message: 'Please input your password!',
           },
+        ]}
+        hasFeedback
+      >
+        <Input.Password />
+      </Form.Item>
+
+
+      <Form.Item
+        name="confirm"
+        label="Confirm Password"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!',
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('The two passwords that you entered do not match!'));
+            },
+          }),
         ]}
       >
         <Input.Password />

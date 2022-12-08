@@ -85,7 +85,7 @@ const Postcard = () => {
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      <Link to="/creatpost" ><FontAwesomeIcon icon={faEllipsis} className="dott-comment"/></Link>
+      <FontAwesomeIcon icon={faEllipsis} className="dott-comment"/>
       </Col>
 
       </Row>
