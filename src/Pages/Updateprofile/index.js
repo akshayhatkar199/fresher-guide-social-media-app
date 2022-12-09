@@ -11,10 +11,47 @@ import {  Checkbox, Form, Input,DatePicker, } from 'antd';
 import { Col, Row , Select  } from 'antd';
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import Image3 from '../../images/user.jpg';
+import { Avatar, List } from 'antd'
 import './updateprofile.css'
 import {  Space } from 'antd';
 const { RangePicker } = DatePicker;
 
+
+const data = [
+  {
+    title: 'Ant Design Title 1',
+  },
+  {
+    title: 'Ant Design Title 2',
+  },
+  {
+    title: 'Ant Design Title 3',
+  },
+  {
+    title: 'Ant Design Title 4',
+  },
+  {
+    title: 'Ant Design Title 1',
+  },
+  {
+    title: 'Ant Design Title 2',
+  },
+  {
+    title: 'Ant Design Title 3',
+  },
+  {
+    title: 'Ant Design Title 4',
+  },
+  {
+    title: 'Ant Design Title 2',
+  },
+  {
+    title: 'Ant Design Title 3',
+  },
+  {
+    title: 'Ant Design Title 4',
+  },
+];
 
 const Updateprofile = () => {
 
@@ -51,9 +88,9 @@ const Updateprofile = () => {
       xs={{span: 24}}
       sm={{span: 24}}
       md={{span: 24}}
-      lg={{span: 22}}
-      xl={{span: 22}}
-      xxl={{span: 22}}
+      lg={{span: 16}}
+      xl={{span: 16}}
+      xxl={{span: 16}}
       >
     
  <div className='main-updateprofile' >
@@ -292,6 +329,37 @@ const Updateprofile = () => {
      </div>
       </Col>
 
+
+      <Col  
+      xs={{span: 24}}
+      sm={{span: 24}}
+      md={{span: 24}}
+      lg={{span: 6}}
+      xl={{span: 6}}
+      xxl={{span: 6}}
+      >
+      <div className='main-creatpost' style={{backgroundColor: "white", margin: "18px", borderRadius: "14px"}}>
+      <h3 className='home-head'>Online users</h3>
+      <List
+    itemLayout="horizontal"
+    dataSource={data}
+    renderItem={(item ) => (
+      <List.Item key={item.title}>
+        <List.Item.Meta
+          avatar={<div > <label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
+          title={<a href="https://ant.design">{item.title}</a>}
+          
+          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+        />
+      </List.Item>
+    )}
+  />
+
+      </div>
+
+
+     
+      </Col>
       
       
     </Row>

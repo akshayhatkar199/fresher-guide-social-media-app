@@ -148,10 +148,10 @@ const Userprofile = () => {
       <List
     itemLayout="horizontal"
     dataSource={dataAbout}
-    renderItem={(item ,index) => (
-      <List.Item>
+    renderItem={(item ) => (
+      <List.Item key={item.title}>
         <List.Item.Meta
-          avatar={<div className='about-icon' key={index}>   <FontAwesomeIcon icon={item.icons} /></div>}
+          avatar={<div className='about-icon'>   <FontAwesomeIcon icon={item.icons} /></div>}
           title={<a href="https://ant.design">{item.title}</a>}
           description=" Design, a design language for background applications"
         />

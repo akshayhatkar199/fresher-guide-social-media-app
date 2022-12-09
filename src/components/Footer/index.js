@@ -40,10 +40,10 @@ const Footer = () => {
       <div className=''>
       <Menu className='footer-menu'>
 
-      <Menu.Item><span className='footer-heading'>Quick link</span></Menu.Item> 
-      <Menu.Item>Home</Menu.Item>
-      <Menu.Item>About</Menu.Item>
-      <Menu.Item>Products</Menu.Item>
+      <Menu.Item key="1"><span className='footer-heading'>Quick link</span></Menu.Item> 
+      <Menu.Item key="2">Home</Menu.Item>
+      <Menu.Item key="3">About</Menu.Item>
+      <Menu.Item key="4">Products</Menu.Item>
   
        </Menu>
      
@@ -63,9 +63,9 @@ const Footer = () => {
       <div className=''>
       <Menu className='footer-menu'>
 
-      <Menu.Item><span className='footer-heading'>Service</span></Menu.Item>
-      <Menu.Item>FAQ</Menu.Item>
-      <Menu.Item>Contact</Menu.Item>
+      <Menu.Item key="5"> <span className='footer-heading'>Service</span></Menu.Item>
+      <Menu.Item key="6">FAQ</Menu.Item>
+      <Menu.Item key="7">Contact</Menu.Item>
     
   
        </Menu>
@@ -83,8 +83,8 @@ const Footer = () => {
       <div className=''>
       <Menu className='footer-menu'>
 
-      <Menu.Item><span className='footer-heading'>Newsletter</span></Menu.Item>
-      <Menu.Item>Subscribe newsletter to get updates.</Menu.Item>
+      <Menu.Item key="8"><span className='footer-heading'>Newsletter</span></Menu.Item>
+      <Menu.Item key="9">Subscribe newsletter to get updates.</Menu.Item>
 
       </Menu>
       </div>

@@ -1,0 +1,9 @@
+.ant-upload-wrapper.ant-upload-picture-card-wrapper .ant-upload.ant-upload-select {
+    width: 100%;
+}
+
+.main-creatpost{
+    background-color: white; 
+    margin: 18px; 
+    border-radius: 14px;
+}
