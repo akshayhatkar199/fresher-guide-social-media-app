@@ -62,6 +62,17 @@ margin-left: 23px;
      .home-container-1{
          display: block;
      }
+     .icone-back {
+
+        width: 40px;
+        padding-left: 0px;
+        height: 46px;
+    }
+    
+    .home-container-1 {
+       margin-right: 11px;
+        margin-left: 10px;
+    }
      
   }
   /* > 1200 px */
@@ -69,6 +80,17 @@ margin-left: 23px;
      .home-container-1{
          display: block;
      }
+     .icone-back {
+
+        width: 40px;
+        padding-left: 0px;
+        height: 46px;
+    }
+    
+    .home-container-1 {
+       margin-right: 11px;
+        margin-left: 10px;
+    }
    
   }
   /* > 1400 px */
@@ -77,5 +99,16 @@ margin-left: 23px;
          display: block;
      }
     
+     .icone-back {
+
+        width: 48px;
+        padding-left: 5px;
+        height: 51px;
+    }
     
+    .home-container-1 {
+        margin-right: 23px;
+        margin-left: 23px;
+        
+    }
   }
