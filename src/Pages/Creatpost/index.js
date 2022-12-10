@@ -3,6 +3,7 @@ import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
 import {Link } from "react-router-dom";
+import Onlineusers from '../../components/Onlineusers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
 import {  Checkbox, Form, Input,DatePicker, Upload ,PlusOutlined } from 'antd';
@@ -202,20 +203,8 @@ const Creatpost = () => {
       >
       <div className='main-creatpost'>
       <h3 className='home-head'>Online users</h3>
-      <List
-    itemLayout="horizontal"
-    dataSource={data}
-    renderItem={(item ) => (
-      <List.Item>
-        <List.Item.Meta
-          avatar={<div > <label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
-          title={<a href="https://ant.design">{item.title}</a>}
-          
-          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-        />
-      </List.Item>
-    )}
-  />
+      
+      <Onlineusers />
 
       </div>
 

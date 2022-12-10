@@ -5,6 +5,7 @@ import Footer from '../../components/Footer'
 import {Link } from "react-router-dom";
 import Image from '../../images/profile-img.jpg';
 import Postcard from "../../components/Postcard"
+import Aboutus from "../../components/Aboutus"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faLaptop, faTrophy ,faCalendarDays,faMicrophone,faPersonWalking,faP,faStar,faUserGraduate} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button, } from 'antd'
@@ -145,20 +146,8 @@ const Userprofile = () => {
       >
       <div className='profile-about'  >
       <h3 className='profile-head'>About Us</h3>
-      <List
-    itemLayout="horizontal"
-    dataSource={dataAbout}
-    renderItem={(item ) => (
-      <List.Item key={item.title}>
-        <List.Item.Meta
-          avatar={<div className='about-icon'>   <FontAwesomeIcon icon={item.icons} /></div>}
-          title={<a href="https://ant.design">{item.title}</a>}
-          description=" Design, a design language for background applications"
-        />
-      </List.Item>
-    )}
-
-  />
+       
+       <Aboutus />
 
       </div>
       </Col>

@@ -3,7 +3,7 @@ import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
 import {Link } from "react-router-dom";
-
+import Onlineusers from '../../components/Onlineusers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button} from 'antd';
 import { Card } from 'antd';
@@ -14,6 +14,7 @@ import Image3 from '../../images/user.jpg';
 import { Avatar, List } from 'antd'
 import './updateprofile.css'
 import {  Space } from 'antd';
+
 const { RangePicker } = DatePicker;
 
 
@@ -340,23 +341,11 @@ const Updateprofile = () => {
       >
       <div className='main-creatpost' style={{backgroundColor: "white", margin: "18px", borderRadius: "14px"}}>
       <h3 className='home-head'>Online users</h3>
-      <List
-    itemLayout="horizontal"
-    dataSource={data}
-    renderItem={(item ) => (
-      <List.Item key={item.title}>
-        <List.Item.Meta
-          avatar={<div > <label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
-          title={<a href="https://ant.design">{item.title}</a>}
-          
-          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-        />
-      </List.Item>
-    )}
-  />
+   <Onlineusers/>
 
       </div>
-
+  
+  
 
      
       </Col>

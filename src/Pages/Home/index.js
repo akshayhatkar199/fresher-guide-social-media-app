@@ -6,101 +6,16 @@ import Sidebar from '../../components/Sidebar'
 import { Col, Row  } from 'antd';
 import { Avatar, List,Button, } from 'antd'
 import {Link } from "react-router-dom";
+import Onlineusers from '../../components/Onlineusers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faLaptop, faTrophy ,faCalendarDays,faMicrophone,faPersonWalking,faP,faStar,faUserGraduate} from '@fortawesome/free-solid-svg-icons'
 import {  faHome,faMessage,faBell, faBars, faUser, faAnchor} from '@fortawesome/free-solid-svg-icons' 
 import Postcard from "../../components/Postcard"
+import Aboutus from "../../components/Aboutus"
 import './Home.css'
 
-const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-];
 
-const dataAbout = [
-  {
-    title: 'College Name',
-    icons:  faGraduationCap
-  },
-  {
-    title: 'Date of Birth',
-    icons: faCakeCandles
-  },
-  {
-    title: 'Passout Year',
-    icons:  faUserGraduate 
-  },
-  {
-    title: 'Skills',
-    icons: faPen
-  },
-  {
-    title: 'Technical Knowledge',
-    icons: faLaptop
-  }
-  ,
-  {
-    title: 'Achievement',
-    icons: faTrophy 
-  }
-  ,
-  {
-    title: 'Year of Experience',
-    icons: faCalendarDays 
-  }
-  ,
-  {
-    title: 'Publication',
-    icons: faMicrophone
-  }
-  ,
-  {
-    title: 'Area of Expertise',
-    icons: faPersonWalking
-  }
-  ,
-  {
-    title: 'Worked Projects',
-    icons: faP
-  }
-  ,
-  {
-    title: 'Ratings',
-    icons: faStar
-  }
- 
-];
+
 
 const Home = () => {
   return (
@@ -134,22 +49,10 @@ const Home = () => {
       >
       <div className='home-container-3' >
       <h3 className='home-head'>Online users</h3>
-      <List
-    itemLayout="horizontal"
-    dataSource={data}
-    renderItem={(item ) => (
-      <List.Item>
-        <List.Item.Meta
-          avatar={<div > <label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
-          title={<a href="https://ant.design">{item.title}</a>}
-          
-          description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-        />
-      </List.Item>
-    )}
-  />
+      <Onlineusers/>
 
       </div>
+     
       </Col>
      
    
@@ -194,20 +97,8 @@ const Home = () => {
       >
       <div className='home-container-3' >
       <h3 className='home-head'>About Us</h3>
-      <List
-    itemLayout="horizontal"
-    dataSource={dataAbout}
-    renderItem={(item ) => (
-      <List.Item>
-        <List.Item.Meta
-          avatar={<div className='about-icon' >  <FontAwesomeIcon icon={item.icons} /></div>}
-          title={<a href="https://ant.design">{item.title}</a>}
-          description=" Design, a design language for background applications"
-        />
-      </List.Item>
-    )}
-  />
-   
+     
+   <Aboutus />
 
 
       </div>
