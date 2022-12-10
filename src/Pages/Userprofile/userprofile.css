@@ -110,21 +110,34 @@
  }
  /* > 992 px */
  @media only screen and (min-width: 992px){
-   
-    
+    .profile-about{
+        margin-left: 0px;
+    }
+    .profil-post {
+        margin-left: 0;
+    }
      
  }
  /* > 1200 px */
  @media only screen and (min-width: 1200px){
-    
-    
+    .profile-about{
+        margin-left: 0px;
+    }
+    .profil-post {
+        margin-left: 0;
+    }
      
        
  }
  /* > 1400 px */
  @media only screen and (min-width: 1400px){
     
-    
+    .profile-about{
+        margin-left: 0px;
+    }
+    .profil-post {
+        margin-left: 0;
+    }
      
        
  }
