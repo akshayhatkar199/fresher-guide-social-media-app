@@ -13,3 +13,63 @@
     padding-left: 12px;
     font-style: oblique;
 }
+
+.main-creatpost{
+    background-color: white;
+    margin: 18px;
+    border-radius: 14px;
+}
+
+/* > 576 px */
+@media only screen and (max-width: 576px){
+   
+    
+    
+}
+
+/* > 576 px */
+@media only screen and (min-width: 576px){
+   
+   
+   
+   
+}
+/* > 768 px */
+@media only screen and (min-width: 768px){
+    
+  
+   
+}
+
+/* > 992 px */
+@media only screen and (min-width: 992px){
+  
+    .main-updateprofile{
+        margin-left: 0px;
+     }
+     .main-creatpost{
+        margin-left: 0px;
+    }
+}
+/* > 1200 px */
+@media only screen and (min-width: 1200px){
+   
+    .main-updateprofile{
+        margin-left: 0px;
+     }
+    .main-creatpost{
+        margin-left: 0px;
+    }
+      
+}
+/* > 1400 px */
+@media only screen and (min-width: 1400px){
+   
+    .main-updateprofile{
+        margin-left: 0px;
+     }
+     .main-creatpost{
+        margin-left: 0px;
+    }
+      
+}

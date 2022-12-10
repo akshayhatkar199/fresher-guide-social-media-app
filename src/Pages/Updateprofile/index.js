@@ -339,7 +339,7 @@ const Updateprofile = () => {
       xl={{span: 6}}
       xxl={{span: 6}}
       >
-      <div className='main-creatpost' style={{backgroundColor: "white", margin: "18px", borderRadius: "14px"}}>
+      <div className='main-creatpost' >
       <h3 className='home-head'>Online users</h3>
    <Onlineusers/>
 
