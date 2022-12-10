@@ -82,9 +82,9 @@ const Message = () => {
     <Row>
   
     <Col          
-      xs={{span: 2}}
-      sm={{span: 2}}
-      md={{span: 2}}
+      xs={{span: 24}}
+      sm={{span: 24}}
+      md={{span: 24}}
       lg={{span: 2}}
       xl={{span: 2}}
       xxl={{span: 2}}
@@ -96,7 +96,7 @@ const Message = () => {
      <Col  
       xs={{span: 24}}
       sm={{span: 24}}
-      md={{span: 6}}
+      md={{span: 8}}
       lg={{span: 6}}
       xl={{span: 6}}
       xxl={{span: 6}}

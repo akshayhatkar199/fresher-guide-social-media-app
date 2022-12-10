@@ -171,6 +171,7 @@
     }
     .message-div{
         display: block;
+        margin-left:17px;
       
     }
     .message-span-text{
@@ -181,6 +182,10 @@
         display: none;
     }
     
+   .main-message{
+    margin-left: 0;
+  }
+
  }
  /* > 992 px */
  @media only screen and (min-width: 992px){
@@ -190,10 +195,14 @@
     }
     .message-div{
         display: block;
+        margin-left:0px;
        }
        .mobile-online-users{
         display: none;
     }
+    .main-message{
+        margin-left: 0;
+      }
  }
  /* > 1200 px */
  @media only screen and (min-width: 1200px){
@@ -208,6 +217,10 @@
        .mobile-online-users{
         display: none;
     } 
+
+    .main-message{
+        margin-left: 0;
+      }
  }
  /* > 1400 px */
  @media only screen and (min-width: 1400px){
@@ -216,9 +229,13 @@
     }
     .message-div{
         display: block;
+        margin-left:0px;
        }
        .mobile-online-users{
         display: none;
     }
+    .main-message{
+        margin-left: 0;
+      }
        
  }
