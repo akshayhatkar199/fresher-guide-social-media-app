@@ -1,13 +1,11 @@
-
-
-.title-notification{
+.title-MyfriendRequests{
     padding-left: 31px;
     padding-top: 14px;
     font-style: oblique;
     font-weight: 800;
 }
 
-.notification-div{
+.MyfriendRequests-div{
     margin-top: 18px;
     margin-right: 18px;
     border-radius: 10px;
@@ -15,11 +13,10 @@
 }
 
 /* > 576 px */
-@media only screen and (max-width: 576px){
+@media only screen and (max-width: 576px){ 
    
-    .notification-div{
-        margin-left: -11px;
-      
+    .MyfriendRequests-div {
+        margin-left: 21px;
     }
     
  }
@@ -27,9 +24,8 @@
 /* > 576 px */
 @media only screen and (min-width: 576px){
     
-    .notification-div{
-        margin-left: -11px;
-      
+    .MyfriendRequests-div {
+        margin-left: 21px;
     }
     
     
@@ -37,9 +33,8 @@
  /* > 768 px */
  @media only screen and (min-width: 768px){
     
-    .notification-div{
-        margin-left: -42px;
-      
+    .MyfriendRequests-div {
+        margin-left: 21px;
     }
    
     
@@ -47,16 +42,16 @@
  /* > 992 px */
  @media only screen and (min-width: 992px){
    
-    .notification-div{
-      margin-left: 0px;
+    .MyfriendRequests-div{
+        margin-left: 0px;
        }
      
  }
  /* > 1200 px */
  @media only screen and (min-width: 1200px){
     
-    .notification-div{
-       margin-left: 0px;
+    .MyfriendRequests-div{
+        margin-left: 0px;
        }
      
        
@@ -64,7 +59,7 @@
  /* > 1400 px */
  @media only screen and (min-width: 1400px){
     
-    .notification-div{
+    .MyfriendRequests-div{
         margin-left: 0px;
        }
      

@@ -7,6 +7,8 @@ import Creatpost from './Pages/Creatpost'
 import Userprofile from './Pages/Userprofile'
 import Updateprofile from './Pages/Updateprofile'
 import Message from './Pages/Message';
+import Myfriends from './Pages/Myfriends';
+import MyfriendRequests from './Pages/MyfriendRequests'
 
 import {BrowserRouter, Route, Routes, } from "react-router-dom";
 
@@ -26,6 +28,8 @@ function App() {
           <Route path="/creatpost" element={<Creatpost/>}/>
           <Route path="/userprofile" element={<Userprofile/>}/>
           <Route path="/updateprofile" element={<Updateprofile/>}/>
+          <Route path="/myfriends" element={<Myfriends/>}/>
+          <Route path='/myfriendRequests' element={<MyfriendRequests/>}/>
 
         </Routes>
      

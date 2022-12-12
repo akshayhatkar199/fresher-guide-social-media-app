@@ -67,7 +67,9 @@ const Home = () => {
       xxl={{span: 11}}
       >
       <div className='home-container-2'>
-     
+      <Link to="/myfriends"> myfriends</Link>
+      <br/>
+      <Link to="/myfriendRequests"> myfriendRequests</Link>
       <Postcard/>
       
       <Postcard/>

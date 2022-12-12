@@ -12,6 +12,7 @@ import './notification.css'
 import Footer from '../../components/Footer'
 
 
+
 const data = [
     {
       title: 'Ant Design Title 1',
