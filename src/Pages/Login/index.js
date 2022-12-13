@@ -4,6 +4,8 @@ import {Link } from "react-router-dom";
 import { Col, Row } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { Card } from 'antd';
+import { useSelector, useDispatch } from 'react-redux'
+import {checkLogin} from '../../Store/reducers/userReducer'
 import api from '../../Helpers/axios'
 import {  Checkbox, Form, Input } from 'antd';
 import {  message, Space } from 'antd';
@@ -13,9 +15,9 @@ import "./login.css";
 
     
 const Login = () => {
- 
-  const [loading , setLoading] = useState(false);
 
+  const dispatch = useDispatch()
+  const [loading , setLoading] = useState(false);
   const navigate = useNavigate();
 
   // console.log("login Componet")
@@ -36,8 +38,10 @@ const Login = () => {
     if(result.data.token){
       // console.log("Login success full")
       message.success('Login success full');
-      localStorage.setItem("token", result.data.token );
+     await localStorage.setItem("token", result.data.token );
+      await dispatch(checkLogin())
       navigate("/home");
+      
     }else{
       // console.log("In valid Email and Password")
       message.error('In valid Email and Password');
