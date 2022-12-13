@@ -16,23 +16,9 @@ export const checkLogin = createAsyncThunk(
             console.log("result",result)
             userInfoData.info = result.data;
 			
-
-
-	        // await  axios.get('https://temp-app-windowshop.herokuapp.com/users?filter=%7B%22where%22%3A%7B%22mobileNo%22%3A%20'+userData.username+'%2C%22password%22%3A%22'+userData.password+'%22%7D%2C%22fields%22%3A%7B%22id%22%3A%20true%2C%22name%22%3A%20true%2C%22mobileNo%22%3A%20true%2C%22pincode%22%3A%20true%2C%22address%22%3A%20true%7D%7D')
-			//     .then(res => {
-			//     	if(res.data.length > 0) {
-			//     		userInfoData.info = res.data[0];
-			//     		userInfoData.isLoginn = true;
-			//     	}else{
-			//     		userInfoData.isLoginn = false;
-			//     		userInfoData.info = {};
-			//     	}
-			      
-			//    })
 		    return userInfoData;
 	  }
 );
-
 
 const loginSlice = createSlice({ 
           name: 'login',

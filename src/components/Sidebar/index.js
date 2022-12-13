@@ -9,8 +9,9 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
 const logout =()=>{
-  // alert("hiii")
+
   localStorage.removeItem("token");
+  alert("Conform for Logout ")
   navigate("/login");
 }
 
