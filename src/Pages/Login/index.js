@@ -1,21 +1,52 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Button} from 'antd';
 import {Link } from "react-router-dom";
 import { Col, Row } from 'antd';
+import { useNavigate } from "react-router-dom";
 import { Card } from 'antd';
+import api from '../../Helpers/axios'
 import {  Checkbox, Form, Input } from 'antd';
+import {  message, Space } from 'antd';
+
 import Image from '../../images/logo-login.png';
 import "./login.css";
 
-
+    
 const Login = () => {
+ 
+  const [loading , setLoading] = useState(false);
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
+  const navigate = useNavigate();
+
+  // console.log("login Componet")
+
+    const onformsubmit = async(values) => {
+      setLoading(true)
+      console.log('Success:', values);
+     
+      
+      const payload ={
+        "email":values.email,
+        "password": values.password
+
+    }
+    const result = await api.post('/auth/login',payload);
+    console.log("result", result.data.token)
+
+    if(result.data.token){
+      // console.log("Login success full")
+      message.success('Login success full');
+      localStorage.setItem("token", result.data.token );
+      navigate("/home");
+    }else{
+      // console.log("In valid Email and Password")
+      message.error('In valid Email and Password');
+    }
+    setLoading(false)
+        
+
       };
-      const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-      };
+   
 
   return (
     <div className='logincontainer'>
@@ -63,8 +94,8 @@ const Login = () => {
       initialValues={{
         remember: true,
       }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
+      onFinish={onformsubmit}
+   
       autoComplete="off"
     >
       <Form.Item
@@ -100,7 +131,7 @@ const Login = () => {
         //   span: 16,
         // }}
       >
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading ={loading} >
           Submit
         </Button>
 

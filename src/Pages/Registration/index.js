@@ -3,18 +3,29 @@ import { Button} from 'antd';
 import {Link } from "react-router-dom";
 import { Col, Row } from 'antd';
 import { Card } from 'antd';
+import api from '../../Helpers/axios'
 import {  Form, Input, Select } from 'antd';
 import "./Registration.css";
 import Image1 from '../../images/registr-removebg.png';
 
 const Registration = () => {
 
-  const onFinish = (values) => {
+  const onFinish = async(values) => {
     console.log('Success:', values);
+
+  //   const payregistration ={
+  //     "name":values.name,
+  //     "email":values.email,
+  //     "College":values.College,
+  //     "password": values.password
+
+  // }
+  // const result = await api.post('/auth/registration',payregistration);
+  // console.log("result", result)
+
+
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+ 
 
   return (
     <div className='registrationcontainer'>
@@ -63,7 +74,7 @@ const Registration = () => {
         remember: true,
       }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
+     
       autoComplete="off"
     >
    <Form.Item
