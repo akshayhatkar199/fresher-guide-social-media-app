@@ -34,7 +34,7 @@ const Registration = () => {
     const payload ={
          "email":values.email,
          "password": values.password,
-       "CollegeId":values.CollegeID,
+       "collageId":values.collageId,
       "passoutYear":values.passoutYear
 
    }
@@ -138,7 +138,7 @@ const Registration = () => {
       
       </Form.Item>
       <Form.Item
-      name='collegeId'
+      name='collageId'
        label="College" >
         <Select>
         {College.map((item, index) => {
@@ -205,7 +205,8 @@ const Registration = () => {
           Submit
         </Button>
 
-        <Link to= "/home"> <Button type="link">Home</Button></Link>
+        {/* <Link to= "/home"> <Button type="link">Home</Button></Link> */}
+
       </Form.Item>
     </Form>
 

@@ -1,10 +1,11 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Button} from 'antd';
 import {Link } from "react-router-dom";
 import { Col, Row } from 'antd';
 import {HomeOutlined} from '@ant-design/icons'
 import { Input, Space } from 'antd';
 import{MessageOutlined}from '@ant-design/icons'
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faHome,faMessage,faBell} from '@fortawesome/free-solid-svg-icons'
 import {NotificationOutlined } from '@ant-design/icons'
@@ -13,9 +14,23 @@ import Image4  from '../../images/logo-college-removebg-preview.png';
 import Image3 from '../../images/user.jpg';
 import './header.css'
 const { Search } = Input;
-const onSearch = (value) => console.log(value);
+
 
 const Header = () => {
+const [searchinput,setSearchinputs] =  useState("");
+const navigate = useNavigate()
+
+// console.log("setSearchinputs",setSearchinputs)
+// console.log("searchinput",searchinput)
+
+const onSearch = () => { navigate("/searchuser/:"+ searchinput)}
+
+// const Usersearch =()=>{
+//   // console.log("Url .....")
+//   // navigate("/searchuser/:"+ searchinput)
+  
+// }
+
   return (
     <div className='mean-header'> 
     <div>
@@ -33,10 +48,14 @@ const Header = () => {
     
       <img src={Image4} alt="logo" className="img-fluid " style={{height: "57px" ,width: "163px"}}></img> 
 
-      
-      <Search placeholder="input search text" className= "header-input" onSearch={onSearch} enterButton style={{
+    
+      <Search  value={searchinput} placeholder="input search text"    className= "header-input"  onSearch={onSearch} onChange ={(e)=> setSearchinputs(e.target.value)} enterButton style={{
         width: "50%", margin: "18px"
+      
       }}/>   
+
+      
+      
 
   <Link to="/home"> <FontAwesomeIcon icon={faHome} className="header-home-icons" /></Link>
   

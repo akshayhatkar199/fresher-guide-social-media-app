@@ -17,7 +17,7 @@
 .header-home-icons{
          color: white;
          margin-bottom: 16px;
-         margin-left: 3px;
+         margin-left: 34px;
          font-size: 17px;
          margin-top: 24px
 }
@@ -54,6 +54,11 @@
 }
 .header{
     display: inline-flex;
+}
+
+
+.header-input .ant-input{
+    width: 300px;
 }
 
 .bell-icon{

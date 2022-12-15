@@ -8,7 +8,8 @@ import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortaweso
 import { Avatar, List,Button, } from 'antd'
 import Image3 from '../../images/user.jpg';
 import { Col, Row , Menu,Input } from 'antd';
-import './myfriends.css'
+import './searchuser.css'
+
 
 const data = [
     {
@@ -48,7 +49,7 @@ const data = [
 
 
 
-const Myfriends = () => {
+const Searchuser = () => {
     return (
         <div> 
         <Header />
@@ -80,11 +81,10 @@ const Myfriends = () => {
           xxl={{span: 22}}
           >
         
-     <div className='main-Myfriends'>
+     <div className='main-Searchuser'>
     
-         <div className='Myfriends-div' >
-          <h3 className='title-Myfriends'>Myfriends</h3>
-          <Link to="/searchuser/:searchinput"><h3> Searchuser</h3></Link>
+         <div className='Searchuser-div' >
+          <h3 className='title-Searchuser'>Search User</h3>
           <hr />
           <List
         itemLayout="horizontal"
@@ -120,4 +120,4 @@ const Myfriends = () => {
       )
 }
 
-export default Myfriends
+export default Searchuser

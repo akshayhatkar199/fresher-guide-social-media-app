@@ -1,0 +1,67 @@
+.title-Searchuser{
+    padding-left: 31px;
+    padding-top: 14px;
+    font-style: oblique;
+    font-weight: 800;
+}
+
+.Searchuser-div{
+    margin-top: 18px;
+    margin-right: 18px;
+    border-radius: 10px;
+    background: white;
+}
+
+/* > 576 px */
+@media only screen and (max-width: 576px){ 
+   
+    .Searchuser-div{
+        margin-left: 21px;
+    }
+    
+ }
+
+/* > 576 px */
+@media only screen and (min-width: 576px){
+    
+    .Searchuser-div{
+        margin-left: 21px;
+    }
+    
+    
+ }
+ /* > 768 px */
+ @media only screen and (min-width: 768px){
+    
+    .Searchuser-div{
+        margin-left: 21px;
+    }
+   
+    
+ }
+ /* > 992 px */
+ @media only screen and (min-width: 992px){
+   
+    .Searchuser-div{
+        margin-left: 0px;
+       }
+     
+ }
+ /* > 1200 px */
+ @media only screen and (min-width: 1200px){
+    
+    .Searchuser-div{
+        margin-left: 0px;
+       }
+     
+       
+ }
+ /* > 1400 px */
+ @media only screen and (min-width: 1400px){
+    
+    .Searchuser-div{
+        margin-left: 0px;
+       }
+     
+       
+ }
