@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { Button} from 'antd';
+import { Button, message} from 'antd';
 import {Link } from "react-router-dom";
 import { Col, Row } from 'antd';
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,7 @@ const Registration = () => {
     setColleges(result.data)
    
   }
-  console.log("college",College)
+  // console.log("college",College)
 
   
   const onFinish = async(values) => {
@@ -40,7 +40,18 @@ const Registration = () => {
    }
   const result = await api.post('/auth/register',payload);
   console.log("result", result)
-     navigate("/login");
+    
+
+
+   if(result.data.token){
+    //  console.log("register is success full")
+     message.success("register is success full")
+      navigate("/login");
+   }else{
+    //  console.log("Email is already exits.")
+     message.error('Email is already exits.');
+   }
+     
 
   };
  
