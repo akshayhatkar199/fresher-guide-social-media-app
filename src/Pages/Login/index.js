@@ -39,9 +39,9 @@ const Login = () => {
       // console.log("Login success full")
       message.success('Login success full');
      await localStorage.setItem("token", result.data.token );
-      await dispatch(checkLogin())
+      await dispatch(checkLogin(result.data.token))
       navigate("/home");
-      
+      // window.location.href = "http://localhost:3000/home";
     }else{
       // console.log("In valid Email and Password")
       message.error('In valid Email and Password');

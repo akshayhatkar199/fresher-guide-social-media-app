@@ -1,7 +1,8 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Button} from 'antd';
 import {Link } from "react-router-dom";
 import { Col, Row } from 'antd';
+import { useNavigate } from "react-router-dom";
 import { Card } from 'antd';
 import api from '../../Helpers/axios'
 import {  Form, Input, Select } from 'antd';
@@ -9,20 +10,37 @@ import "./Registration.css";
 import Image1 from '../../images/registr-removebg.png';
 
 const Registration = () => {
+  const [College , setColleges] = useState([]);
+  const navigate = useNavigate();
 
+
+  useEffect(()=>{
+    getcollege();
+  
+  },[])
+  
+  const getcollege =async() =>{
+    const result = await api.get('/colleges');
+    console.log("result", result)
+    setColleges(result.data)
+   
+  }
+  console.log("college",College)
+
+  
   const onFinish = async(values) => {
     console.log('Success:', values);
 
-  //   const payregistration ={
-  //     "name":values.name,
-  //     "email":values.email,
-  //     "College":values.College,
-  //     "password": values.password
+    const payload ={
+         "email":values.email,
+         "password": values.password,
+       "CollegeId":values.CollegeID,
+      "passoutYear":values.passoutYear
 
-  // }
-  // const result = await api.post('/auth/registration',payregistration);
-  // console.log("result", result)
-
+   }
+  const result = await api.post('/auth/register',payload);
+  console.log("result", result)
+     navigate("/login");
 
   };
  
@@ -108,12 +126,20 @@ const Registration = () => {
       
       
       </Form.Item>
-      <Form.Item label="College" >
+      <Form.Item
+      name='collegeId'
+       label="College" >
         <Select>
-          <Select.Option value="KIT College">KIT College</Select.Option>
+        {College.map((item, index) => {
+              return(
+                 <Select.Option key={item.id} value={item.id}>{item.collegeName}</Select.Option>
+                
+              )
+            })}
+          {/* <Select.Option value="KIT College">KIT College</Select.Option>
           <Select.Option value=">D Y Patil Polytechnic, Kolhapur College">D Y Patil Polytechnic, Kolhapur College</Select.Option>
           <Select.Option value="Bharati Vidyapeeth  College">Bharati Vidyapeeth  College</Select.Option>
-          <Select.Option value="Sanjay Ghodawat College">Sanjay Ghodawat College</Select.Option>
+          <Select.Option value="Sanjay Ghodawat College">Sanjay Ghodawat College</Select.Option> */}
 
         </Select>
         

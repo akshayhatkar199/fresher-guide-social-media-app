@@ -1,22 +1,33 @@
 import { createSlice,createAsyncThunk } from  '@reduxjs/toolkit';
 import {WithTokenApi} from '../../Helpers/axios'
 import jwt_decode from "jwt-decode";
-
+import axios from "axios";
 
 
 //check user password and username
 
 export const checkLogin = createAsyncThunk(
       'login/checkLogin',
-      async (userData, thunkApi) => {
+      async (token, thunkApi) => {
+		  console.log("token",token)
      	var userInfoData={};
-         var decoded = jwt_decode(localStorage.getItem("token"));
+         var decoded = jwt_decode(token);
          console.log("decoded",decoded)
-            const result = await WithTokenApi.get('users/'+decoded.id);
-            console.log("result",result)
-            userInfoData.info = result.data;
+         
+		   await axios.get( 
+				'http://localhost:8080/users/'+decoded.id,
+				{  headers: { Authorization: `Bearer ${token}` }}
+				
+			  ).then(result => {
+				console.log("result",result)
+				userInfoData.info = result.data;
 			
-		    return userInfoData;
+			})
+
+       
+           
+			return userInfoData;
+		   
 	  }
 );
 
