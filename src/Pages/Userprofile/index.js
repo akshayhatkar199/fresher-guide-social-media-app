@@ -103,7 +103,11 @@ const Userprofile = () => {
       >
     
     <div className='profile-div'>
- <img src={Image} alt="img" className="main-profileimg "></img>
+      <img src={Image} alt="img" className="main-profileimg "></img>
+      <div className=''>
+       <Link to="/creatpost" > <Button type="primary" size={25} className="button-users"> Creat Post </Button></Link>
+      </div>
+
     {/* <div className='user-box'>
     <img src={Image3} alt="logo" className="profile-user-image"></img>
     <div className='text-div'>
@@ -127,11 +131,16 @@ const Userprofile = () => {
    </div>
    </div> */}
 
+
+   
+   
+   </div>
+
    <Link to="/updateprofile">update profile</Link>
    <br />
-   <Link to="/creatpost" >creat post</Link>
+
      
-  </div>
+
 
   <div>
 <Row>
