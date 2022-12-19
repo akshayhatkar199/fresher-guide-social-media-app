@@ -12,7 +12,7 @@ const logout =()=>{
 
   localStorage.removeItem("token");
   alert("Conform for Logout ")
-  navigate("/login");
+  window.location.href = "http://localhost:3000/";
 }
 
   return (
