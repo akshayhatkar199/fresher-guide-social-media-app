@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link, useNavigate } from "react-router-dom";
-import {  faHome,faMessage,faBell ,faUser,faBars ,fauserGroup,faRightFromBracket} from '@fortawesome/free-solid-svg-icons'
+import {  faHome,faMessage,faBell ,faUser,faBars ,fauserGroup,faRightFromBracket,faRegistered,faF} from '@fortawesome/free-solid-svg-icons'
 import { Col, Row ,  } from 'antd';
 import './sidebar.css'
 
@@ -119,7 +119,7 @@ const logout =()=>{
       >
       <div className="left-side-icone">
       <div className='icone-back'>
-     <Link to="/myfriends"> <FontAwesomeIcon icon={faMessage} className="icone-size" /></Link>
+     <Link to="/myfriends"> <FontAwesomeIcon icon={faF} className="icone-size" /></Link>
       </div>
       </div>
 
@@ -135,7 +135,7 @@ const logout =()=>{
       >
       <div className="left-side-icone">
       <div className='icone-back'>
-     <Link to="/myfriendRequests"> <FontAwesomeIcon icon={faMessage} className="icone-size" /></Link>
+     <Link to="/myfriendRequests"> <FontAwesomeIcon icon={faRegistered} className="icone-size" /></Link>
       </div>
       </div>
 

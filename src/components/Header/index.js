@@ -6,6 +6,7 @@ import {HomeOutlined} from '@ant-design/icons'
 import { Input, Space } from 'antd';
 import{MessageOutlined}from '@ant-design/icons'
 import { useNavigate } from "react-router-dom";
+import {useSelector} from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faHome,faMessage,faBell} from '@fortawesome/free-solid-svg-icons'
 import {NotificationOutlined } from '@ant-design/icons'
@@ -19,6 +20,8 @@ const { Search } = Input;
 const Header = () => {
 const [searchinput,setSearchinputs] =  useState("");
 const navigate = useNavigate()
+const userData = useSelector((state)=>state.userData);
+console.log("userData",userData);
 
 // console.log("searchinput",searchinput)
 
@@ -79,7 +82,7 @@ const onSearch = () => {
        
       <label className='header-online-label'></label> <img src={Image3} alt="logo" className="user-image"></img>   
       <div className='header-span-text'>
-      <span style={{color: "white"}}>Josephin water </span><br />
+      <span style={{color: "white"}}>{userData.userinfo.data.name}</span><br />
       <span style={{color: " #ffc5c5"}}> active now</span>
       </div>
 

@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Sidebar from '../../components/Sidebar';
 import {Link } from "react-router-dom";
+import {WithTokenApi} from '../../Helpers/axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button, } from 'antd'
@@ -49,6 +50,19 @@ const data = [
 
 
 const Myfriends = () => {
+const [myfriendslist,setmyfriendlist] = useState([]);
+
+useEffect(()=>{
+  friends()
+},[])
+
+const friends =async()=>{
+  const result = await WithTokenApi.get("/friends/myfriendlist")
+  console.log("result",result);
+  setmyfriendlist(result.data)
+}
+
+
     return (
         <div> 
         <Header />
@@ -88,13 +102,13 @@ const Myfriends = () => {
           <hr />
           <List
         itemLayout="horizontal"
-        dataSource={data}
+        dataSource={myfriendslist}
         renderItem={(item ) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<div ><label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
-              title={<a href="https://ant.design">{item.title}</a>}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"  
+              avatar={<div ><label className='online-label'></label><Avatar src={item.photo} /></div>}
+              title={<a href="https://ant.design">{item.name}</a>}
+              description={item.email} 
             />
           </List.Item>
         )}
