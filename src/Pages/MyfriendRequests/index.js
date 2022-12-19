@@ -1,14 +1,14 @@
-import React from 'react'
-
+import React,{useEffect,useState} from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Sidebar from '../../components/Sidebar';
 import {Link } from "react-router-dom";
+import {WithTokenApi} from '../../Helpers/axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
-import { Avatar, List,Button, Form, } from 'antd'
+import { Avatar, List,Button, Form, message, } from 'antd'
 import Image3 from '../../images/user.jpg';
-import { Col, Row , Menu,Input } from 'antd';
+import { Col, Row , Menu,Input, } from 'antd';
 import './myfriendRequests.css'
 
 
@@ -50,6 +50,33 @@ const data = [
 
 
 const MyfriendRequests = () => {
+ const [myfriendrequests, setmyfriendrequest] = useState([])
+
+
+ useEffect(()=>{
+  friendsrequest()
+ },[])
+
+const friendsrequest=async()=>{
+  const result= await WithTokenApi.get("/friends/myrequests")
+  console.log("result",result);
+  setmyfriendrequest(result.data)
+}
+
+const accept=async(id)=>{
+ console.log("id",id);
+const payload={
+  "requestId": id
+}
+console.log("payload",payload)
+ const result = await WithTokenApi.post("/friends/requestaccept",payload)
+ console.log("result",result)
+
+ message.success("Request Accepted Successfully")
+ friendsrequest()
+}
+
+
     return (
         <div> 
         <Header />
@@ -88,14 +115,15 @@ const MyfriendRequests = () => {
           <hr />
           <List
         itemLayout="horizontal"
-        dataSource={data}
+        dataSource={myfriendrequests}
         renderItem={(item ) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<div ><label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
-              title={<a href="https://ant.design">{item.title}</a>}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"  
+              avatar={<div ><label className='online-label'></label><Avatar src={item.photo}/></div>}
+              title={<a href="https://ant.design">{item.name}</a>}
+              description={item.email}  
             />
+             <Button type="primary" htmlType="submit" onClick={()=>accept(item.id)}  >Accept Request</Button>
           </List.Item>
         )}
       />

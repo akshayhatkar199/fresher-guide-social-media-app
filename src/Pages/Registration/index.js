@@ -32,6 +32,7 @@ const Registration = () => {
     console.log('Success:', values);
 
     const payload ={
+           "name":values.name,
          "email":values.email,
          "password": values.password,
        "collageId":values.collageId,
