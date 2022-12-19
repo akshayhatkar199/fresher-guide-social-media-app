@@ -7,5 +7,5 @@ export default axios.create({
 export const WithTokenApi = axios.create({
     // baseURL:'https://temp-app-windowshop.herokuapp.com/',
     baseURL:"http://localhost:8080/",
-     headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`} 
+     headers: {"Authorization" : "Bearer "+localStorage.getItem('token')+"" } 
 });

@@ -1,14 +1,23 @@
 import React from 'react'
 import './footer.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {Link } from "react-router-dom";
+import {Link ,useNavigate } from "react-router-dom";
 import Image2 from '../../images/he-logo.png';
 import Image4  from '../../images/logo-college-removebg-preview.png';
-import {  faHome,faMessage,faBell ,faUser} from '@fortawesome/free-solid-svg-icons'
+import {  faHome,faMessage,faBell ,faUser,faRightFromBracket} from '@fortawesome/free-solid-svg-icons'
 import { Col, Row , Menu } from 'antd';
 
 
 const Footer = () => {
+
+  const navigate = useNavigate();
+
+  const logout =()=>{
+  
+    localStorage.removeItem("token");
+    alert("Conform for Logout ")
+    navigate("/login");
+  }
   return (<>
  <div className='desktop-footer'>
 
@@ -105,11 +114,11 @@ const Footer = () => {
     <Row>
 
       <Col  
-      xs={{span: 6}}
-      sm={{span: 6}}
-      md={{span: 6}}
-      lg={{span: 6}}
-      xl={{span: 6}}
+      xs={{span: 3}}
+      sm={{span: 3}}
+      md={{span: 3}}
+      lg={{span: 3}}
+      xl={{span: 3}}
       xxl={{span: 6}}
       >
       <div className=''>
@@ -120,12 +129,12 @@ const Footer = () => {
       </Col>
 
       <Col  
-      xs={{span: 6}}
-      sm={{span: 6}}
-      md={{span: 6}}
-      lg={{span: 6}}
-      xl={{span: 6}}
-      xxl={{span: 6}}
+      xs={{span: 3}}
+      sm={{span: 3}}
+      md={{span: 3}}
+      lg={{span: 3}}
+      xl={{span: 3}}
+      xxl={{span: 3}}
       >
       <div className=''>
 
@@ -137,12 +146,12 @@ const Footer = () => {
       </Col>
 
       <Col  
-      xs={{span: 6}}
-      sm={{span: 6}}
-      md={{span: 6}}
-      lg={{span: 6}}
-      xl={{span: 6}}
-      xxl={{span: 6}}
+      xs={{span: 3}}
+      sm={{span: 3}}
+      md={{span: 3}}
+      lg={{span: 3}}
+      xl={{span: 3}}
+      xxl={{span: 3}}
       >
       <div className=''>
       <Link to= '/notification'>  <FontAwesomeIcon icon={ faBell} className="footer-icon"  /></Link>
@@ -151,12 +160,12 @@ const Footer = () => {
       </Col>
 
       <Col  
-      xs={{span: 6}}
-      sm={{span: 6}}
-      md={{span: 6}}
-      lg={{span: 6}}
-      xl={{span: 6}}
-      xxl={{span: 6}}
+      xs={{span: 3}}
+      sm={{span: 3}}
+      md={{span: 3}}
+      lg={{span: 3}}
+      xl={{span: 3}}
+      xxl={{span: 3}}
       >
       <div className=''>
       
@@ -165,7 +174,53 @@ const Footer = () => {
       </div>
       </Col>
 
+      <Col  
+      xs={{span: 3}}
+      sm={{span: 3}}
+      md={{span: 3}}
+      lg={{span: 3}}
+      xl={{span: 3}}
+      xxl={{span: 3}}
+      >
+      <div className=''>
+      
+      <Link to="/myfriends"> <FontAwesomeIcon icon={faMessage} className="footer-icon" /></Link>
+  
+      </div>
+      </Col>
+
+      <Col  
+      xs={{span: 3}}
+      sm={{span: 3}}
+      md={{span: 3}}
+      lg={{span: 3}}
+      xl={{span: 3}}
+      xxl={{span: 3}}
+      >
+      <div className=''>
+      
+      <Link to="/myfriendRequests"> <FontAwesomeIcon icon={faMessage} className="footer-icon" /></Link>
+  
+      </div>
+      </Col>
+
+      <Col  
+      xs={{span: 3}}
+      sm={{span: 3}}
+      md={{span: 3}}
+      lg={{span: 3}}
+      xl={{span: 3}}
+      xxl={{span: 3}}
+      >
+      <div className=''>
+      <div onClick={logout}>
+           <FontAwesomeIcon icon={faRightFromBracket} className="footer-icon" />
+      </div>
      
+  
+      </div>
+      </Col>
+
       
     
     </Row>

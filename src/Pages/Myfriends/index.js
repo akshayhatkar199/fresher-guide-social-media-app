@@ -84,7 +84,7 @@ const Myfriends = () => {
     
          <div className='Myfriends-div' >
           <h3 className='title-Myfriends'>Myfriends</h3>
-          <Link to="/searchuser/:searchinput"><h3> Searchuser</h3></Link>
+        
           <hr />
           <List
         itemLayout="horizontal"
