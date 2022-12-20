@@ -10,8 +10,13 @@ import { Avatar, List,Button, } from 'antd'
 const Aboutus = () => {
   const userData = useSelector((state)=>state.userData)
   console.log("userData",userData)
-
-  const dataAbout = [
+  var skills = "";
+ userData.userinfo.skills.map((e) => {
+  skills += e.skilsName + " "
+ })
+console.log("skills",skills)
+ console.log("skills",skills)
+  var dataAbout = [
     {
       title: 'College Name',
       icons:  faGraduationCap,
@@ -30,7 +35,7 @@ const Aboutus = () => {
     {
       title: 'Skills',
       icons: faPen,
-      description:  userData.userinfo.Skills  
+       description:skills
     },
     {
       title: 'Technical Knowledge',
@@ -70,20 +75,20 @@ const Aboutus = () => {
         <List.Item.Meta
           avatar={<div className='about-icon' >  <FontAwesomeIcon icon={item.icons} /></div>}
           title={<a href="https://ant.design">{item.title}</a>}
-          description={
-          Array.isArray(item.description)
-          ? 
-            <div>
-          {
-            item.description.length >  0 ?
-            item.description.map((e)=>{
-               return e.skilsName
-            }) 
-             : null
-            }
-          </div>
-          : item.description
-          }
+          description={item.description}
+          // Array.isArray(item.description)
+          // ? 
+          //   <div>
+          // {
+          //   item.description.length >  0 ?
+          //   item.description.map((e)=>{
+          //      return e.skilsName
+          //   }) 
+          //    : null
+          //   }
+          // </div>
+          // : item.description
+          // }
 
         />
       </List.Item>
