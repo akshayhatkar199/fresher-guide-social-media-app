@@ -73,7 +73,7 @@ const Footer = () => {
       <div className=''>
       <Menu className='footer-menu'>
 
-      <Link to=""><Menu.Item key="5"> <span className='footer-heading'>Service</span></Menu.Item></Link>
+      <Link to="" className='footer-tex-color'><Menu.Item key="5"> <span className='footer-heading'>Service</span></Menu.Item></Link>
       <Link to="/myfriendRequests" className='footer-tex-color'> <Menu.Item key="6">MyfriendRequests</Menu.Item></Link>
       <Link to="/myfriends" className='footer-tex-color'><Menu.Item key="7">Myfriends</Menu.Item></Link>
     

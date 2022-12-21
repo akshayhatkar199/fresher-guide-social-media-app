@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
 import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
@@ -6,7 +6,11 @@ import {Link } from "react-router-dom";
 import Onlineusers from '../../components/Onlineusers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button} from 'antd';
+import {useSelector,useDispatch} from 'react-redux'
+import { useNavigate } from "react-router-dom";
 import { Card } from 'antd';
+import {checkLogin} from '../../Store/reducers/userReducer'
+import api, {WithTokenApi} from '../../Helpers/axios'
 import {  Checkbox, Form, Input,DatePicker, } from 'antd';
 import { Col, Row , Select  } from 'antd';
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
@@ -55,13 +59,46 @@ const data = [
 ];
 
 const Updateprofile = () => {
+const [Collegedata,setcollegedata] = useState([]);
+const [Skilles,setskilles] = useState([]);
+const dispatch = useDispatch();
+const navigate = useNavigate();
+const userData = useSelector((state)=>state.userData)
+// console.log("userData",userData)
+var formDaata = {...userData.userinfo.data};
+var skillss = userData.userinfo.skills;
+if(skillss.length > 0){
+   var data = skillss.map(function (item) {
+    return item.id;
+  });
+  formDaata.skills = data
+}
+console.log("formDaata",formDaata)
+useEffect(()=>{
+  datacollege()
+  Skillsdata()
+},[])
 
-    const onFinish = (values) => {
+const datacollege = async()=>{
+    const result = await api.get("/colleges")
+    console.log("result",result)
+    setcollegedata(result.data)
+}
+
+const Skillsdata = async()=> {
+     const result = await WithTokenApi.get("/skills")
+     console.log("result",result)
+     setskilles(result.data)
+}
+    const onFinish = async(values) => {
         console.log('Success:', values);
+        values.id = userData.userinfo.data.id
+        const result = await WithTokenApi.patch("/users",values)
+        console.log("result",result)
+        await dispatch(checkLogin(localStorage.getItem("token")))
+        navigate("/userprofile")
       };
-      const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-      };
+     
 
   return (
     <div> 
@@ -103,11 +140,8 @@ const Updateprofile = () => {
         span: 8,
       }}
      
-      initialValues={{
-        remember: true,
-      }}
+      initialValues={formDaata}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
    <Form.Item
@@ -141,9 +175,9 @@ const Updateprofile = () => {
       
       </Form.Item>
 
-      <Form.Item
+      {/* <Form.Item
         label="Date of Birth"
-        name="email"
+        name="dateOfBirth"
         
         rules={[
           {
@@ -156,12 +190,12 @@ const Updateprofile = () => {
          <DatePicker style={{  width: "100%"  }} />
       
       
-      </Form.Item>
+      </Form.Item> */}
 
 
       <Form.Item
         label="College Name"
-        name="College Name"
+        name="collageId"
         
         rules={[
           {
@@ -172,10 +206,15 @@ const Updateprofile = () => {
         ]}
       >
       <Select>
-          <Select.Option value="KIT College">KIT College</Select.Option>
+      {Collegedata.map((item)=>{
+        return(
+        <Select.Option key={item.id} value={item.id}>{item.collegeName}</Select.Option>
+        )
+      })}
+          {/* <Select.Option value="KIT College">KIT College</Select.Option>
           <Select.Option value="D Y Patil Polytechnic, Kolhapur College">D Y Patil Polytechnic, Kolhapur College</Select.Option>
           <Select.Option value="Bharati Vidyapeeth  College">Bharati Vidyapeeth  College</Select.Option>
-          <Select.Option value="Sanjay Ghodawat College">Sanjay Ghodawat College</Select.Option>
+          <Select.Option value="Sanjay Ghodawat College">Sanjay Ghodawat College</Select.Option> */}
 
         </Select>
       
@@ -185,7 +224,7 @@ const Updateprofile = () => {
        
       <Form.Item
         label="Passout year"
-        name="Passout year"
+        name="passoutYear"
         
         rules={[
           {
@@ -195,13 +234,13 @@ const Updateprofile = () => {
           },
         ]}
       >
-        <DatePicker picker="Passout year" bordered={true} style={{  width: "100%"  }} />
+      <Input type= "Number" style={{  width: "100%"  }} />
       
       </Form.Item>
 
       <Form.Item
       label=" About"
-        name={['user', ' About']}
+        name= 'about'
         
         rules={[
           {
@@ -218,21 +257,20 @@ const Updateprofile = () => {
      
       <Form.Item
         label="Skills"
-        name="Skills"
-        
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Skills!',
-          
-          },
-        ]}
+        name="skills"
+       
+       
       >
-      <Select>
-         <Select.Option value="IT ">IT</Select.Option>
+      <Select  mode="multiple"  >
+      {Skilles.map((item)=>{
+         return(
+          <Select.Option key={item.id} value={item.id}>{item.skilsName}</Select.Option>
+         )
+      })}
+         {/* <Select.Option value="IT ">IT</Select.Option>
           <Select.Option value="IT web">IT web</Select.Option>
           <Select.Option value="IT dev">IT dev</Select.Option>
-          <Select.Option value="IT sof">IT sof</Select.Option>
+          <Select.Option value="IT sof">IT sof</Select.Option> */}
 
         </Select>
       
@@ -242,7 +280,7 @@ const Updateprofile = () => {
 
       <Form.Item
         label="Technical Knowledge"
-        name={['user', ' Technical Knowledge']}
+        name='technicalKnowledge'
         
         rules={[
           {
@@ -260,7 +298,7 @@ const Updateprofile = () => {
 
       <Form.Item
         label=" Achievement"
-        name={['user', ' Achievement']}
+        name= 'achievement'
         
         rules={[
           {
@@ -274,10 +312,9 @@ const Updateprofile = () => {
       
       </Form.Item>
 
-    
       <Form.Item
         label="Year of Experience"
-        name="Year of Experience"
+        name="yearOfExperience"
         
         rules={[
           {
@@ -294,7 +331,7 @@ const Updateprofile = () => {
 
       <Form.Item
         label=" Worked Projects"
-        name={['user', ' Worked Projects']}
+        name= 'workedProjects'
         
         rules={[
           {

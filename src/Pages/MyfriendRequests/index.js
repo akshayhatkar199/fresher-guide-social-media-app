@@ -123,7 +123,7 @@ console.log("payload",payload)
               title={<a href="https://ant.design">{item.name}</a>}
               description={item.email}  
             />
-             <Button type="primary" htmlType="submit" onClick={()=>accept(item.id)}  >Accept Request</Button>
+             <Button type="primary" htmlType="submit" onClick={()=>accept(item.requestId)}  >Accept Request</Button>
           </List.Item>
         )}
       />

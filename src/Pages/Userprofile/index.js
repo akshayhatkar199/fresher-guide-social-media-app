@@ -3,6 +3,7 @@ import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
 import {Link } from "react-router-dom";
+import {useSelector} from 'react-redux'
 import Image from '../../images/profile-img.jpg';
 import Postcard from "../../components/Postcard"
 import Aboutus from "../../components/Aboutus"
@@ -71,6 +72,9 @@ const dataAbout = [
   
 
 const Userprofile = () => {
+  const userData = useSelector((state)=>state.userData);
+  console.log("userData",userData)
+
   return (
     <div> 
     <Header />
@@ -103,35 +107,46 @@ const Userprofile = () => {
       >
     
     <div className='profile-div'>
- <img src={Image} alt="img" className="main-profileimg "></img>
-    {/* <div className='user-box'>
-    <img src={Image3} alt="logo" className="profile-user-image"></img>
+      <img src={Image} alt="img" className="main-profileimg "></img>
+    <div>
+    <Link to="/creatpost" ><Button type="primary" size={25} className=""> Creat Post </Button></Link>
+    </div>
+       
+   
+
+    <div className='sub-profile-div'>
+    <img src={Image3} alt="logo" className='profile-user-IMG'></img>
     <div className='text-div'>
-   <span style={{color: "black"}}>Josephin water </span><br />
-   <span style={{color: "#8e8c8c", fontSize: "smaller"}}> ahsgddgbb@876gmail.com</span>
-<div className='button-profile'>
-   <Button type="primary" size={25} className="">
-           
-        Edit Profile
-                    
-          </Button>
-</div>
+   <span style={{color: "black",fontSize: "18px",fontWeight: "500"}}>{userData.userinfo.data.name} </span><br />
+   <span style={{color: "#8e8c8c", fontSize: "revert"}}> {userData.userinfo.data.email} </span><br/>
+   <span style={{color: "black",fontSize: "15px"}}>Followers: {userData.userinfo.friends ? userData.userinfo.friends[0].followers : 0} </span><br />
+   <span style={{color: "black",fontSize: "15px"}}>Following: {userData.userinfo.friends ? userData.userinfo.friends[0].following : 0}</span><br />
+    <div className='button-profile'>
+      <Link to="/updateprofile">
+        <Button type="primary" size={25} className="">
+           Update Profile
+        </Button>
+      </Link>
+    </div>
 
    </div>
-   <div className='cover-button'>
+   {/* <div className='cover-button'>
         <Button type="primary" size={25} className="edit-button">
            
         Edit Cover
                     
           </Button>
-   </div>
    </div> */}
+   </div>
 
-   <Link to="/updateprofile">update profile</Link>
+
+   
+   
+   </div>
    <br />
-   <Link to="/creatpost" >creat post</Link>
+
      
-  </div>
+
 
   <div>
 <Row>

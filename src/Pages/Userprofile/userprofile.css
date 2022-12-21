@@ -57,14 +57,19 @@
     right: 65px;
     top: 2px;
 }
+/* .button-users{
+    float: right;
+    position: relative;
+    top: -47px;
+    right: 25px;
+} */
 
 .button-profile{
-    margin-top: 54px
+    margin-top: 13px;
 }
 
 .text-div{
-    margin-top: 78px;
-    line-height: 23px;
+   line-height: 23px;
     text-align: center;
 }
 
@@ -85,8 +90,25 @@
     margin: 15px;
 }
 
+.profile-user-IMG{
+    width: 88px;
+    height: 88px;
+    border-radius: 50px;
 
-
+}
+.sub-profile-div{
+    text-align: center;
+    width: 215px;
+    height: 241px;
+    top: 55px;
+    left: 49px;
+    background: #e3ecf3;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1;
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
 /* > 576 px */
 @media only screen and (max-width: 576px){
    
