@@ -48,6 +48,7 @@ function App() {
           <Route exact path="/" element= { <Home />}/>
           <Route path="/home" element={<Home />} />
           <Route path="/message" element={<Message />}/>
+          <Route path="/messages/:userId" element={<Message />}/>
           <Route path="/notification" element={< Notification/>}/> 
           <Route path="/creatpost" element={<Creatpost/>}/>
           <Route path="/userprofile" element={<Userprofile/>}/>
