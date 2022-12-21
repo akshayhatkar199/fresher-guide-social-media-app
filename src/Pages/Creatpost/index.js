@@ -3,9 +3,11 @@ import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
 import {Link } from "react-router-dom";
+import { useSelector } from 'react-redux'
+import api,{WithTokenApi}  from '../../Helpers/axios'
 import Onlineusers from '../../components/Onlineusers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { InboxOutlined, UploadOutlined } from '@ant-design/icons';
+import { ApiFilled, InboxOutlined, UploadOutlined } from '@ant-design/icons';
 import {  Checkbox, Form, Input,DatePicker, Upload ,PlusOutlined } from 'antd';
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane,faImage} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button, } from 'antd'
@@ -52,14 +54,20 @@ const data = [
 ];
 
 const Creatpost = () => {
+  const userData = useSelector((state)=>state.userData)
 
-  const onFinish = (values) => {
+  const onFinish = async(values) => {
     console.log('Success:', values);
+    const payload={
+      "postTitle":  values.postTitle,
+      "description": values.description,
+      "userId":  userData.userinfo.data.id
+    }
+    console.log("payload",payload)
+    const result= await WithTokenApi.post("/post",payload)
+    console.log("result",result)
   };
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
+ 
   return (
     <div> 
     <Header />
@@ -105,13 +113,12 @@ const Creatpost = () => {
         remember: true,
       }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
      
     >
    <Form.Item
         label="Creat Title"
-        name="Creat Title"
+        name="postTitle"
         
         rules={[
           {
@@ -124,13 +131,13 @@ const Creatpost = () => {
       </Form.Item>
 
       <Form.Item
-      label=" description"
-        name={['user', ' description']}
+      label=" Description"
+        name='description'
         
         rules={[
           {
             required: true,
-            message: 'Please input your description!',
+            message: 'Please input your Description!',
           
           },
         ]}
@@ -152,7 +159,7 @@ const Creatpost = () => {
       </Form.Item> */}
 
 
-      <Form.Item label="Upload" valuePropName="fileList">
+      {/* <Form.Item label="Upload" valuePropName="fileList">
           <Upload action="/upload.do" listType="picture-card">
             <div>
               <Upload />
@@ -166,12 +173,7 @@ const Creatpost = () => {
               </div>
             </div>
           </Upload>
-        </Form.Item>
-    
-     
-      
-    </Form>
-
+        </Form.Item> */}
     
 
 
@@ -188,7 +190,7 @@ const Creatpost = () => {
        
       </Form.Item>
  
-     
+      </Form>
      </div> 
  
      

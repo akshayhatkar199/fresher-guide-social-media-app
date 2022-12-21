@@ -108,9 +108,11 @@ const Userprofile = () => {
     
     <div className='profile-div'>
       <img src={Image} alt="img" className="main-profileimg "></img>
-      <div className=''>
-       <Link to="/creatpost" > <Button type="primary" size={25} className="button-users"> Creat Post </Button></Link>
-      </div>
+    <div>
+    <Link to="/creatpost" ><Button type="primary" size={25} className=""> Creat Post </Button></Link>
+    </div>
+       
+   
 
     <div className='sub-profile-div'>
     <img src={Image3} alt="logo" className='profile-user-IMG'></img>
