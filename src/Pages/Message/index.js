@@ -116,7 +116,7 @@ const Message = () => {
      <div className='main-message'>
      {userId? 
      <>
-            <div className='messagedivList'>
+            <div>
                   <div>
                           <div className='image-div'> 
                           <label className='message-online-label'></label> <img src={Image3} alt="logo" className="message-user-image"></img>   
@@ -129,6 +129,7 @@ const Message = () => {
                   <br/>
                   <br/>
                   <hr  className='hr-message'/>
+                  <div  className='messagedivList'>
                   <ul>{
                      messageList.length > 0 ? 
                         messageList.map((e) => {
@@ -142,10 +143,10 @@ const Message = () => {
                       {/* <li className='send-me'> hii</li>
                       <li className='another-send'>hello</li> */}
                   </ul>
-
+                  </div>
             </div>
             <hr className='message-hr'/>
-            <div style={{margin: "20px"}}>
+            <div style={{margin: "20px",    marginBottom:"10px"}}>
                 <Input.Group compact>
                   <Input
                     style={{

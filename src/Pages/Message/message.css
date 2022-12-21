@@ -63,7 +63,8 @@
 }
 .messagedivList{
     overflow-y: auto;
-    height:600px;
+    /* height:600px; */
+    height: calc(100vh - 250px);
 }
 .message-user-image{
     border-radius: 50%;
