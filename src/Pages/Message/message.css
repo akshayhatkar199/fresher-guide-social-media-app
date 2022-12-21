@@ -17,21 +17,13 @@
 
 .main-message ul{
     list-style: none;
-   
+    padding-left: 21px;
 }
 
 
 
 
-.send-me{
-    float: right; 
-    background-color: #c5acac;
-    margin-right: 20px;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 10px;
-    
-}
+
 .message-div{
     margin-top: 18px;
     margin-right: 15px;
@@ -69,7 +61,11 @@
     padding-top: 4px;
     margin-left: 31px
 }
-
+.messagedivList{
+    overflow-y: auto;
+    /* height:600px; */
+    height: calc(100vh - 250px);
+}
 .message-user-image{
     border-radius: 50%;
     height: 40px;
@@ -111,17 +107,36 @@
     left: 0px;
 }
 
-
-
-.another-send{
-    float: left; 
-    background-color: #c5acac;
+.text-message{
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+    margin-right: 20px;
     margin-top: 10px;
-    padding: 10px;
     border-radius: 10px;
-    margin-left: -25px;
-    margin-top: 60px;
-
+    
+    
+}
+.message-left-div{
+    background: #2c4358;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 10px;
+    margin-right: 32px;
+    color: white;
+    border-bottom-right-radius: 8px;
+}
+.message-right-div{
+    background: #c5acac;
+    margin-left: 32px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 10px;
+    border-bottom-left-radius: 8px;
+}
+.message-right{
+    flex-direction: row-reverse;
+    
     
 }
 
