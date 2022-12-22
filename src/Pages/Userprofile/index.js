@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
 import {Link } from "react-router-dom";
 import {useSelector} from 'react-redux'
+import {WithTokenApi} from '../../Helpers/axios';
 import Image from '../../images/profile-img.jpg';
 import Postcard from "../../components/Postcard"
 import Aboutus from "../../components/Aboutus"
@@ -16,64 +17,25 @@ import { Col, Row , Menu,Input } from 'antd';
 import './userprofile.css'
 
 
-const dataAbout = [
-    {
-      title: 'College Name',
-      icons:  faGraduationCap
-    },
-    {
-      title: 'Date of Birth',
-      icons: faCakeCandles
-    },
-    {
-      title: 'Passout Year',
-      icons:  faUserGraduate 
-    },
-    {
-      title: 'Skills',
-      icons: faPen
-    },
-    {
-      title: 'Technical Knowledge',
-      icons: faLaptop
-    }
-    ,
-    {
-      title: 'Achievement',
-      icons: faTrophy 
-    }
-    ,
-    {
-      title: 'Year of Experience',
-      icons: faCalendarDays 
-    }
-    ,
-    {
-      title: 'Publication',
-      icons: faMicrophone
-    }
-    ,
-    {
-      title: 'Area of Expertise',
-      icons: faPersonWalking
-    }
-    ,
-    {
-      title: 'Worked Projects',
-      icons: faP
-    }
-    ,
-    {
-      title: 'Ratings',
-      icons: faStar
-    }
-   
-  ];
+
   
 
 const Userprofile = () => {
+  const [postdata,setpostdata] = useState([])
   const userData = useSelector((state)=>state.userData);
   console.log("userData",userData)
+
+useEffect(()=>{
+  post()
+},[])
+
+const post = async()=>{
+  const result = await WithTokenApi.get("post/byuserId/1") 
+  console.log("result",result)
+  setpostdata(result.data)
+}
+
+
 
   return (
     <div> 
@@ -177,8 +139,13 @@ const Userprofile = () => {
      >
       <div className='profil-post'>
       <h3 className='profil-post-head'>Posts</h3>
-      <Postcard/>
-      <Postcard/>
+      {
+        postdata.map((item) => {
+          return   <Postcard data={item} />
+        })
+      }
+      {/* <Postcard />
+      <Postcard/> */}
       </div>
      </Col>
 

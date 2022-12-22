@@ -3,13 +3,15 @@ import React from 'react'
 import { Col, Row,  } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faComment, faThumbsUp,faEllipsis} from '@fortawesome/free-solid-svg-icons'
+import {useSelector} from 'react-redux'
 import Image1 from '../../images/user.jpg';
 import Image2 from '../../images/post-image.jpg';
 import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 
-const Postcard = () => {
-  
+const Postcard = (props) => {
+  const userData = useSelector((state)=>state.userData);
+  console.log("props",props)
   return (
     <div> 
       <Card
@@ -37,7 +39,7 @@ const Postcard = () => {
       xl={{span: 21}}
       xxl={{span:21}}
       >
-        <h3 className='post-name'> Sufiya Eliza <br />
+        <h3 className='post-name'> {userData.userinfo.data.name} <br />
         <span className='post-time'> 30 Mins Ago</span>
         </h3>
         
@@ -46,12 +48,14 @@ const Postcard = () => {
     </Row>
     </div>
   <hr/>
-
-  <img src={Image2} alt="logo" className="user-post"></img> 
+{(props.data.image) ? <img src={"http://localhost:8080/Images/"+props.data.image} alt="logo" className="user-post"></img> 
+ : null
+}
   <div className='post-desc'>
-    <h4>Today Our Three Cute Puppy Dog Birthday !!!!</h4>
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. has been the industry's standard dummy text ever since the 1500s</p>
-  </div>
+    <h4>{props.data.postTitle}</h4>
+
+    <p>{props.data.description} </p>  
+    </div>
   <hr/>
 <div className='like-comment'>
       <Row>
