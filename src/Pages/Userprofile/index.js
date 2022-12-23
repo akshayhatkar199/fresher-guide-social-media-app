@@ -12,8 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faLaptop, faTrophy ,faCalendarDays,faMicrophone,faPersonWalking,faP,faStar,faUserGraduate} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button, } from 'antd'
 import Image3 from '../../images/user.jpg';
-
-import { Col, Row , Menu,Input } from 'antd';
+import { Col, Row , Menu,Input,Modal  } from 'antd';
 import './userprofile.css'
 
 
@@ -22,6 +21,8 @@ import './userprofile.css'
 
 const Userprofile = () => {
   const [postdata,setpostdata] = useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [coverphoto,setcoverphoto] = useState(false);
   const userData = useSelector((state)=>state.userData);
   console.log("userData",userData)
 
@@ -35,7 +36,25 @@ const post = async()=>{
   setpostdata(result.data)
 }
 
+const showModal = () => {
+  setIsModalOpen(true);
+};
+const handleOk = () => {
+  setIsModalOpen(false);
+};
+const handleCancel = () => {
+  setIsModalOpen(false);
+};
 
+const popup = () =>{
+  setcoverphoto(true)
+}
+const Updateok = () =>{
+  setcoverphoto(false)
+}
+const Updatecancel = () =>{
+  setcoverphoto(false)
+}
 
   return (
     <div> 
@@ -70,14 +89,29 @@ const post = async()=>{
     
     <div className='profile-div'>
       <img src={Image} alt="img" className="main-profileimg "></img>
+      <label type="primary" onClick={popup}>
+      <FontAwesomeIcon icon={faPen} className="userprofile-udatecover-icon" />
+      </label>
+      <Modal title="Update Cover Photo" open={coverphoto} onOk={Updateok} onCancel={Updatecancel}>
+        <p>Some contents...</p>
+        
+      </Modal>
+       
     <div>
-    <Link to="/creatpost" ><Button type="primary" size={25} className=""> Creat Post </Button></Link>
+    {/* <Link to="/creatpost" ><Button type="primary" size={25} className=""> Creat Post </Button></Link> */}
     </div>
        
    
 
     <div className='sub-profile-div'>
+    <label type="primary" onClick={showModal}>
     <img src={Image3} alt="logo" className='profile-user-IMG'></img>
+      </label>
+      <Modal title="Update Profile Image" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <p>Some contents...</p>
+      
+      </Modal>
+    {/* <img src={Image3} alt="logo" className='profile-user-IMG'></img> */}
     <div className='text-div'>
    <span style={{color: "black",fontSize: "18px",fontWeight: "500"}}>{userData.userinfo.data.name} </span><br />
    <span style={{color: "#8e8c8c", fontSize: "revert"}}> {userData.userinfo.data.email} </span><br/>

@@ -1,18 +1,32 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link, useNavigate } from "react-router-dom";
-import {  faHome,faMessage,faBell ,faUser,faBars ,fauserGroup,faRightFromBracket,faRegistered,faF} from '@fortawesome/free-solid-svg-icons'
-import { Col, Row ,  } from 'antd';
+import {  faHome,faMessage,faBell ,faUser,faBars ,fauserGroup,faRightFromBracket,faRegistered,faF,} from '@fortawesome/free-solid-svg-icons'
+import { Col, Row ,Button, Modal, Space  } from 'antd';
+import { ExclamationCircleFilled } from '@ant-design/icons';
 import './sidebar.css'
-
+const { confirm } = Modal;
 const Sidebar = () => {
   const navigate = useNavigate();
 
 const logout =()=>{
+  confirm({
+    title: 'Do you want to Conform for Logout?',
+    icon: <ExclamationCircleFilled />,
+    content: 'When clicked the OK button, this dialog will be closed after 1 second',
+    onOk() {
+      return new Promise((resolve, reject) => {
+        localStorage.removeItem("token");
+        window.location.href = "http://localhost:3000/";
+       setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+      }).catch(() => console.log('Oops errors!'));
+    },
+    onCancel() {},
+  });
 
-  localStorage.removeItem("token");
-  alert("Conform for Logout ")
-  window.location.href = "http://localhost:3000/";
+  // localStorage.removeItem("token");
+  // alert("Conform for Logout ")
+  // window.location.href = "http://localhost:3000/";
 }
 
   return (

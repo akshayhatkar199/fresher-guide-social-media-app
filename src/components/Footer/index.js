@@ -114,11 +114,11 @@ const Footer = () => {
     <Row>
 
       <Col  
-      xs={{span: 3}}
-      sm={{span: 3}}
-      md={{span: 3}}
-      lg={{span: 3}}
-      xl={{span: 3}}
+      xs={{span: 6}}
+      sm={{span: 6}}
+      md={{span: 6}}
+      lg={{span: 6}}
+      xl={{span: 6}}
       xxl={{span: 6}}
       >
       <div className=''>
@@ -129,12 +129,12 @@ const Footer = () => {
       </Col>
 
       <Col  
-      xs={{span: 3}}
-      sm={{span: 3}}
-      md={{span: 3}}
-      lg={{span: 3}}
-      xl={{span: 3}}
-      xxl={{span: 3}}
+      xs={{span: 6}}
+      sm={{span: 6}}
+      md={{span: 6}}
+      lg={{span: 6}}
+      xl={{span: 6}}
+      xxl={{span: 6}}
       >
       <div className=''>
 
@@ -146,12 +146,12 @@ const Footer = () => {
       </Col>
 
       <Col  
-      xs={{span: 3}}
-      sm={{span: 3}}
-      md={{span: 3}}
-      lg={{span: 3}}
-      xl={{span: 3}}
-      xxl={{span: 3}}
+      xs={{span: 6}}
+      sm={{span: 6}}
+      md={{span: 6}}
+      lg={{span: 6}}
+      xl={{span: 6}}
+      xxl={{span: 6}}
       >
       <div className=''>
       <Link to= '/notification'>  <FontAwesomeIcon icon={ faBell} className="footer-icon"  /></Link>
@@ -160,12 +160,12 @@ const Footer = () => {
       </Col>
 
       <Col  
-      xs={{span: 3}}
-      sm={{span: 3}}
-      md={{span: 3}}
-      lg={{span: 3}}
-      xl={{span: 3}}
-      xxl={{span: 3}}
+      xs={{span: 6}}
+      sm={{span: 6}}
+      md={{span: 6}}
+      lg={{span: 6}}
+      xl={{span: 6}}
+      xxl={{span: 6}}
       >
       <div className=''>
       
@@ -174,7 +174,7 @@ const Footer = () => {
       </div>
       </Col>
 
-      <Col  
+      {/* <Col  
       xs={{span: 3}}
       sm={{span: 3}}
       md={{span: 3}}
@@ -187,9 +187,9 @@ const Footer = () => {
       <Link to="/myfriends"> <FontAwesomeIcon icon={faMessage} className="footer-icon" /></Link>
   
       </div>
-      </Col>
+      </Col> */}
 
-      <Col  
+      {/* <Col  
       xs={{span: 3}}
       sm={{span: 3}}
       md={{span: 3}}
@@ -202,9 +202,9 @@ const Footer = () => {
       <Link to="/myfriendRequests"> <FontAwesomeIcon icon={faMessage} className="footer-icon" /></Link>
   
       </div>
-      </Col>
+      </Col> */}
 
-      <Col  
+      {/* <Col  
       xs={{span: 3}}
       sm={{span: 3}}
       md={{span: 3}}
@@ -219,7 +219,7 @@ const Footer = () => {
      
   
       </div>
-      </Col>
+      </Col> */}
 
       
     

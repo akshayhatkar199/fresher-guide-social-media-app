@@ -53,6 +53,7 @@ function App() {
           <Route path="/creatpost" element={<Creatpost/>}/>
           <Route path="/updatepost/:postId" element={<Creatpost/>}/>
           <Route path="/userprofile" element={<Userprofile/>}/>
+          <Route path="/userprofile/:userId" element={<Userprofile/>}/>
           <Route path="/updateprofile" element={<Updateprofile/>}/>
           <Route path="/myfriends" element={<Myfriends/>}/>
           <Route path='/myfriendRequests' element={<MyfriendRequests/>}/>

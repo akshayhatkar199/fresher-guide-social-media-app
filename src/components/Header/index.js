@@ -3,12 +3,12 @@ import { Button} from 'antd';
 import {Link } from "react-router-dom";
 import { Col, Row } from 'antd';
 import {HomeOutlined} from '@ant-design/icons'
-import { Input, Space } from 'antd';
+import { Input, Space ,Drawer} from 'antd';
 import{MessageOutlined}from '@ant-design/icons'
 import { useNavigate } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faHome,faMessage,faBell} from '@fortawesome/free-solid-svg-icons'
+import {  faHome,faMessage,faBell,faBars,faUser,faRightFromBracket,faF,faRegistered} from '@fortawesome/free-solid-svg-icons'
 import {NotificationOutlined } from '@ant-design/icons'
 import Image2 from '../../images/he-logo.png';
 import Image4  from '../../images/logo-college-removebg-preview.png';
@@ -19,12 +19,23 @@ const { Search } = Input;
 
 const Header = () => {
 const [searchinput,setSearchinputs] =  useState("");
+const [open, setOpen] = useState(false);
 const navigate = useNavigate()
 const userData = useSelector((state)=>state.userData);
 console.log("userData",userData);
-
 // console.log("searchinput",searchinput)
+const logout =()=>{
+  localStorage.removeItem("token");
+  alert("Conform for Logout ")
+  window.location.href = "http://localhost:3000/";
+}
 
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
 
 
 const onSearch = () => {
@@ -79,8 +90,23 @@ const onSearch = () => {
       <div className='col2-header'>
       <Link to ="/message"> <FontAwesomeIcon icon={ faMessage} className="message-icon"  /></Link>
       <Link to= '/notification'> <FontAwesomeIcon icon={ faBell} className="bell-icon"  /></Link>
-       
-      <label className='header-online-label'></label> <img src={Image3} alt="logo" className="user-image"></img>   
+      <label onClick={showDrawer} >
+      <label className='header-online-label'></label> <img src={Image3} alt="logo" className="user-image"></img> 
+      {/* <FontAwesomeIcon icon={faBars} className ="baricon-header" /> */}
+      </label>
+      <Drawer title="Pages" placement="right" onClose={onClose} open={open}>
+        <Link to="/home"><FontAwesomeIcon icon={faHome} className="header-drawer-icon"/> <span className='pages-name'>Home</span></Link>
+        <Link to="/message"> <FontAwesomeIcon icon={ faMessage}  className="header-drawer-icon"/> <span className='pages-name'>Message</span></Link>
+        <Link to= '/notification'>  <FontAwesomeIcon icon={ faBell}  className="header-drawer-icon"/> <span className='pages-name'>Notification</span></Link>
+        <Link to="/userprofile"><FontAwesomeIcon icon= {faUser}  className="header-drawer-icon"/><span className='pages-name'>Userprofile</span></Link>
+        <Link to="/myfriends"> <FontAwesomeIcon icon={faF}  className="header-drawer-icon"/><span className='pages-name'>Myfriends</span></Link>
+        <Link to="/myfriendRequests"> <FontAwesomeIcon icon={faRegistered}  className="header-drawer-icon"/><span className='pages-name'>MyfriendRequests</span></Link>
+        <div onClick={logout}>
+           <FontAwesomeIcon icon={faRightFromBracket} className="header-drawer-icon"/> <span className='pages-name'>Logout</span>
+      </div>
+     
+      </Drawer>
+        {/* <label className='header-online-label'></label> <img src={Image3} alt="logo" className="user-image"></img>  */}
       <div className='header-span-text'>
       <span style={{color: "white"}}>{userData.userinfo.data.name}</span><br />
       <span style={{color: " #ffc5c5"}}> active now</span>

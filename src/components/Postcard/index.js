@@ -7,9 +7,25 @@ import {useSelector} from 'react-redux'
 import Image1 from '../../images/user.jpg';
 import Image2 from '../../images/post-image.jpg';
 import { useParams,Link } from 'react-router-dom';
-import { Card } from 'antd';
+import {Card, Button, Dropdown } from 'antd';
+
+
 
 const Postcard = (props) => {
+  const items = [
+    {
+      key: '1',
+      label: (
+        <Link to={"/updatepost/"+props.data.id+ ""}>Update Post</Link>
+      ),
+    },
+    {
+      key: '2',
+      label: (
+        <Link to={"/updatepost/"+props.data.id+ ""}>Sharing Post</Link>
+      ),
+    }
+  ];
   let {postId } = useParams();
   console.log("postId",postId)
   const userData = useSelector((state)=>state.userData);
@@ -41,9 +57,9 @@ const Postcard = (props) => {
       xl={{span: 21}}
       xxl={{span:21}}
       >
-        <h3 className='post-name'> {userData.userinfo.data.name} <br />
+        <Link to=""><h3 className='post-name'> {userData.userinfo.data.name} <br />
         <span className='post-time'> 30 Mins Ago</span>
-        </h3>
+        </h3></Link>
         
 
       </Col>
@@ -92,7 +108,16 @@ const Postcard = (props) => {
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      <Link to={"/updatepost/"+props.data.id+ ""}><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></Link>
+      <Dropdown
+      menu={{
+        items,
+      }}
+      placement="bottomLeft"
+      arrow
+    >
+      <Button style={{border:"none"}}><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></Button>
+    </Dropdown>
+      {/* <Link to={"/updatepost/"+props.data.id+ ""}><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></Link> */}
   
       </Col>
 
