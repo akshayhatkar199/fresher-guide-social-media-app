@@ -75,6 +75,24 @@
     margin-left: 13px;
     margin-right: 20px;
 }
+.ant-drawer-body{
+    display: inline-grid;
+    margin: 6px;
+    margin-top: 0px;
+}
+.header-drawer-icon{
+    margin-right: 20px;
+    color: #7d726d;
+    font-size: 18px;
+}
+.pages-name{
+    color: black;
+    font-style: italic;
+    font-size: bold;
+    font-size: 17px;
+}
+
+
 
 /* < 445px */
 @media only screen and (max-width: 445px){
@@ -92,6 +110,15 @@
  
  }
 
+ /* < 320 px */
+@media only screen and (max-width: 320px){
+   
+     .ant-drawer-wrapper-body{
+         margin-left: 50px;
+     }
+ 
+ }
+
 /* < 428 px */
 @media only screen and (max-width: 428px){
    .bell-icon{
@@ -100,9 +127,13 @@
    .user-image {
     margin-top: -15px;
  }
+ /* .header-online-label{
+    visibility: hidden;
+ } */
     .message-icon{
         visibility: hidden;
     }
+   
 
 }
 
@@ -117,9 +148,21 @@
     .header-home-icons{
         display:none;
     }
-
+    .user-image {
+        margin-top: -15px;
+       
+     }
+     /* .header-online-label{
+        visibility: hidden;
+     } */
     .message-icon{
         visibility: hidden;
+    }
+    .baricon-header{
+        margin-top: 21px;
+        color: withe;
+        font-size: 28px;
+        color: white;
     }
 
 }
@@ -137,6 +180,11 @@
     .message-icon{
         visibility: hidden;
     }
+    .baricon-header{
+        visibility: hidden;
+    }
+   
+   
 }
 /* > 768 px */
 @media only screen and (min-width: 768px){
@@ -151,6 +199,9 @@
         display:none;
     }
     .message-icon{
+        visibility: hidden;
+    }
+    .baricon-header{
         visibility: hidden;
     }
 }
@@ -171,6 +222,9 @@
     .message-icon{
         visibility: visible;
     }
+    .baricon-header{
+        visibility: hidden;
+    }
 }
 /* > 1200 px */
 @media only screen and (min-width: 1200px){
@@ -188,6 +242,9 @@
 
     .message-icon{
         visibility: visible;
+    }
+    .baricon-header{
+        visibility: hidden;
     }
 }
 /* > 1400 px */
@@ -207,4 +264,8 @@
     .message-icon{
         visibility: visible;
     }
+    .baricon-header{
+        visibility: hidden;
+    }
+    
 }

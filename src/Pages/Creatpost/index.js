@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
@@ -10,62 +10,47 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ApiFilled, InboxOutlined, UploadOutlined } from '@ant-design/icons';
 import {  Checkbox, Form, Input,DatePicker, Upload ,PlusOutlined } from 'antd';
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane,faImage} from '@fortawesome/free-solid-svg-icons'
-import { Avatar, List,Button, } from 'antd'
+import { Avatar, List,Button, message} from 'antd'
 import Image3 from '../../images/user.jpg';
 import { Col, Row , Select  } from 'antd';
 import './creatpost.css'
 
 
 
-const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-];
-
 const Creatpost = () => {
+  const [fileList, setFileList] = useState([]);
+  const [uploading, setUploading] = useState(false);
   const userData = useSelector((state)=>state.userData)
 
+  const props = {
+    onRemove: (file) => {
+      const index = fileList.indexOf(file);
+      const newFileList = fileList.slice();
+      newFileList.splice(index, 1);
+      setFileList(newFileList);
+    },
+    beforeUpload: (file) => {
+      setFileList([...fileList, file]);
+      return false;
+    },
+    fileList,
+  };
   const onFinish = async(values) => {
-    console.log('Success:', values);
-    const payload={
-      "postTitle":  values.postTitle,
-      "description": values.description,
-      "userId":  userData.userinfo.data.id
+    const formData = new FormData();
+    formData.append("postTitle",  values.postTitle);
+    formData.append("userId",  userData.userinfo.data.id);
+    formData.append("description",  values.description);
+    if(values.image){
+      formData.append("image",  values.image.file);
     }
-    console.log("payload",payload)
-    const result= await WithTokenApi.post("/post",payload)
-    console.log("result",result)
+  
+    console.log("formData",formData)
+    const result= await WithTokenApi.post("/post",formData)
+    setFileList([]);
+    message.success('upload successfully.');
+    setUploading(false);
+    console.log('Success:', values);
+   
   };
  
   return (
@@ -146,36 +131,18 @@ const Creatpost = () => {
       
       </Form.Item>
 
-      {/* <Form.Item label="Image">
-        <Form.Item name="Image" valuePropName="fileList"  noStyle>
-          <Upload.Dragger name="files" action="/upload.do">
-            <FontAwesomeIcon icon= {faImage} />
-              <InboxOutlined />
-            
-            <p className="ant-upload-text">Click or Image file to this area to upload</p>
-            <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-          </Upload.Dragger>
-        </Form.Item>
-      </Form.Item> */}
-
-
-      {/* <Form.Item label="Upload" valuePropName="fileList">
-          <Upload action="/upload.do" listType="picture-card">
-            <div>
-              <Upload />
-              <div
-                style={{
-                  // marginTop: 8,
-                  width:"100%"
-                }}
-              >
-                Upload
-              </div>
-            </div>
-          </Upload>
-        </Form.Item> */}
+      <Form.Item
+      label=" Image"
+        name='image'
+      
+      >
+           <Upload {...props}>
+        <Button icon={<UploadOutlined />}>Select File</Button>
+      </Upload>
+      
+      </Form.Item>
     
-
+    
 
     <Form.Item
         // wrapperCol={{
@@ -183,7 +150,7 @@ const Creatpost = () => {
         //   span: 16,
         // }}
       >
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" loading={uploading} htmlType="submit">
           Submit
         </Button>
 

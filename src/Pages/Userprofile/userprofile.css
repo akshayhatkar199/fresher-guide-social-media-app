@@ -109,6 +109,19 @@
     padding-top: 17px;
     padding-bottom: 17px;
 }
+.userprofile-udatecover-icon{
+    float: right;
+    position: relative;
+    bottom: 75px;
+    right: 66px;
+    background-color: #e3ecf3;
+    width: 18px;
+    height: 16px;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+
 /* > 576 px */
 @media only screen and (max-width: 576px){
    

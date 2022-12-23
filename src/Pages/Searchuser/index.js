@@ -14,44 +14,6 @@ import './searchuser.css'
 import { ApiFilled } from '@ant-design/icons';
 
 
-const data = [
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-  ];
-
-
-
 const Searchuser = () => {
   const [searchuserlist,setserchuserlist] = useState([])
   let {searchinput } = useParams();
@@ -137,7 +99,7 @@ search();
             <List.Item.Meta
               avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? item.photo : ""} /> 
              </div>}
-              title={<a href="https://ant.design">{item.name}</a> } 
+              title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link> } 
               description={item.email}  
             />
              {(item.isRequest == 1)? <Button type="primary" htmlType="submit" onClick={()=> friendrequest(item.id)} >Request</Button> : null}

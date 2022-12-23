@@ -120,7 +120,7 @@ console.log("payload",payload)
           <List.Item>
             <List.Item.Meta
               avatar={<div ><label className='online-label'></label><Avatar src={item.photo}/></div>}
-              title={<a href="https://ant.design">{item.name}</a>}
+              title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
               description={item.email}  
             />
              <Button type="primary" htmlType="submit" onClick={()=>accept(item.requestId)}  >Accept Request</Button>
