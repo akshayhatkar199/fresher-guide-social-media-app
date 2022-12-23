@@ -4,6 +4,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Sidebar from '../../components/Sidebar'
 import { Col, Row  } from 'antd';
+import {WithTokenApi} from '../../Helpers/axios';
 import { Avatar, List,Button, } from 'antd'
 import {Link } from "react-router-dom";
 import Onlineusers from '../../components/Onlineusers'
@@ -18,6 +19,16 @@ import './Home.css'
 
 
 const Home = () => {
+  const [posts,setposts] = useState([])
+  useEffect(()=>{
+    postdata()
+  },[])
+  
+  const postdata = async()=>{
+    const result = await WithTokenApi.get("post/byuserId/1") 
+    console.log("result",result)
+    setposts(result.data)
+  }
   return (
     <div > 
     <Header />
@@ -67,13 +78,17 @@ const Home = () => {
       xxl={{span: 11}}
       >
       <div className='home-container-2'>
-   
+      {
+        posts.map((item) => {
+          return   <Postcard data={item} />
+        })
+      }
+  
+      {/* <Postcard/>
       <Postcard/>
-      
       <Postcard/>
       <Postcard/>
-      <Postcard/>
-      <Postcard/>
+      <Postcard/> */}
       
 
 

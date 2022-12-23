@@ -6,10 +6,12 @@ import {  faComment, faThumbsUp,faEllipsis} from '@fortawesome/free-solid-svg-ic
 import {useSelector} from 'react-redux'
 import Image1 from '../../images/user.jpg';
 import Image2 from '../../images/post-image.jpg';
+import { useParams,Link } from 'react-router-dom';
 import { Card } from 'antd';
-import { Link } from 'react-router-dom';
 
 const Postcard = (props) => {
+  let {postId } = useParams();
+  console.log("postId",postId)
   const userData = useSelector((state)=>state.userData);
   console.log("props",props)
   return (
@@ -90,7 +92,8 @@ const Postcard = (props) => {
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      <FontAwesomeIcon icon={faEllipsis} className="dott-comment"/>
+      <Link to={"/updatepost/"+props.data.id+ ""}><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></Link>
+  
       </Col>
 
       </Row>

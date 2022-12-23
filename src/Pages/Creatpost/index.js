@@ -21,6 +21,7 @@ const Creatpost = () => {
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
   const userData = useSelector((state)=>state.userData)
+
   const props = {
     onRemove: (file) => {
       const index = fileList.indexOf(file);
