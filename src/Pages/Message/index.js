@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react'
 import Header from '../../components/Header'
-import {useParams} from "react-router-dom";
+import {useParams,Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { SmileOutlined } from '@ant-design/icons';
 import Sidebar from '../../components/Sidebar';
@@ -15,8 +15,6 @@ import { Col, Row ,Input ,Result } from 'antd';
 import './message.css'
 import { format } from 'timeago.js';
 import Footer from '../../components/Footer'
-import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://localhost:8080/";
 
 const Message = ({socket}) => {
   let {userId } = useParams();
@@ -163,15 +161,28 @@ const Message = ({socket}) => {
 
       </div>
 
-
+      {onlineUser && onlineUser.length > 0 ? 
+     
       <div className='mobile-online-users'>
-
+      {
+        onlineUser.map((e) => {
+          return ( e.id != userData.userinfo.data.id ?
+          
+          <div className='mobile-label-main'><Link to={"/messages/"+e.id}>
+            <label className='online-mobile-label'></label>
+            <Avatar className='mobile-active-user-img' src="https://randomuser.me/api/portraits/men/10.jpg" />
+            </Link></div>
+           : null)
+        })
+      }
+      {/* <div className='mobile-label-main'><label className='online-mobile-label'></label><Avatar className='mobile-active-user-img' src="https://randomuser.me/api/portraits/men/10.jpg" /></div>
       <div className='mobile-label-main'><label className='online-mobile-label'></label><Avatar className='mobile-active-user-img' src="https://randomuser.me/api/portraits/men/10.jpg" /></div>
-      <div className='mobile-label-main'><label className='online-mobile-label'></label><Avatar className='mobile-active-user-img' src="https://randomuser.me/api/portraits/men/10.jpg" /></div>
-      <div className='mobile-label-main'><label className='online-mobile-label'></label><Avatar className='mobile-active-user-img' src="https://randomuser.me/api/portraits/men/10.jpg" /></div>
-      <div className='mobile-label-main'><label className='online-mobile-label'></label><Avatar className='mobile-active-user-img' src="https://randomuser.me/api/portraits/men/10.jpg" /></div>
+      <div className='mobile-label-main'><label className='online-mobile-label'></label><Avatar className='mobile-active-user-img' src="https://randomuser.me/api/portraits/men/10.jpg" /></div> */}
 
       </div>
+      : null
+      }
+     
 
       </Col>
 
