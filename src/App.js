@@ -12,16 +12,23 @@ import {checkLogin} from './Store/reducers/userReducer'
 import Myfriends from './Pages/Myfriends';
 import MyfriendRequests from './Pages/MyfriendRequests'
 import Searchuser from './Pages/Searchuser';
+import socketIOClient from "socket.io-client";
 import {BrowserRouter, Route, Routes,Navigate} from "react-router-dom";
-
+const ENDPOINT = "http://localhost:8080/";
 
 function App() {
   const dispatch = useDispatch()  
   const [isLogin,setIsLogin] = useState(false);
   const [loading,setLoading] = useState(true);
+  const [socket, setSocket] = useState(null);
   useEffect(() => {
     checkIsLogin();
   },[]);
+  useEffect(() => {
+    const newSocket = socketIOClient(ENDPOINT, { transports : ['websocket'] });
+    setSocket(newSocket);
+    // return () => newSocket.close();
+  }, []);
   const checkIsLogin = async() => {
     console.log("localStorage.getItem(token)",localStorage.getItem("token"))
     const token = localStorage.getItem("token");
@@ -47,8 +54,8 @@ function App() {
       <Routes>
           <Route exact path="/" element= { <Home />}/>
           <Route path="/home" element={<Home />} />
-          <Route path="/message" element={<Message />}/>
-          <Route path="/messages/:userId" element={<Message />}/>
+          <Route path="/message" element={<Message socket={socket} />}/>
+          <Route path="/messages/:userId" element={<Message socket={socket} />}/>
           <Route path="/notification" element={< Notification/>}/> 
           <Route path="/creatpost" element={<Creatpost/>}/>
           <Route path="/updatepost/:postId" element={<Creatpost/>}/>
