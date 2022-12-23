@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import Header from '../../components/Header'
 import {useParams} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,21 +10,87 @@ import { Avatar, List,Button, } from 'antd'
 import Image3 from '../../images/user.jpg';
 import {useSelector} from 'react-redux'
 import Onlineusers from '../../components/Onlineusers'
+import MessageUsers from '../../components/MessageUsers'
 import { Col, Row ,Input ,Result } from 'antd';
 import './message.css'
+import { format } from 'timeago.js';
 import Footer from '../../components/Footer'
+import socketIOClient from "socket.io-client";
+const ENDPOINT = "http://localhost:8080/";
 
-
-const Message = () => {
+const Message = ({socket}) => {
   let {userId } = useParams();
+  const listItems = useRef(null);
+  // const socket = useRef();
+  // const [socket,setSocket] = useState(null);
   const userData = useSelector((state)=>state.userData);
-  console.log("userId",userId)
+  // console.log("userId",userId)
   const [messageList,setMessagelist] = useState([]);
   const [userProfile,setUserProfile] = useState({});
+  const [onlineUser,setOnlineUser] = useState([]);
   const [message,setMessage] = useState("");
   useEffect(() => {
     getMessagelist();
   },[userId]);
+  useEffect(()=>{
+  //  scrollRef.current?.scrollIntoView({
+  //   behavior: "smooth"
+  //  });
+  const lastItem = listItems.current.lastElementChild;
+  if (lastItem) {
+    lastItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  },[messageList])
+
+
+   useEffect(() => {
+      socket.emit("addUser", userData.userinfo.data);
+    }, []);
+
+    socket.on("getOnlineUsers",(data) => {
+             console.log("getOnlineUsers",data)
+             setOnlineUser(data)
+    })
+    socket.on("getMessage",(data) => {
+            console.log("getMessage",data)
+            if (messageList.some(e => e.id != data.id)) {
+              setMessagelist([...messageList,data])
+              /* vendors contains the element we're looking for */
+            }
+          
+    })  
+  // useEffect(() => {
+  //   socket.current = socketIOClient(ENDPOINT, { transports : ['websocket'] });
+  //   socket.current.emit("addUser", userData.userinfo.data);
+   
+  // }, []);
+  //  socket.current?.on("getOnlineUsers",(data) => {
+  //        console.log("getOnlineUsers",data)
+  //       setOnlineUser(data)
+  //     })
+  //     socket.current?.on("getMessage",(data) => {
+  //       console.log("getMessage",data)
+      
+  //    })  
+  // useEffect(() => {
+  //   socket.current = socketIOClient(ENDPOINT, { transports : ['websocket'] });
+  // },[])
+  // useEffect(() => {
+  //   socket.current?.emit("addUser",userData.userinfo.data)
+  //   socket.current?.on("getOnlineUsers",(data) => {
+  //        console.log("getOnlineUsers",data)
+  //       setOnlineUser(data)
+  //     })
+  //     socket.current?.on("getMessage",(data) => {
+  //       console.log("getMessage",data)
+      
+  //    })  
+        
+  // })
+ 
+
+  // console.log("onlineUser",onlineUser)
+ 
   const getMessagelist = async() => {
     if(userId){ 
       const payload = {
@@ -32,27 +98,32 @@ const Message = () => {
         "userId" : userId
       }
       const result= await WithTokenApi.post("/message/getmessages",payload)
-      console.log("result",result);
+      // console.log("result",result);
       setMessagelist(result.data.messages)
       setUserProfile(result.data.userData[0])
     }
   }
   const sendMessage = async() => {
-    console.log("message",message)
+    // console.log("message",message)
     if(message){
 
-    
+      const today = new Date();
         let payload = {
           "senderId":userData.userinfo.data.id,
           "reciverId":userId,
           "message_text":message
         }
+        socket.emit("sendMessage",{...payload,
+          createdDate: today.getTime(),
+          id: Math.floor(Math.random() * 1000)})
         const result= await WithTokenApi.post("/message/send",payload)
-        console.log("result",result);
-        const today = new Date();
+        // console.log("result",result);
+       
+       
         payload.id =result.data.message.insertId
         payload.createdDate = today.getTime()
-        console.log("...messageList,payload",[...messageList,payload])
+       
+        // console.log("...messageList,payload",[...messageList,payload])
         setMessagelist([...messageList,payload])
       }    
   }
@@ -82,13 +153,13 @@ const Message = () => {
       xs={{span: 24}}
       sm={{span: 24}}
       md={{span: 8}}
-      lg={{span: 6}}
-      xl={{span: 6}}
-      xxl={{span: 6}}
+      lg={{span: 5}}
+      xl={{span:5}}
+      xxl={{span: 5}}
       >
       <div className='message-div' >
-      <h3 className='home-head'>Online users</h3>
-     <Onlineusers />
+      <h3 className='home-head'>All users</h3>
+     <MessageUsers />
 
       </div>
 
@@ -108,10 +179,10 @@ const Message = () => {
      <Col  
      xs={{span: 24}}
      sm={{span: 24}}
-     md={{span: 16}}
-     lg={{span: 16}}
-     xl={{span: 16}}
-     xxl={{span: 16}}
+     md={{span: 12}}
+     lg={{span: 12}}
+     xl={{span: 12}}
+     xxl={{span: 12}}
      >
      <div className='main-message'>
      {userId? 
@@ -129,17 +200,24 @@ const Message = () => {
                   <br/>
                   <br/>
                   <hr  className='hr-message'/>
-                  <div  className='messagedivList'>
-                  <ul>{
+                  <div  className='messagedivList'  >
+                  <ul ref={listItems}>{
                      messageList.length > 0 ? 
                         messageList.map((e) => {
                            return  <li key={e.id} 
                            className={e.senderId ==  userData.userinfo.data.id ? 'text-message message-right' :'text-message' }>
-                             <div className={e.senderId ==  userData.userinfo.data.id ? 'message-right-div' :'message-left-div' }>{e.message_text}</div>
+                             <div >
+                              <div className={e.senderId ==  userData.userinfo.data.id ? 'message-right-div' :'message-left-div' }>{e.message_text} </div> 
+                              <span
+                              className={e.senderId ==  userData.userinfo.data.id ? 'message-time message-time-right' :' message-time' }
+                              >{format(e.createdDate)}</span>
+                             </div>
+                             
                              </li>
                         })
                      : null
                     }
+                  
                       {/* <li className='send-me'> hii</li>
                       <li className='another-send'>hello</li> */}
                   </ul>
@@ -173,6 +251,21 @@ const Message = () => {
 
 
      </div>
+     </Col>
+
+     <Col  
+      xs={{span: 24}}
+      sm={{span: 24}}
+      md={{span: 4}}
+      lg={{span: 5}}
+      xl={{span: 5}}
+      xxl={{span:5}}
+      >
+      <div className='message-div' >
+      <h3 className='home-head'>Online users</h3>
+     <Onlineusers users={onlineUser}/>
+
+      </div>
      </Col>
     </Row>
  <br/>
