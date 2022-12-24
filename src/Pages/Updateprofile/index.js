@@ -7,7 +7,7 @@ import Onlineusers from '../../components/Onlineusers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Button} from 'antd';
 import {useSelector,useDispatch} from 'react-redux'
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import { Card } from 'antd';
 import {checkLogin} from '../../Store/reducers/userReducer'
 import api, {WithTokenApi} from '../../Helpers/axios'
@@ -20,43 +20,6 @@ import './updateprofile.css'
 import {  Space } from 'antd';
 
 const { RangePicker } = DatePicker;
-
-
-const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-];
 
 const Updateprofile = () => {
 const [Collegedata,setcollegedata] = useState([]);

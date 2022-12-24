@@ -110,6 +110,7 @@ const friends =async()=>{
               title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
               description={item.email} 
             />
+             <Link to={"/messages/"+item.id+""}><FontAwesomeIcon icon={faMessage}  className="friend-message-icon"/></Link>
           </List.Item>
         )}
       />

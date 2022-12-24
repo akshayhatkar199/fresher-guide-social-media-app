@@ -13,19 +13,22 @@ import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faLaptop, faTrophy ,fa
 import {  faHome,faMessage,faBell, faBars, faUser, faAnchor} from '@fortawesome/free-solid-svg-icons' 
 import Postcard from "../../components/Postcard"
 import Aboutus from "../../components/Aboutus"
+import {useSelector} from 'react-redux'
 import './Home.css'
 
 
 
 
 const Home = () => {
+  const userData = useSelector((state)=>state.userData);
   const [posts,setposts] = useState([])
   useEffect(()=>{
     postdata()
   },[])
   
   const postdata = async()=>{
-    const result = await WithTokenApi.get("post/byuserId/1") 
+    // const result = await WithTokenApi.get("post/byuserId/"+userData.userinfo.data.id) 
+    const result = await WithTokenApi.post("/post/searchpost",{searchfield: ""}) 
     console.log("result",result)
     setposts(result.data)
   }

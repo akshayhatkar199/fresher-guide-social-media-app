@@ -4,14 +4,29 @@ import { Col, Row,  } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faComment, faThumbsUp,faEllipsis} from '@fortawesome/free-solid-svg-icons'
 import {useSelector} from 'react-redux'
+import {WithTokenApi} from '../../Helpers/axios';
 import Image1 from '../../images/user.jpg';
 import Image2 from '../../images/post-image.jpg';
 import { useParams,Link } from 'react-router-dom';
 import {Card, Button, Dropdown } from 'antd';
+import { format } from 'timeago.js';
 
 
 
 const Postcard = (props) => {
+  const userData = useSelector((state)=>state.userData);
+  const likes=async()=>{
+
+console.log("click likes")
+const payload={
+  "isLike":1,
+   "postId": props.data.id,
+   "likeuserId":userData.userinfo.data.id 
+}
+const result= await WithTokenApi.post("/post/like",payload)
+console.log("result=>",result)
+  }
+
   const items = [
     {
       key: '1',
@@ -27,9 +42,8 @@ const Postcard = (props) => {
     }
   ];
   let {postId } = useParams();
-  console.log("postId",postId)
-  const userData = useSelector((state)=>state.userData);
-  console.log("props",props)
+  // console.log("postId",postId)
+  // console.log("props",props)
   return (
     <div> 
       <Card
@@ -57,8 +71,8 @@ const Postcard = (props) => {
       xl={{span: 21}}
       xxl={{span:21}}
       >
-        <Link to=""><h3 className='post-name'> {userData.userinfo.data.name} <br />
-        <span className='post-time'> 30 Mins Ago</span>
+       <Link to= {"/userprofile/"+userData.userinfo.data.id+ ""}><h3 className='post-name'> {props.data.name} <br />
+        <span className='post-time'> {format(props.data.createdDate)}</span>
         </h3></Link>
         
 
@@ -85,7 +99,10 @@ const Postcard = (props) => {
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      <FontAwesomeIcon icon={faThumbsUp} className="card-like"/>Like 
+      <FontAwesomeIcon icon={faThumbsUp} className="card-like" onClick={likes}/>
+      <span style={{marginRight:"4px"}}>{props.data.totalLike ? props.data.totalLike : null}</span> 
+      Like 
+     
       </Col>
 
         <Col
