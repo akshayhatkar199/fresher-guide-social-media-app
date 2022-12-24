@@ -34,7 +34,7 @@ const Message = ({socket}) => {
   //  scrollRef.current?.scrollIntoView({
   //   behavior: "smooth"
   //  });
-  const lastItem = listItems.current.lastElementChild;
+  const lastItem = listItems.current?.lastElementChild;
   if (lastItem) {
     lastItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
