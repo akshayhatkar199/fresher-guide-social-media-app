@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
-import {Link } from "react-router-dom";
+import {Link,useParams } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import {WithTokenApi} from '../../Helpers/axios';
 import Image from '../../images/profile-img.jpg';
@@ -12,7 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faLaptop, faTrophy ,faCalendarDays,faMicrophone,faPersonWalking,faP,faStar,faUserGraduate} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button, } from 'antd'
 import Image3 from '../../images/user.jpg';
-import { Col, Row , Menu,Input,Modal  } from 'antd';
+import { SmileOutlined } from '@ant-design/icons';
+import { Col, Row , Menu,Input,Modal ,Result  } from 'antd';
 import './userprofile.css'
 
 
@@ -21,18 +22,22 @@ import './userprofile.css'
 
 const Userprofile = () => {
   const [postdata,setpostdata] = useState([])
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [coverphoto,setcoverphoto] = useState(false);
+  let {userId } = useParams();
   const userData = useSelector((state)=>state.userData);
-  console.log("userData",userData)
+  const [profile,setprofile] = useState(userData.userinfo)
+  // console.log("userData",userData)
 
 useEffect(()=>{
   post()
 },[])
 
 const post = async()=>{
-  const result = await WithTokenApi.get("post/byuserId/1") 
-  console.log("result",result)
+  console.log("----------------------------------calllll",userId)
+  var url = userId ? "post/byuserId/"+userId : "post/byuserId/"+userData.userinfo.data.id
+  const result = await WithTokenApi.get(url) 
   setpostdata(result.data)
 }
 
@@ -54,6 +59,22 @@ const Updateok = () =>{
 }
 const Updatecancel = () =>{
   setcoverphoto(false)
+}
+
+useEffect(()=>{
+  useres()
+  post()
+},[userId])
+
+const useres =async()=>{ 
+  console.log("hii")
+  if(userId){
+  const result = await WithTokenApi.get("/users/"+userId+"")
+  console.log("result...",result)
+  setprofile(result.data)
+  }else{
+    setprofile(userData.userinfo)
+  }
 }
 
   return (
@@ -113,16 +134,21 @@ const Updatecancel = () =>{
       </Modal>
     {/* <img src={Image3} alt="logo" className='profile-user-IMG'></img> */}
     <div className='text-div'>
-   <span style={{color: "black",fontSize: "18px",fontWeight: "500"}}>{userData.userinfo.data.name} </span><br />
-   <span style={{color: "#8e8c8c", fontSize: "revert"}}> {userData.userinfo.data.email} </span><br/>
-   <span style={{color: "black",fontSize: "15px"}}>Followers: {userData.userinfo.friends ? userData.userinfo.friends[0].followers : 0} </span><br />
-   <span style={{color: "black",fontSize: "15px"}}>Following: {userData.userinfo.friends ? userData.userinfo.friends[0].following : 0}</span><br />
+   <span style={{color: "black",fontSize: "18px",fontWeight: "500"}}>{profile.data.name} </span><br />
+   <span style={{color: "#8e8c8c", fontSize: "revert"}}> {profile.data.email} </span><br/>
+   <span style={{color: "black",fontSize: "15px"}}>Followers: {profile.friends ? profile.friends[0].followers : 0} </span><br />
+   <span style={{color: "black",fontSize: "15px"}}>Following: {profile.friends ? profile.friends[0].following : 0}</span><br />
     <div className='button-profile'>
+    {
+      profile.data?.id === userData.userinfo.data.id ?
       <Link to="/updateprofile">
         <Button type="primary" size={25} className="">
            Update Profile
         </Button>
       </Link>
+      : null
+    }
+     
     </div>
 
    </div>
@@ -158,7 +184,7 @@ const Updatecancel = () =>{
       <div className='profile-about'  >
       <h3 className='profile-head'>About Us</h3>
        
-       <Aboutus />
+       <Aboutus userData={profile}/>
 
       </div>
       </Col>
@@ -174,9 +200,15 @@ const Updatecancel = () =>{
       <div className='profil-post'>
       <h3 className='profil-post-head'>Posts</h3>
       {
+        postdata.length > 0  ?
         postdata.map((item) => {
           return   <Postcard data={item} />
-        })
+        }) :
+        <Result
+        style={{background:"white"}}
+          icon={<SmileOutlined />}
+          title="No posts are created yet!!!"
+        />
       }
       {/* <Postcard />
       <Postcard/> */}

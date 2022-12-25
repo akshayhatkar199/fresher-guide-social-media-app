@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useSelector } from 'react-redux'
 import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faLaptop, faTrophy ,faCalendarDays,faMicrophone,faPersonWalking,faP,faStar,faUserGraduate} from '@fortawesome/free-solid-svg-icons'
@@ -7,30 +7,33 @@ import { Avatar, List,Button, } from 'antd'
 
 
 
-const Aboutus = () => {
+const Aboutus = (props) => {
   const userData = useSelector((state)=>state.userData)
-  console.log("userData",userData)
+  // const [profile,setprofile] = useState(props.userData)
+   console.log("props",props)
+   var profile = props.userData ? props.userData : userData.userinfo
+   console.log("profile",profile)
   var skills = "";
- userData.userinfo.skills.map((e) => {
+  profile.skills.map((e) => {
   skills += e.skilsName + " "
  })
-console.log("skills",skills)
- console.log("skills",skills)
+// console.log("skills",skills)
+//  console.log("skills",skills)
   var dataAbout = [
     {
       title: 'College Name',
       icons:  faGraduationCap,
-      description: userData.userinfo.data.collegeName
+      description: profile.data.collegeName
     },
     {
       title: 'Date of Birth',
       icons: faCakeCandles,
-      description: userData.userinfo.data.dateOfBirth
+      description: profile.data.dateOfBirth
     },
     {
       title: 'Passout Year',
       icons:  faUserGraduate,
-      description: userData.userinfo.data.passoutYear 
+      description: profile.data.passoutYear 
     },
     {
       title: 'Skills',
@@ -40,26 +43,26 @@ console.log("skills",skills)
     {
       title: 'Technical Knowledge',
       icons: faLaptop,
-      description: userData.userinfo.data.technicalKnowledge
+      description: profile.data.technicalKnowledge
     }
     ,
     {
       title: 'Achievement',
       icons: faTrophy, 
-      description: userData.userinfo.data.achievement
+      description: profile.data.achievement
     }
     ,
     {
       title: 'Year of Experience',
       icons: faCalendarDays,
-      description: userData.userinfo.data.yearOfExperience 
+      description: profile.data.yearOfExperience 
     }
     ,
   
     {
       title: 'Worked Projects',
       icons: faP,
-      description: userData.userinfo.data.workedProjects
+      description: profile.data.workedProjects
     }
     
     
