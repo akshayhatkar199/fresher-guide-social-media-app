@@ -35,9 +35,9 @@ const logout =()=>{
       <div className='home-container-1'>
       <div className="left-side-icone">
     
-    <FontAwesomeIcon icon={faBars}  className="icone-size" />
+     <Link to="/vediocall"> <FontAwesomeIcon icon={faBars}  className="icone-size" />
     
-    
+     </Link>
     <div style={{marginRight: "21px"}}>
     <hr />
     </div>

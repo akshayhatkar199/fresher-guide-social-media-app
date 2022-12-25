@@ -12,6 +12,7 @@ import {checkLogin} from './Store/reducers/userReducer'
 import Myfriends from './Pages/Myfriends';
 import MyfriendRequests from './Pages/MyfriendRequests'
 import Searchuser from './Pages/Searchuser';
+import Vediocall from "./Pages/Vediocall";
 import socketIOClient from "socket.io-client";
 import {BrowserRouter, Route, Routes,Navigate} from "react-router-dom";
 const ENDPOINT = "http://localhost:8080/";
@@ -65,6 +66,7 @@ function App() {
           <Route path="/myfriends" element={<Myfriends/>}/>
           <Route path='/myfriendRequests' element={<MyfriendRequests/>}/>
           <Route path='/searchuser/:searchinput' element={<Searchuser/>}/>
+          <Route path="/vediocall" element={<Vediocall socket={socket} />}/>
           <Route path='*'  element={<Navigate to="/" />} />
         </Routes>
      </BrowserRouter>
