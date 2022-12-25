@@ -11,7 +11,7 @@ import Image3 from '../../images/user.jpg';
 import {useSelector} from 'react-redux'
 import Onlineusers from '../../components/Onlineusers'
 import MessageUsers from '../../components/MessageUsers'
-import { Col, Row ,Input ,Result } from 'antd';
+import { Col, Row ,Input ,Result,Form } from 'antd';
 import './message.css'
 import { format } from 'timeago.js';
 import Footer from '../../components/Footer'
@@ -19,6 +19,7 @@ import Footer from '../../components/Footer'
 const Messagesection = ({socket,getmessage}) => {
   let {userId } = useParams();
    const listItems = useRef(null);
+   const [form] = Form.useForm();
   const userData = useSelector((state)=>state.userData);
   const [messageList,setMessagelist] = useState([]);
   const [userProfile,setUserProfile] = useState({});
@@ -51,7 +52,10 @@ const Messagesection = ({socket,getmessage}) => {
     lastItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
   },[messageList])
-
+  const onFinish = (values) => {
+   console.log("onFinish",values)
+   sendMessage()
+  }
 
   const sendMessage = async() => {
     if(message){
@@ -71,7 +75,7 @@ const Messagesection = ({socket,getmessage}) => {
        
         payload.id =result.data.message.insertId
         payload.createdDate = today.getTime()
-       
+          form.resetFields();
         setMessagelist([...messageList,payload])
       }    
   }
@@ -119,17 +123,35 @@ const Messagesection = ({socket,getmessage}) => {
                   </div>
             </div>
             <hr className='message-hr'/>
+
             <div style={{margin: "20px",    marginBottom:"10px"}}>
-                <Input.Group compact>
-                  <Input
-                    style={{
-                      width: 'calc(100% - 45px)',
-                     }}
-                    onChange = {(e) => setMessage(e.target.value)}
-                    placeholder='message type here'
-                  />
-                  <Button type="primary" onClick={sendMessage}><FontAwesomeIcon icon={ faPaperPlane} /></Button>
-                </Input.Group>
+             <Form
+               form={form}
+      name="customized_form_controls"
+      layout="inline"
+      onFinish={onFinish}
+    >
+      <Form.Item
+        name="message"
+        className="messageinput"
+         rules={[
+          {
+            required: true,
+            message: 'Please input your message!',
+          },
+        ]}
+      >
+        <Input   onChange = {(e) => setMessage(e.target.value)} placeholder='Message type here' />
+      </Form.Item>
+      <Form.Item
+        className="messagebtnn"
+      >
+        <Button type="primary" htmlType="submit">
+        <FontAwesomeIcon icon={ faPaperPlane} />
+        </Button>
+      </Form.Item>
+    </Form>
+            
 
             </div>
             <br/>   
