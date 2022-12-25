@@ -27,7 +27,6 @@ const Messagesection = ({socket,getmessage}) => {
  	  if(getmessage.senderId == userId){
    if (messageList.some(e => e.id != getmessage.id)) {
               setMessagelist([...messageList,getmessage])
-              /* vendors contains the element we're looking for */
             }
         }
  },[getmessage]);
@@ -42,15 +41,11 @@ const Messagesection = ({socket,getmessage}) => {
         "userId" : userId
       }
       const result= await WithTokenApi.post("/message/getmessages",payload)
-      // console.log("result",result);
       setMessagelist(result.data.messages)
       setUserProfile(result.data.userData[0])
     }
   }
    useEffect(()=>{
-  //  scrollRef.current?.scrollIntoView({
-  //   behavior: "smooth"
-  //  });
   const lastItem = listItems.current?.lastElementChild;
   if (lastItem) {
     lastItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -59,7 +54,6 @@ const Messagesection = ({socket,getmessage}) => {
 
 
   const sendMessage = async() => {
-    // console.log("message",message)
     if(message){
 
       const today = new Date();
@@ -78,7 +72,6 @@ const Messagesection = ({socket,getmessage}) => {
         payload.id =result.data.message.insertId
         payload.createdDate = today.getTime()
        
-        // console.log("...messageList,payload",[...messageList,payload])
         setMessagelist([...messageList,payload])
       }    
   }

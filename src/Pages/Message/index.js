@@ -19,26 +19,10 @@ import Messagesection from "./messagesection";
 
 const Message = ({socket}) => {
   let {userId } = useParams();
-  const listItems = useRef(null);
   const userData = useSelector((state)=>state.userData);
-  // console.log("userId",userId)
-  const [messageList,setMessagelist] = useState([]);
-  const [userProfile,setUserProfile] = useState({});
   const [onlineUser,setOnlineUser] = useState([]);
   const [reciveMessage,setMessage] = useState("");
-  useEffect(() => {
-    getMessagelist();
-  },[userId]);
-  useEffect(()=>{
-  //  scrollRef.current?.scrollIntoView({
-  //   behavior: "smooth"
-  //  });
-  const lastItem = listItems.current?.lastElementChild;
-  if (lastItem) {
-    lastItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }
-  },[messageList])
-
+ 
 
    useEffect(() => {
       socket.emit("addUser", userData.userinfo.data);
@@ -53,50 +37,10 @@ const Message = ({socket}) => {
             console.log("userId",userId)
             if(data.senderId == userId){
               setMessage(data)
-            //   if (messageList.some(e => e.id != data.id)) {
-            //   setMessagelist([...messageList,data])
-            //   /* vendors contains the element we're looking for */
-            // }
-            }
+           }
     })  
  
  
-  const getMessagelist = async() => {
-    if(userId){ 
-      const payload = {
-        "loginuserId": userData.userinfo.data.id,
-        "userId" : userId
-      }
-      const result= await WithTokenApi.post("/message/getmessages",payload)
-      // console.log("result",result);
-      setMessagelist(result.data.messages)
-      setUserProfile(result.data.userData[0])
-    }
-  }
-  // const sendMessage = async() => {
-  //   // console.log("message",message)
-  //   if(message){
-
-  //     const today = new Date();
-  //       let payload = {
-  //         "senderId":userData.userinfo.data.id,
-  //         "reciverId":userId,
-  //         "message_text":message
-  //       }
-  //       socket.emit("sendMessage",{...payload,
-  //         createdDate: today.getTime(),
-  //         id: Math.floor(Math.random() * 1000)})
-  //       const result= await WithTokenApi.post("/message/send",payload)
-  //       // console.log("result",result);
-       
-       
-  //       payload.id =result.data.message.insertId
-  //       payload.createdDate = today.getTime()
-       
-  //       // console.log("...messageList,payload",[...messageList,payload])
-  //       setMessagelist([...messageList,payload])
-  //     }    
-  // }
   return (
     <div> 
     <Header />
@@ -168,10 +112,10 @@ const Message = ({socket}) => {
      xxl={{span: 12}}
      >
      {
-      messageList.length > 0 ?  <Messagesection
+      <Messagesection
         socket = {socket}
         getmessage = {reciveMessage}
-       /> : null
+       /> 
      }
      
      </Col>
