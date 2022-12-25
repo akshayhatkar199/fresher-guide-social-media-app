@@ -4,8 +4,8 @@ import Footer from '../../components/Footer'
 import Sidebar from '../../components/Sidebar';
 import Image3 from '../../images/user.jpg';
 import { Col, Row  } from 'antd';
-
-
+import Home from "./Home"
+import "font-awesome/css/font-awesome.min.css";
 
 const Vediocall = () => {
 
@@ -43,6 +43,7 @@ const Vediocall = () => {
      <div className='home-container-2'>
     
                  <h1>Vedio call</h1>
+                 <Home/>
          </div>
           </Col>
           
