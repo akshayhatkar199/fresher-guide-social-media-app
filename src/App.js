@@ -29,11 +29,11 @@ function App() {
   useEffect(() => {
     checkIsLogin();
   },[]);
-  // useEffect(() => {
-  //   const newSocket = socketIOClient(ENDPOINT, { transports : ['websocket'] });
-  //   setSocket(newSocket);
-  //   // return () => newSocket.close();
-  // }, []);
+  useEffect(() => {
+    const newSocket = socketIOClient(ENDPOINT, { transports : ['websocket'] });
+    setSocket(newSocket);
+    // return () => newSocket.close();
+  }, []);
   const checkIsLogin = async() => {
     console.log("localStorage.getItem(token)",localStorage.getItem("token"))
     const token = localStorage.getItem("token");
