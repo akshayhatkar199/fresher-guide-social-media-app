@@ -108,7 +108,12 @@
     z-index: 1;
     padding-top: 17px;
     padding-bottom: 17px;
+
 }
+.sub-profile-div:hover{
+transform: scale(1.05,1.05);
+}
+
 .userprofile-udatecover-icon{
     float: right;
     position: relative;

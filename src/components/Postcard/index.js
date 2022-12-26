@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux'
 import {WithTokenApi} from '../../Helpers/axios';
 import Image1 from '../../images/user.jpg';
 import Image2 from '../../images/post-image.jpg';
+import Image  from '../../images/userp.png';
 import { useParams,Link } from 'react-router-dom';
 import {Card, Button, Dropdown } from 'antd';
 import { format } from 'timeago.js';
@@ -15,6 +16,7 @@ import { format } from 'timeago.js';
 
 const Postcard = (props) => {
   const userData = useSelector((state)=>state.userData);
+  console.log("Image",Image)
   const likes=async()=>{
 
 console.log("click likes")
@@ -59,7 +61,10 @@ console.log("result=>",result)
       xl={{span:3 }}
       xxl={{span:3}}
       >
-        <img src={Image1} alt="logo" className="post-image "></img> 
+        {/* <img src={Image1} alt="logo" className="post-image "></img> */}
+
+        {(props.data.photo) ? <img src={"http://localhost:8080/Images/"+props.data.photo} alt="logo" className="post-image "></img> : <img src={Image} className="post-image"/> }
+         
 
       </Col>
 

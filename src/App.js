@@ -89,7 +89,7 @@ return (
        
            <Route  path="/vediocall" element= { <Vediocall />}/>
          
-          <Route path='*'  element={<Navigate to="/" />} />
+          {/* <Route path='*'  element={<Navigate to="/" />} /> */}
         </Routes>
      </BrowserRouter>
     ) 
