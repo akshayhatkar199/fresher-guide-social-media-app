@@ -47,7 +47,7 @@ const Onlineusers = ({users}) => {
     renderItem={(item ) => (
       <List.Item>
         <List.Item.Meta
-          avatar={<div > <label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
+          avatar={<div > <Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
           title={<Link to={"/messages/"+item.id}>{item.name}</Link>}
           
           description={item.email}  
