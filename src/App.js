@@ -12,6 +12,7 @@ import {checkLogin} from './Store/reducers/userReducer'
 import Myfriends from './Pages/Myfriends';
 import MyfriendRequests from './Pages/MyfriendRequests'
 import Searchuser from './Pages/Searchuser';
+import Postdetail from "./Pages/Postdetail";
 import Vediocall from "./Pages/Vediocall/Home";
 import socketIOClient from "socket.io-client";
 import {BrowserRouter, Route, Routes,Navigate} from "react-router-dom";
@@ -78,6 +79,7 @@ return (
           <Route path="/myfriends" element={<Myfriends/>}/>
           <Route path='/myfriendRequests' element={<MyfriendRequests/>}/>
           <Route path='/searchuser/:searchinput' element={<Searchuser/>}/>
+          <Route path='/postdetail/:postId' element={<Postdetail/>}/>
           </>
           :
             <> 

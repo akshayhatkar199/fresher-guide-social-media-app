@@ -19,7 +19,7 @@ const Searchuser = () => {
   const [searchuserlist,setserchuserlist] = useState([])
   let {searchinput } = useParams();
   const userData = useSelector((state)=>state.userData);
- console.log("searchinput",searchinput)
+//  console.log("searchinput",searchinput)
 
 
 
@@ -34,7 +34,7 @@ const search=async()=>{
   console.log("localStorage.getItem('token')",localStorage.getItem('token'));
   // console.log(payload)
   const result = await WithTokenApi.post("/users/searchuser",payload);
-  console.log("result", result) 
+  // console.log("result", result) 
   setserchuserlist(result.data)
   
  }
@@ -121,7 +121,8 @@ search();
      <br/>
     
         </div>
-        
+        <br/>
+        <br/>
         <Footer />
         </div>
         </div>

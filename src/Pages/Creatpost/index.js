@@ -187,7 +187,7 @@ const Creatpost = () => {
  <br/>
 
     </div>
-    
+    <br/>
     <Footer />
     </div>
     </div>

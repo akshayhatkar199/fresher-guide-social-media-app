@@ -10,9 +10,9 @@ import { Avatar, List,Button, } from 'antd'
 const Aboutus = (props) => {
   const userData = useSelector((state)=>state.userData)
   // const [profile,setprofile] = useState(props.userData)
-   console.log("props",props)
+  //  console.log("props",props)
    var profile = props.userData ? props.userData : userData.userinfo
-   console.log("profile",profile)
+  //  console.log("profile",profile)
   var skills = "";
   profile.skills.map((e) => {
   skills += e.skilsName + " "

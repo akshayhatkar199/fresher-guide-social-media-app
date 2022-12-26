@@ -59,7 +59,7 @@ useEffect(()=>{
 
 const friends =async()=>{
   const result = await WithTokenApi.get("/friends/myfriendlist")
-  console.log("result",result);
+  // console.log("result",result);
   setmyfriendlist(result.data)
 }
 

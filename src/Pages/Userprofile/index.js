@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux'
 import Api, {WithTokenApi} from '../../Helpers/axios';
 import Image from '../../images/profile-img.jpg';
 import Image1  from '../../images/userp.png';
+import coverimage1 from '../../images/cover2.jpg'
 import Postcard from "../../components/Postcard"
 import Aboutus from "../../components/Aboutus"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -37,7 +38,7 @@ useEffect(()=>{
 },[])
 
 const post = async()=>{
-  console.log("----------------------------------calllll",userId)
+  // console.log("----------------------------------calllll",userId)
   var url = userId ? "post/byuserId/"+userId : "post/byuserId/"+userData.userinfo.data.id
   const result = await WithTokenApi.get(url) 
   setpostdata(result.data)
@@ -70,10 +71,10 @@ useEffect(()=>{
 },[userId])
 
 const useres =async()=>{ 
-  console.log("hii")
+  // console.log("hii")
   if(userId){
   const result = await WithTokenApi.get("/users/"+userId+"")
-  console.log("result...",result)
+  // console.log("result...",result)
   setprofile(result.data)
   }else{
     setprofile(userData.userinfo)
@@ -98,11 +99,11 @@ const onformsubmit = async(values)=>{
   const formData = new FormData();
   formData.append("userId",  userData.userinfo.data.id);
   formData.append("image",  values.image.file);
-  console.log("formData",formData)
+  // console.log("formData",formData)
   
 
   const profileresult = await WithTokenApi.patch("/updateprofilephoto",formData)  
-  console.log("profileresult",profileresult)
+  // console.log("profileresult",profileresult)
    message.success('Update Profile Image success full')
    setIsModalOpen(false)
 }
@@ -125,10 +126,10 @@ const onFinish =  async(values)=>{
   const formData = new FormData();
   formData.append("userId",  userData.userinfo.data.id);
   formData.append("image",  values.image.file);
-  console.log("formData",formData)
+  // console.log("formData",formData)
 
   const updatecoveresult = await WithTokenApi.patch("/updatecoverphoto",formData)  
-  console.log("updatecoveresult",updatecoveresult)
+  // console.log("updatecoveresult",updatecoveresult)
   message.success('Update Profile Image success full')
      setcoverphoto(false)
 }
@@ -165,10 +166,17 @@ const onFinish =  async(values)=>{
       >
     
     <div className='profile-div'>
-      <img src={Image} alt="img" className="main-profileimg "></img>
+      {/* <img src={Image} alt="img" className="main-profileimg "></img> */}
+
+      {(profile.data.coverimage) ? <img src={"http://localhost:8080/Images/"+profile.data.coverimage} className='main-profileimg'></img> 
+                                      : <img src={coverimage1} className="main-profileimg"/>}
+
+    { profile.data?.id === userData.userinfo.data.id ? 
+       <div>
       <label type="primary" onClick={popup}>
       <FontAwesomeIcon icon={faPen} className="userprofile-udatecover-icon" />
       </label>
+    
       <Modal title="Update Cover Photo" open={coverphoto} onOk={Updateok} onCancel={Updatecancel}>
       <Form
        layout="vertical"
@@ -216,12 +224,11 @@ const onFinish =  async(values)=>{
  
 
       </Modal>
-       
-    <div>
-    {/* <Link to="/creatpost" ><Button type="primary" size={25} className=""> Creat Post </Button></Link> */}
-    </div>
-       
-   
+
+      </div>
+      :null
+      }
+    
 
     <div className='sub-profile-div'>
     <label type="primary" onClick={showModal}>
@@ -374,6 +381,8 @@ const onFinish =  async(values)=>{
  
 
     </div>
+    <br/>
+    <br/>
     
     <Footer />
     </div>

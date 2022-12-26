@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Col, Row,  } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faComment, faThumbsUp,faEllipsis} from '@fortawesome/free-solid-svg-icons'
@@ -10,24 +10,55 @@ import Image2 from '../../images/post-image.jpg';
 import Image  from '../../images/userp.png';
 import { useParams,Link } from 'react-router-dom';
 import {Card, Button, Dropdown } from 'antd';
+import './postcard.css'
 import { format } from 'timeago.js';
+import { Collapse } from 'antd';
+const { Panel } = Collapse;
 
+const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.`;
 
 
 const Postcard = (props) => {
+  const [likecount,setlikecount] = useState(props.data.totalLike);
+  const[isLiked, setIsLiked] = useState(props.data.isLike);
   const userData = useSelector((state)=>state.userData);
-  console.log("Image",Image)
+  // console.log("Image",Image)
+  
+  // useEffect(()=>{
+  //   likes()
+  // },[])
   const likes=async()=>{
+    var payload = {}
 
-console.log("click likes")
-const payload={
-  "isLike":1,
-   "postId": props.data.id,
-   "likeuserId":userData.userinfo.data.id 
-}
-const result= await WithTokenApi.post("/post/like",payload)
-console.log("result=>",result)
+if(isLiked == 1){
+  setIsLiked(0);
+  payload={
+   "isLike":0,
+    "postId": props.data.id,
+    "likeuserId":userData.userinfo.data.id 
+ }
+ setlikecount(likecount-1)
+}else{
+  setIsLiked(1);
+   payload={
+    "isLike":1,
+     "postId": props.data.id,
+     "likeuserId":userData.userinfo.data.id 
   }
+  setlikecount(likecount+1)
+ 
+}
+const result =  await  WithTokenApi.post("/post/like",payload)
+
+
+  }
+
+  const onChange = (key) => {
+    console.log(key);
+  };
 
   const items = [
     {
@@ -39,11 +70,11 @@ console.log("result=>",result)
     {
       key: '2',
       label: (
-        <Link to={"/updatepost/"+props.data.id+ ""}>Sharing Post</Link>
+        <Link to={"/postdetail/"+props.data.id+ ""}>Post details</Link>
+        
       ),
     }
   ];
-  let {postId } = useParams();
   // console.log("postId",postId)
   // console.log("props",props)
   return (
@@ -104,10 +135,10 @@ console.log("result=>",result)
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      <FontAwesomeIcon icon={faThumbsUp} className="card-like" onClick={likes}/>
-      <span style={{marginRight:"4px"}}>{props.data.totalLike ? props.data.totalLike : null}</span> 
+       { <FontAwesomeIcon icon={faThumbsUp} className={isLiked == 1 ? "color-icon card-like" : "card-like"}  onClick={likes}/> }
+      <span style={{marginRight:"4px"}}>{likecount}</span>
       Like 
-     
+    
       </Col>
 
         <Col
@@ -119,6 +150,11 @@ console.log("result=>",result)
             xxl={{span: 8}}
       >
       <FontAwesomeIcon icon={ faComment} className="card-comment"/> 
+       {/* <Collapse defaultActiveKey={['1']} onChange={onChange}>
+      <Panel header="Coment" key="1">
+        <p>{text}</p>
+      </Panel> 
+    </Collapse> */}
       Coment
 
       </Col>
@@ -137,7 +173,7 @@ console.log("result=>",result)
       placement="bottomLeft"
       arrow
     >
-      <Button style={{border:"none"}}><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></Button>
+      <label ><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></label>
     </Dropdown>
       {/* <Link to={"/updatepost/"+props.data.id+ ""}><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></Link> */}
   

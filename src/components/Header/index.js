@@ -22,7 +22,7 @@ const [searchinput,setSearchinputs] =  useState("");
 const [open, setOpen] = useState(false);
 const navigate = useNavigate()
 const userData = useSelector((state)=>state.userData);
-console.log("userData",userData);
+// console.log("userData",userData);
 // console.log("searchinput",searchinput)
 const logout =()=>{
   confirm({
