@@ -107,7 +107,7 @@ const friends =async()=>{
         renderItem={(item ) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images./"+item.photo : Image } /></div>}
+              avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /></div>}
               title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
               description={item.email} 
             />

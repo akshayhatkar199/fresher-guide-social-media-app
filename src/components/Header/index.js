@@ -8,7 +8,7 @@ import{MessageOutlined}from '@ant-design/icons'
 import { useNavigate } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faHome,faMessage,faBell,faBars,faUser,faRightFromBracket,faF,faRegistered} from '@fortawesome/free-solid-svg-icons'
+import {  faHome,faMessage,faBell,faBars,faUser,faRightFromBracket,faF,faRegistered,faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import {NotificationOutlined } from '@ant-design/icons'
 import Image2 from '../../images/he-logo.png';
 import Image4  from '../../images/logo-college-removebg-preview.png';
@@ -113,6 +113,7 @@ const onSearch = () => {
         <Link to= '/notification'>  <FontAwesomeIcon icon={ faBell}  className="header-drawer-icon"/> <span className='pages-name'>Notification</span></Link>
         <Link to="/userprofile"><FontAwesomeIcon icon= {faUser}  className="header-drawer-icon"/><span className='pages-name'>Userprofile</span></Link>
         <Link to="/myfriends"> <FontAwesomeIcon icon={faF}  className="header-drawer-icon"/><span className='pages-name'>Myfriends</span></Link>
+        <Link to="/creatpost" ><FontAwesomeIcon icon={faSquarePlus}  className="header-drawer-icon" /><span className='pages-name'>Creat Post</span></Link>
         <Link to="/myfriendRequests"> <FontAwesomeIcon icon={faRegistered}  className="header-drawer-icon"/><span className='pages-name'>MyfriendRequests</span></Link>
         <div onClick={logout}>
            <FontAwesomeIcon icon={faRightFromBracket} className="header-drawer-icon"/> <span className='pages-name'>Logout</span>
