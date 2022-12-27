@@ -40,7 +40,7 @@ const Registration = () => {
 
    }
   const result = await api.post('/auth/register',payload);
-  console.log("result", result)
+  // console.log("result", result)
     
 
 

@@ -60,18 +60,18 @@ const MyfriendRequests = () => {
 
 const friendsrequest=async()=>{
   const result= await WithTokenApi.get("/friends/myrequests")
-  console.log("result",result);
+  // console.log("result",result);
   setmyfriendrequest(result.data)
 }
 
 const accept=async(id)=>{
- console.log("id",id);
+//  console.log("id",id);
 const payload={
   "requestId": id
 }
 console.log("payload",payload)
  const result = await WithTokenApi.post("/friends/requestaccept",payload)
- console.log("result",result)
+//  console.log("result",result)
 
  message.success("Request Accepted Successfully")
  friendsrequest()

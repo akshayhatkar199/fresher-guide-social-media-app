@@ -44,20 +44,20 @@ useEffect(()=>{
 
 const datacollege = async()=>{
     const result = await api.get("/colleges")
-    console.log("result",result)
+    // console.log("result",result)
     setcollegedata(result.data)
 }
 
 const Skillsdata = async()=> {
      const result = await WithTokenApi.get("/skills")
-     console.log("result",result)
+    //  console.log("result",result)
      setskilles(result.data)
 }
     const onFinish = async(values) => {
         console.log('Success:', values);
         values.id = userData.userinfo.data.id
         const result = await WithTokenApi.patch("/users",values)
-        console.log("result",result)
+        // console.log("result",result)
         await dispatch(checkLogin(localStorage.getItem("token")))
         navigate("/userprofile")
       };
@@ -356,6 +356,7 @@ const Skillsdata = async()=> {
  <br/>
 
     </div>
+    <br/>
     
     <Footer />
     </div>

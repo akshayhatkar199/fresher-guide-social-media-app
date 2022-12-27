@@ -113,7 +113,7 @@ const Notification = () => {
  <br/>
 
     </div>
-    
+    <br/>
     <Footer />
     </div>
     </div>

@@ -6,7 +6,7 @@ import Sidebar from '../../components/Sidebar'
 import { Col, Row  } from 'antd';
 import {WithTokenApi} from '../../Helpers/axios';
 import { Avatar, List,Button, } from 'antd'
-import {Link } from "react-router-dom";
+import {Link,useParams } from "react-router-dom";
 import Onlineusers from '../../components/Onlineusers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faLaptop, faTrophy ,faCalendarDays,faMicrophone,faPersonWalking,faP,faStar,faUserGraduate} from '@fortawesome/free-solid-svg-icons'
@@ -14,23 +14,22 @@ import {  faHome,faMessage,faBell, faBars, faUser, faAnchor} from '@fortawesome/
 import Postcard from "../../components/Postcard"
 import Aboutus from "../../components/Aboutus"
 import {useSelector} from 'react-redux'
-import './Home.css'
 
 
 
 
-const Home = () => {
-  const userData = useSelector((state)=>state.userData);
-  const [posts,setposts] = useState([])
+const Postdetail = () => {
+    let {postId } = useParams();
+    // console.log("postId",postId)
+  const [detailpost,sedetailpost] = useState({})
   useEffect(()=>{
-    postdata()
+    postdetaildata()
   },[])
   
-  const postdata = async()=>{
-    // const result = await WithTokenApi.get("post/byuserId/"+userData.userinfo.data.id) 
-    const result = await WithTokenApi.post("/post/searchpost",{searchfield: ""}) 
-    // console.log("result",result)
-    setposts(result.data)
+  const postdetaildata = async()=>{
+    const postresult = await WithTokenApi.get("/post/"+postId+"") 
+    console.log("postresult",postresult)
+    sedetailpost(postresult.data[0])
   }
   return (
     <div > 
@@ -38,8 +37,6 @@ const Home = () => {
     <div className='body-container'>
     <div className='main-home-container'>
     
-
-   
     <Row>
   
      <Col          
@@ -66,11 +63,7 @@ const Home = () => {
       <Onlineusers/>
 
       </div>
-     
       </Col>
-     
-   
-
 
       <Col  
       xs={{span: 24}}
@@ -81,28 +74,9 @@ const Home = () => {
       xxl={{span: 11}}
       >
       <div className='home-container-2'>
-      {
-        posts.map((item) => {
-          return   <Postcard data={item} />
-        })
-      }
+     
+      <Postcard data={detailpost}/>
   
-      {/* <Postcard/>
-      <Postcard/>
-      <Postcard/>
-      <Postcard/>
-      <Postcard/> */}
-      
-
-
-
-
-
-
-
-
-
-
       </div>
       </Col>
       <Col  
@@ -125,7 +99,7 @@ const Home = () => {
     </Row>
 
     </div>
-    <br/>
+    <br/> 
     <br/>
     <Footer />
     </div>
@@ -133,4 +107,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Postdetail

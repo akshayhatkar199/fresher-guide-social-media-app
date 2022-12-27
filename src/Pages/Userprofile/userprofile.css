@@ -8,6 +8,8 @@
 
 .profile-div{
     position: relative;
+    width: 100%;
+    height: 400px;
 }
 
 /* .user-box{
@@ -115,10 +117,9 @@ transform: scale(1.05,1.05);
 }
 
 .userprofile-udatecover-icon{
-    float: right;
     position: relative;
     bottom: 75px;
-    right: 66px;
+    left: 86%;
     background-color: #e3ecf3;
     width: 18px;
     height: 16px;

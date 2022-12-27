@@ -33,7 +33,7 @@ const Login = () => {
 
     }
     const result = await api.post('/auth/login',payload);
-    console.log("result", result.data.token)
+    // console.log("result", result.data.token)
 
     if(result.data.token){
       // console.log("Login success full")

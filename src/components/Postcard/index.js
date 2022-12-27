@@ -16,7 +16,7 @@ import { format } from 'timeago.js';
 
 const Postcard = (props) => {
   const userData = useSelector((state)=>state.userData);
-  console.log("Image",Image)
+  // console.log("Image",Image)
   const likes=async()=>{
 
 console.log("click likes")
@@ -26,7 +26,7 @@ const payload={
    "likeuserId":userData.userinfo.data.id 
 }
 const result= await WithTokenApi.post("/post/like",payload)
-console.log("result=>",result)
+// console.log("result=>",result)
   }
 
   const items = [
@@ -39,11 +39,11 @@ console.log("result=>",result)
     {
       key: '2',
       label: (
-        <Link to={"/updatepost/"+props.data.id+ ""}>Sharing Post</Link>
+        <Link to={"/postdetail/"+props.data.id+ ""}>Post details</Link>
+        
       ),
     }
   ];
-  let {postId } = useParams();
   // console.log("postId",postId)
   // console.log("props",props)
   return (
@@ -137,7 +137,7 @@ console.log("result=>",result)
       placement="bottomLeft"
       arrow
     >
-      <Button style={{border:"none"}}><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></Button>
+      <label ><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></label>
     </Dropdown>
       {/* <Link to={"/updatepost/"+props.data.id+ ""}><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></Link> */}
   

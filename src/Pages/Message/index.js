@@ -29,12 +29,12 @@ const Message = ({socket}) => {
     }, []);
 
     socket.on("getOnlineUsers",(data) => {
-             console.log("getOnlineUsers",data)
+            //  console.log("getOnlineUsers",data)
              setOnlineUser(data)
     })
     socket.on("getMessage",(data) => {
-            console.log("getMessage",data)
-            console.log("userId",userId)
+            // console.log("getMessage",data)
+            // console.log("userId",userId)
             if(data.senderId == userId){
               setMessage(data)
            }
@@ -140,6 +140,8 @@ const Message = ({socket}) => {
 
 
     </div>
+    <br/>
+    <br/>
     
     <Footer />
     </div>
