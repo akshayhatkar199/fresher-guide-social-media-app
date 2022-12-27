@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button, } from 'antd'
 import Image3 from '../../images/user.jpg';
+import Image  from '../../images/userp.png';
 import { Col, Row , Menu,Input,message } from 'antd';
 import './searchuser.css'
 import { ApiFilled } from '@ant-design/icons';
@@ -97,7 +98,7 @@ search();
         renderItem={(item ) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? item.photo : ""} /> 
+              avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /> 
              </div>}
               title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link> } 
               description={item.email}  

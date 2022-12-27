@@ -4,16 +4,17 @@ import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
 import {Link,useParams } from "react-router-dom";
 import {useSelector} from 'react-redux'
-import {WithTokenApi} from '../../Helpers/axios';
+import Api, {WithTokenApi} from '../../Helpers/axios';
 import Image from '../../images/profile-img.jpg';
+import Image1  from '../../images/userp.png';
 import Postcard from "../../components/Postcard"
 import Aboutus from "../../components/Aboutus"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faLaptop, faTrophy ,faCalendarDays,faMicrophone,faPersonWalking,faP,faStar,faUserGraduate} from '@fortawesome/free-solid-svg-icons'
-import { Avatar, List,Button, } from 'antd'
+import { Avatar, List,Button,Form,Upload } from 'antd'
 import Image3 from '../../images/user.jpg';
-import { SmileOutlined } from '@ant-design/icons';
-import { Col, Row , Menu,Input,Modal ,Result  } from 'antd';
+import { SmileOutlined ,UploadOutlined } from '@ant-design/icons';
+import { Col, Row , Menu,Input,Modal ,Result,message  } from 'antd';
 import './userprofile.css'
 
 
@@ -21,8 +22,9 @@ import './userprofile.css'
   
 
 const Userprofile = () => {
+  const [profileimage, setprofileimage] = useState([]);
+  const [updatecover, setupdatecover] = useState([]);
   const [postdata,setpostdata] = useState([])
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [coverphoto,setcoverphoto] = useState(false);
   let {userId } = useParams();
@@ -42,6 +44,7 @@ const post = async()=>{
 }
 
 const showModal = () => {
+  // if()
   setIsModalOpen(true);
 };
 const handleOk = () => {
@@ -75,6 +78,59 @@ const useres =async()=>{
   }else{
     setprofile(userData.userinfo)
   }
+}
+
+const props = {
+  onRemove: (file) => {
+    const index = profileimage.indexOf(file);
+    const newFileList = profileimage.slice();
+    newFileList.splice(index, 1);
+    setprofileimage(newFileList);
+  },
+  beforeUpload: (file) => {
+    setprofileimage([...profileimage, file]);
+    return false;
+  },
+  profileimage,
+};
+
+const onformsubmit = async(values)=>{
+  const formData = new FormData();
+  formData.append("userId",  userData.userinfo.data.id);
+  formData.append("image",  values.image.file);
+  console.log("formData",formData)
+  
+
+  const profileresult = await WithTokenApi.patch("/updateprofilephoto",formData)  
+  console.log("profileresult",profileresult)
+   message.success('Update Profile Image success full')
+   setIsModalOpen(false)
+}
+
+const propss = {
+  onRemove: (file) => {
+    const index = updatecover.indexOf(file);
+    const newFileList = updatecover.slice();
+    newFileList.splice(index, 1);
+    setupdatecover(newFileList);
+  },
+  beforeUpload: (file) => {
+    setupdatecover([...updatecover, file]);
+    return false;
+  },
+  updatecover,
+};
+
+const onFinish =  async(values)=>{
+  const formData = new FormData();
+  formData.append("userId",  userData.userinfo.data.id);
+  formData.append("image",  values.image.file);
+  console.log("formData",formData)
+
+  const updatecoveresult = await WithTokenApi.patch("/updatecoverphoto",formData)  
+  console.log("updatecoveresult",updatecoveresult)
+  message.success('Update Profile Image success full')
+     setcoverphoto(false)
 }
 
   return (
@@ -114,8 +170,51 @@ const useres =async()=>{
       <FontAwesomeIcon icon={faPen} className="userprofile-udatecover-icon" />
       </label>
       <Modal title="Update Cover Photo" open={coverphoto} onOk={Updateok} onCancel={Updatecancel}>
-        <p>Some contents...</p>
-        
+      <Form
+       layout="vertical"
+      name="basic"
+      labelCol={{
+        span: 8,
+      }}
+     
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+      autoComplete="off"
+     
+    >
+    <Form.Item
+    label=" Image"
+      name='image'
+    
+    >
+         <Upload {...propss}>
+      <Button icon={<UploadOutlined />}>Select File</Button>
+    </Upload>
+    
+    </Form.Item>
+  
+  
+
+  <Form.Item
+      // wrapperCol={{
+      //   offset: 5,
+      //   span: 16,
+      // }}
+    >
+      <Button type="primary"  htmlType="submit" >
+        Submit
+      </Button>
+
+     
+    </Form.Item>
+
+
+
+</Form>
+ 
+
       </Modal>
        
     <div>
@@ -126,12 +225,61 @@ const useres =async()=>{
 
     <div className='sub-profile-div'>
     <label type="primary" onClick={showModal}>
-    <img src={Image3} alt="logo" className='profile-user-IMG'></img>
+    {(profile.data.photo) ? <img src={"http://localhost:8080/Images/"+profile.data.photo}  className='profile-user-IMG'></img> 
+                          : <img src={Image1} className="profile-user-IMG"/>}
       </label>
-      <Modal title="Update Profile Image" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
+     { profile.data?.id === userData.userinfo.data.id ?
       
-      </Modal>
+      <Modal title="Update Profile Image" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Form
+       layout="vertical"
+      name="basic"
+      labelCol={{
+        span: 8,
+      }}
+     
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onformsubmit}
+      autoComplete="off"
+     id='myForm'
+    >
+    <Form.Item
+    label=" Image"
+      name='image'
+    
+    >
+         <Upload {...props}>
+      <Button icon={<UploadOutlined />}>Select File</Button>
+    </Upload>
+    
+    </Form.Item>
+  
+  
+
+  <Form.Item
+      // wrapperCol={{
+      //   offset: 5,
+      //   span: 16,
+      // }}
+    >
+      <Button type="primary"  htmlType="submit" >
+        Submit
+      </Button>
+
+     
+    </Form.Item>
+
+
+
+</Form>
+      
+      </Modal> 
+   
+    : null 
+     }
+
     {/* <img src={Image3} alt="logo" className='profile-user-IMG'></img> */}
     <div className='text-div'>
    <span style={{color: "black",fontSize: "18px",fontWeight: "500"}}>{profile.data.name} </span><br />

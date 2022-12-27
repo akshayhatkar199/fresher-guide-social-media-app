@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link, useNavigate } from "react-router-dom";
-import {  faHome,faMessage,faBell ,faUser,faBars ,fauserGroup,faRightFromBracket,faRegistered,faF,} from '@fortawesome/free-solid-svg-icons'
+import {  faHome,faMessage,faBell ,faUser,faBars ,fauserGroup,faRightFromBracket,faRegistered,faF,faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import { Col, Row ,Button, Modal, Space  } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import './sidebar.css'
@@ -164,12 +164,31 @@ const logout =()=>{
       xxl={{span: 24}}
       >
       <div className="left-side-icone">
-      <div className='icone-back' onClick={logout}>
-           <FontAwesomeIcon icon={faRightFromBracket} className="icone-size" />
+      <div className='icone-back'>
+      <Link to="/creatpost" ><FontAwesomeIcon icon={faSquarePlus} className="icone-size" /></Link>
       </div>
       </div>
 
       </Col>
+
+
+      <Col  
+      xs={{span: 24}}
+      sm={{span: 24}}
+      md={{span: 24}}
+      lg={{span: 24}}
+      xl={{span: 24}}
+      xxl={{span: 24}}
+      >
+      <div className="left-side-icone">
+      <div className='icone-back' onClick={logout}>
+           <FontAwesomeIcon icon={faRightFromBracket} className="icone-size" /> 
+      </div>
+      </div>
+
+      </Col>
+
+     
 
       
       </div>

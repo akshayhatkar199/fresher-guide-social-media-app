@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link ,useNavigate } from "react-router-dom";
 import Image2 from '../../images/he-logo.png';
 import Image4  from '../../images/logo-college-removebg-preview.png';
-import {  faHome,faMessage,faBell ,faUser,faRightFromBracket} from '@fortawesome/free-solid-svg-icons'
+import {  faHome,faMessage,faBell ,faUser,faRightFromBracket,faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import { Col, Row , Menu } from 'antd';
 
 
@@ -114,12 +114,12 @@ const Footer = () => {
     <Row>
 
       <Col  
-      xs={{span: 6}}
-      sm={{span: 6}}
-      md={{span: 6}}
-      lg={{span: 6}}
-      xl={{span: 6}}
-      xxl={{span: 6}}
+      xs={{span: 4}}
+      sm={{span: 4}}
+      md={{span: 4}}
+      lg={{span: 4}}
+      xl={{span: 4}}
+      xxl={{span: 4}}
       >
       <div className=''>
       <Link to="/home"><FontAwesomeIcon icon={faHome} className="footer-icon" /></Link>
@@ -129,12 +129,12 @@ const Footer = () => {
       </Col>
 
       <Col  
-      xs={{span: 6}}
-      sm={{span: 6}}
-      md={{span: 6}}
-      lg={{span: 6}}
-      xl={{span: 6}}
-      xxl={{span: 6}}
+      xs={{span: 4}}
+      sm={{span: 5}}
+      md={{span: 4}}
+      lg={{span: 4}}
+      xl={{span: 4}}
+      xxl={{span: 4}}
       >
       <div className=''>
 
@@ -146,12 +146,12 @@ const Footer = () => {
       </Col>
 
       <Col  
-      xs={{span: 6}}
-      sm={{span: 6}}
-      md={{span: 6}}
-      lg={{span: 6}}
-      xl={{span: 6}}
-      xxl={{span: 6}}
+      xs={{span: 4}}
+      sm={{span: 5}}
+      md={{span: 4}}
+      lg={{span: 4}}
+      xl={{span: 4}}
+      xxl={{span: 4}}
       >
       <div className=''>
       <Link to= '/notification'>  <FontAwesomeIcon icon={ faBell} className="footer-icon"  /></Link>
@@ -160,12 +160,12 @@ const Footer = () => {
       </Col>
 
       <Col  
-      xs={{span: 6}}
-      sm={{span: 6}}
-      md={{span: 6}}
-      lg={{span: 6}}
-      xl={{span: 6}}
-      xxl={{span: 6}}
+      xs={{span: 4}}
+      sm={{span: 5}}
+      md={{span: 4}}
+      lg={{span: 4}}
+      xl={{span: 4}}
+      xxl={{span: 4}}
       >
       <div className=''>
       
@@ -174,20 +174,21 @@ const Footer = () => {
       </div>
       </Col>
 
-      {/* <Col  
-      xs={{span: 3}}
-      sm={{span: 3}}
-      md={{span: 3}}
-      lg={{span: 3}}
-      xl={{span: 3}}
-      xxl={{span: 3}}
+      <Col  
+      xs={{span: 4}}
+      sm={{span: 5}}
+      md={{span: 4}}
+      lg={{span: 4}}
+      xl={{span: 4}}
+      xxl={{span: 4}}
       >
       <div className=''>
-      
-      <Link to="/myfriends"> <FontAwesomeIcon icon={faMessage} className="footer-icon" /></Link>
+      <Link to="/creatpost" ><FontAwesomeIcon icon={faSquarePlus} className="footer-icon" /></Link>
+      {/* <Link to="/myfriends"> <FontAwesomeIcon icon={faMessage} className="footer-icon" /></Link> */}
   
       </div>
-      </Col> */}
+      </Col>
+
 
       {/* <Col  
       xs={{span: 3}}

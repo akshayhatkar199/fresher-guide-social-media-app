@@ -1,21 +1,21 @@
 import React,{useState}from 'react'
 import { Button} from 'antd';
 import {Link } from "react-router-dom";
-import { Col, Row } from 'antd';
-import {HomeOutlined} from '@ant-design/icons'
+import { Col, Row,Modal } from 'antd';
+import {HomeOutlined,ExclamationCircleFilled} from '@ant-design/icons'
 import { Input, Space ,Drawer} from 'antd';
 import{MessageOutlined}from '@ant-design/icons'
 import { useNavigate } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faHome,faMessage,faBell,faBars,faUser,faRightFromBracket,faF,faRegistered} from '@fortawesome/free-solid-svg-icons'
+import {  faHome,faMessage,faBell,faBars,faUser,faRightFromBracket,faF,faRegistered,faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import {NotificationOutlined } from '@ant-design/icons'
 import Image2 from '../../images/he-logo.png';
 import Image4  from '../../images/logo-college-removebg-preview.png';
 import Image3 from '../../images/user.jpg';
 import './header.css'
 const { Search } = Input;
-
+const { confirm } = Modal;
 
 const Header = () => {
 const [searchinput,setSearchinputs] =  useState("");
@@ -25,9 +25,22 @@ const userData = useSelector((state)=>state.userData);
 console.log("userData",userData);
 // console.log("searchinput",searchinput)
 const logout =()=>{
-  localStorage.removeItem("token");
-  alert("Conform for Logout ")
-  window.location.href = "http://localhost:3000/";
+  confirm({
+    title: 'Do you want to Conform for Logout?',
+    icon: <ExclamationCircleFilled />,
+    content: 'When clicked the OK button, this dialog will be closed after 1 second',
+    onOk() {
+      return new Promise((resolve, reject) => {
+        localStorage.removeItem("token");
+        window.location.href = "http://localhost:3000/";
+       setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+      }).catch(() => console.log('Oops errors!'));
+    },
+    onCancel() {},
+  });
+  // localStorage.removeItem("token");
+  // alert("Conform for Logout ")
+  // window.location.href = "http://localhost:3000/";
 }
 
   const showDrawer = () => {
@@ -100,6 +113,7 @@ const onSearch = () => {
         <Link to= '/notification'>  <FontAwesomeIcon icon={ faBell}  className="header-drawer-icon"/> <span className='pages-name'>Notification</span></Link>
         <Link to="/userprofile"><FontAwesomeIcon icon= {faUser}  className="header-drawer-icon"/><span className='pages-name'>Userprofile</span></Link>
         <Link to="/myfriends"> <FontAwesomeIcon icon={faF}  className="header-drawer-icon"/><span className='pages-name'>Myfriends</span></Link>
+        <Link to="/creatpost" ><FontAwesomeIcon icon={faSquarePlus}  className="header-drawer-icon" /><span className='pages-name'>Creat Post</span></Link>
         <Link to="/myfriendRequests"> <FontAwesomeIcon icon={faRegistered}  className="header-drawer-icon"/><span className='pages-name'>MyfriendRequests</span></Link>
         <div onClick={logout}>
            <FontAwesomeIcon icon={faRightFromBracket} className="header-drawer-icon"/> <span className='pages-name'>Logout</span>

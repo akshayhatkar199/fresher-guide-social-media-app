@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button, } from 'antd'
 import Image3 from '../../images/user.jpg';
+import Image  from '../../images/userp.png';
 import { Col, Row , Menu,Input } from 'antd';
 import './myfriends.css'
 
@@ -106,7 +107,7 @@ const friends =async()=>{
         renderItem={(item ) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<div ><label className='online-label'></label><Avatar src={item.photo} /></div>}
+              avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /></div>}
               title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
               description={item.email} 
             />
