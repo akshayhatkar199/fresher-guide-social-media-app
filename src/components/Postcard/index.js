@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Col, Row,  } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faComment, faThumbsUp,faEllipsis} from '@fortawesome/free-solid-svg-icons'
@@ -11,14 +11,27 @@ import Image  from '../../images/userp.png';
 import { useParams,Link } from 'react-router-dom';
 import {Card, Button, Dropdown } from 'antd';
 import { format } from 'timeago.js';
+import { Collapse } from 'antd';
+const { Panel } = Collapse;
 
+const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`;
 
 
 const Postcard = (props) => {
+  const [likecount,setlikecount] = useState(0);
+  const [count,setcount] = useState({});
   const userData = useSelector((state)=>state.userData);
   // console.log("Image",Image)
-  const likes=async()=>{
+  useEffect(()=>{
 
+  },[])
+  const likes=async()=>{
+    setlikecount(likecount+1)
+    setcount(count+props.data.isLike)
 console.log("click likes")
 const payload={
   "isLike":1,
@@ -27,7 +40,12 @@ const payload={
 }
 const result= await WithTokenApi.post("/post/like",payload)
 // console.log("result=>",result)
+count(props.data.isLike)
   }
+
+  const onChange = (key) => {
+    console.log(key);
+  };
 
   const items = [
     {
@@ -104,10 +122,12 @@ const result= await WithTokenApi.post("/post/like",payload)
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      <FontAwesomeIcon icon={faThumbsUp} className="card-like" onClick={likes}/>
-      <span style={{marginRight:"4px"}}>{props.data.totalLike ? props.data.totalLike : null}</span> 
+      {(props.data.isLike == 1) ? <FontAwesomeIcon icon={faThumbsUp} className="card-like" style={{color:"red"}}  onClick={likes}/>  
+                                : <FontAwesomeIcon icon={faThumbsUp} className="card-like"  onClick={likes}/> }
+      {/* <span style={{marginRight:"4px"}}>{props.data.totalLike ? likecount : null}</span>  */}
+      <span style={{marginRight:"4px"}}>{props.data.totalLike ? props.data.totalLike : null}</span>
       Like 
-     
+    
       </Col>
 
         <Col
@@ -119,6 +139,11 @@ const result= await WithTokenApi.post("/post/like",payload)
             xxl={{span: 8}}
       >
       <FontAwesomeIcon icon={ faComment} className="card-comment"/> 
+       {/* <Collapse defaultActiveKey={['1']} onChange={onChange}>
+      <Panel header="Coment" key="1">
+        <p>{text}</p>
+      </Panel> 
+    </Collapse> */}
       Coment
 
       </Col>
