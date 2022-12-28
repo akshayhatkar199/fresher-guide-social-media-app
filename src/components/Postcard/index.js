@@ -10,6 +10,7 @@ import Image2 from '../../images/post-image.jpg';
 import Image  from '../../images/userp.png';
 import { useParams,Link } from 'react-router-dom';
 import {Card, Button, Dropdown } from 'antd';
+import './postcard.css'
 import { format } from 'timeago.js';
 import { Collapse } from 'antd';
 const { Panel } = Collapse;
@@ -17,30 +18,42 @@ const { Panel } = Collapse;
 const text = `
   A dog is a type of domesticated animal.
   Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
+  it can be found as a welcome guest in many households across the world.`;
 
 
 const Postcard = (props) => {
-  const [likecount,setlikecount] = useState(0);
-  const [count,setcount] = useState({});
+  const [likecount,setlikecount] = useState(props.data.totalLike);
+  const[isLiked, setIsLiked] = useState(props.data.isLike);
   const userData = useSelector((state)=>state.userData);
   // console.log("Image",Image)
-  useEffect(()=>{
-
-  },[])
+  
+  // useEffect(()=>{
+  //   likes()
+  // },[])
   const likes=async()=>{
-    setlikecount(likecount+1)
-    setcount(count+props.data.isLike)
-console.log("click likes")
-const payload={
-  "isLike":1,
-   "postId": props.data.id,
-   "likeuserId":userData.userinfo.data.id 
+    var payload = {}
+
+if(isLiked == 1){
+  setIsLiked(0);
+  payload={
+   "isLike":0,
+    "postId": props.data.id,
+    "likeuserId":userData.userinfo.data.id 
+ }
+ setlikecount(likecount-1)
+}else{
+  setIsLiked(1);
+   payload={
+    "isLike":1,
+     "postId": props.data.id,
+     "likeuserId":userData.userinfo.data.id 
+  }
+  setlikecount(likecount+1)
+ 
 }
-const result= await WithTokenApi.post("/post/like",payload)
-// console.log("result=>",result)
-count(props.data.isLike)
+const result =  await  WithTokenApi.post("/post/like",payload)
+
+
   }
 
   const onChange = (key) => {
@@ -122,10 +135,8 @@ count(props.data.isLike)
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      {(props.data.isLike == 1) ? <FontAwesomeIcon icon={faThumbsUp} className="card-like" style={{color:"red"}}  onClick={likes}/>  
-                                : <FontAwesomeIcon icon={faThumbsUp} className="card-like"  onClick={likes}/> }
-      {/* <span style={{marginRight:"4px"}}>{props.data.totalLike ? likecount : null}</span>  */}
-      <span style={{marginRight:"4px"}}>{props.data.totalLike ? props.data.totalLike : null}</span>
+       { <FontAwesomeIcon icon={faThumbsUp} className={isLiked == 1 ? "color-icon card-like" : "card-like"}  onClick={likes}/> }
+      <span style={{marginRight:"4px"}}>{likecount}</span>
       Like 
     
       </Col>
