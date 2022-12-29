@@ -4,7 +4,7 @@ import { Avatar, List ,Result } from 'antd';
 import {WithTokenApi} from '../../Helpers/axios';
 import { Link } from "react-router-dom";
 import {useSelector} from 'react-redux'
-
+import Image  from '../../images/userp.png';
 const Onlineusers = ({users}) => {
   const [myfriend, setmyfriend] = useState([])
   const userData = useSelector((state)=>state.userData);
@@ -29,7 +29,7 @@ const Onlineusers = ({users}) => {
           userData.userinfo.data.id != item.id ? 
           <List.Item>
             <List.Item.Meta
-              avatar={<div > <label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
+              avatar={<div > <label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /></div>}
               title={<Link to={"/messages/"+item.id}>{item.name}</Link>}
               
               description={item.email}  
@@ -47,7 +47,7 @@ const Onlineusers = ({users}) => {
     renderItem={(item ) => (
       <List.Item>
         <List.Item.Meta
-          avatar={<div > <Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
+          avatar={<div > <Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /></div>}
           title={<Link to={"/messages/"+item.id}>{item.name}</Link>}
           
           description={item.email}  

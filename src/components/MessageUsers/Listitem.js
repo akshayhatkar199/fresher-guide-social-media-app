@@ -1,11 +1,12 @@
 import React,{useEffect,useState} from 'react'
 import { Avatar, List } from 'antd';
+import Image  from '../../images/userp.png';
 import { Link,useParams } from "react-router-dom";
 export default function Listitem({item}) {
     let {userId } = useParams()
   return (
     <List.Item.Meta
-          avatar={<div ><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
+          avatar={<div ><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /></div>}
           title={<Link to={"/messages/"+item.id}>{item.name}</Link>}
           
           description={<div style={{display: "flex"}}>
