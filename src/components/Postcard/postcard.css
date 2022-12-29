@@ -22,7 +22,6 @@ color: red !important;
 }
 .coment-name-coment-time{
     padding-left: 13px;
-    padding-bottom: 9px;
 }
 .ant-form{
     margin-top: 7px;
@@ -48,4 +47,10 @@ color: red !important;
     margin-left: -3px;
     margin-right: -20px;
     margin-top: -30px;
+}
+.comentscroller{
+    height: 300px;
+    overflow-y: auto;
+    overflow: -x;
+    overflow-x: clip;
 }
