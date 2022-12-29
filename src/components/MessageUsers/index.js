@@ -23,6 +23,12 @@ const MessageUsers = ({getmessage}) => {
       })
       setmyfriend(newMyFriend)
        }
+       if(getmessage.senderId == userId){
+            console.log("eqaal",getmessage.id)
+             WithTokenApi.post("/message/updateisread",{
+              messageId:getmessage.id 
+             })
+       }
 },[getmessage]);
 
   useEffect(() => {

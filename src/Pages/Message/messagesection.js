@@ -66,14 +66,14 @@ const Messagesection = ({socket,getmessage}) => {
           "reciverId":userId,
           "message_text":message
         }
-        socket.emit("sendMessage",{...payload,
-          createdDate: today.getTime(),
-          id: Math.floor(Math.random() * 1000)})
+      
         const result= await WithTokenApi.post("/message/send",payload)
         // console.log("result",result);
        
        
         payload.id =result.data.message.insertId
+        socket.emit("sendMessage",{...payload,
+          createdDate: today.getTime()})
         payload.createdDate = today.getTime()
           form.resetFields();
         setMessagelist([...messageList,payload])
