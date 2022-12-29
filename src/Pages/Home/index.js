@@ -25,7 +25,7 @@ const Home = () => {
   useEffect(()=>{
     postdata()
   },[])
-  
+
   const postdata = async()=>{
     // const result = await WithTokenApi.get("post/byuserId/"+userData.userinfo.data.id) 
     const result = await WithTokenApi.post("/post/searchpost",{searchfield: ""}) 
@@ -84,8 +84,10 @@ const Home = () => {
       {
         posts.map((item) => {
           return   <Postcard data={item} />
+          
         })
       }
+    
   
       {/* <Postcard/>
       <Postcard/>

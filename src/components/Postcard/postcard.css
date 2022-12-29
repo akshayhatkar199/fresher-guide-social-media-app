@@ -1,3 +1,51 @@
 .color-icon{
 color: red !important;
 }
+.hide-comment{
+    display: none;
+}
+.show-comment{
+    display: block;
+}
+.comment-user-image{
+    margin-top: 19px;
+    margin-left: 5px;
+    border-radius: 50%;
+    height: 50px;
+    width: 52px;
+}
+.coments{
+    /* margin-top: -14px; */
+    margin-top: 2px;
+    font-weight: normal;
+    font-size: 14px;
+}
+.coment-name-coment-time{
+    padding-left: 13px;
+    padding-bottom: 9px;
+}
+.ant-form{
+    margin-top: 7px;
+    margin-right: 23px
+}
+.comment-time{
+    font-size: 9px;
+    /* font-style: italic; */
+    font-weight: normal;
+}
+.show-comment{
+    /* background-color: #e4e3e391; */
+    background-color: #f0f8ff;
+}
+.comment-name{
+    color: "#444141"
+}
+.comment-profile-image-div{
+    text-align: center;
+}
+.comment-input{
+    padding: 15px;
+    margin-left: -3px;
+    margin-right: -20px;
+    margin-top: -30px;
+}
