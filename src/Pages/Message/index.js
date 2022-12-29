@@ -22,6 +22,7 @@ const Message = ({socket}) => {
   const userData = useSelector((state)=>state.userData);
   const [onlineUser,setOnlineUser] = useState([]);
   const [reciveMessage,setMessage] = useState("");
+  const [reciveMessageCount,setreciveMessageCount] = useState("");
  
 
    useEffect(() => {
@@ -38,6 +39,7 @@ const Message = ({socket}) => {
             if(data.senderId == userId){
               setMessage(data)
            }
+           setreciveMessageCount(data)
     })  
  
  
@@ -73,7 +75,7 @@ const Message = ({socket}) => {
       >
       <div className='message-div' >
       <h3 className='home-head'>All users</h3>
-     <MessageUsers />
+     <MessageUsers getmessage = {reciveMessageCount} />
 
       </div>
 

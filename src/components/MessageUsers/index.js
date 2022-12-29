@@ -5,12 +5,26 @@ import {WithTokenApi} from '../../Helpers/axios';
 import { Link,useParams } from "react-router-dom";
 import Listitem from "./Listitem"
 
-const MessageUsers = () => {
+const MessageUsers = ({getmessage}) => {
   let {userId } = useParams()
   const [myfriend, setmyfriend] = useState([])
   useEffect(()=>{
    friends()
   },[])
+  useEffect(()=>{
+    if(getmessage.senderId != userId){
+      const newMyFriend = myfriend.map((e) => {
+        if(e.id == getmessage.senderId ) {
+          e.messageCount = e.messageCount + 1
+          return e
+        }else{
+          return e
+        }
+      })
+      setmyfriend(newMyFriend)
+       }
+},[getmessage]);
+
   useEffect(() => {
    const newMyFriend = myfriend.map((e) => {
      if(e.id == userId ) {
