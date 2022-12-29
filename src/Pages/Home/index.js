@@ -64,7 +64,7 @@ const Home = () => {
       xxl={{span: 6}}
       >
       <div className='home-container-3' >
-      <h3 className='home-head'>Online users</h3>
+      <h3 className='home-head'>Users</h3>
       <Onlineusers/>
 
       </div>

@@ -77,7 +77,7 @@ const Aboutus = (props) => {
       <List.Item>
         <List.Item.Meta
           avatar={<div className='about-icon' >  <FontAwesomeIcon icon={item.icons} /></div>}
-          title={<a href="https://ant.design">{item.title}</a>}
+          title={<a href="">{item.title}</a>}
           description={item.description}
           // Array.isArray(item.description)
           // ? 

@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
-import {Link } from "react-router-dom";
+import {Link ,useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux'
 import api,{WithTokenApi}  from '../../Helpers/axios'
 import Onlineusers from '../../components/Onlineusers'
@@ -20,6 +20,7 @@ import './creatpost.css'
 const Creatpost = () => {
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const navigate = useNavigate();
   const userData = useSelector((state)=>state.userData)
 
   const props = {
@@ -43,7 +44,7 @@ const Creatpost = () => {
     if(values.image){
       formData.append("image",  values.image.file);
     }
-  
+    navigate("/home")
     console.log("formData",formData)
     const result= await WithTokenApi.post("/post",formData)
     setFileList([]);
@@ -171,7 +172,7 @@ const Creatpost = () => {
       xxl={{span: 6}}
       >
       <div className='main-creatpost'>
-      <h3 className='home-head'>Online users</h3>
+      <h3 className='home-head'> users</h3>
       
       <Onlineusers />
 

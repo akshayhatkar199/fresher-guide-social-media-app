@@ -12,7 +12,7 @@ import { Card } from 'antd';
 import {checkLogin} from '../../Store/reducers/userReducer'
 import api, {WithTokenApi} from '../../Helpers/axios'
 import {  Checkbox, Form, Input,DatePicker, } from 'antd';
-import { Col, Row , Select  } from 'antd';
+import { Col, Row , Select ,message } from 'antd';
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import Image3 from '../../images/user.jpg';
 import { Avatar, List } from 'antd'
@@ -58,8 +58,10 @@ const Skillsdata = async()=> {
         values.id = userData.userinfo.data.id
         const result = await WithTokenApi.patch("/users",values)
         // console.log("result",result)
+        // message.success('Update profile successfully.');
         await dispatch(checkLogin(localStorage.getItem("token")))
         navigate("/userprofile")
+       
       };
      
 
@@ -322,7 +324,7 @@ const Skillsdata = async()=> {
           Submit
         </Button>
 
-        <Link to= "/home"> <Button type="link">Home</Button></Link>
+        {/* <Link to= "/home"> <Button type="link">Home</Button></Link> */}
       </Form.Item>
     </Form>
  

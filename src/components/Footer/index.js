@@ -33,8 +33,8 @@ const Footer = () => {
       >
       <div className=''>
       {/* <img src={Image2} alt="logo" className="img-fluid "></img>  */}
-      <img src={Image4} alt="logo" className="img-fluid " style={{height: "57px" ,width: "163px"}}></img> 
-      
+      <Link to="/home"><img src={Image4} alt="logo" className="img-fluid " style={{height: "57px" ,width: "163px"}}></img> 
+      </Link>
       
       </div>
       </Col>

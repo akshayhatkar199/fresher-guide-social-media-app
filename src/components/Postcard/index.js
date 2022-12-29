@@ -1,5 +1,5 @@
 
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import { Col, Row,  } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faComment, faThumbsUp,faEllipsis,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
@@ -14,6 +14,8 @@ import './postcard.css'
 import { format } from 'timeago.js';
 
 const Postcard = (props) => {
+  const [form] = Form.useForm();
+  const listcommentRef = useRef(null);
   const [likecount,setlikecount] = useState(props.data.totalLike);
   const[isLiked, setIsLiked] = useState(props.data.isLike);
   const [isshowcoment,setisshowcoment] = useState(false);
@@ -50,13 +52,15 @@ const result =  await  WithTokenApi.post("/post/like",payload)
   // useEffect(()=>{
   //   hideandshowcoment();
   // },[])
-
+const getcomments = async() => {
+  const result =  await WithTokenApi.get("/post/comments/"+props.data.id)
+  console.log("result",result)
+  setcommentlist(result.data)
+}
   const hideandshowcoment = async() => {
     setisshowcoment(isshowcoment === true ? false : true )
     if(isshowcoment !== true ){
-      const result =  await WithTokenApi.get("/post/comments/"+props.data.id)
-      console.log("result",result)
-      setcommentlist(result.data)
+    await  getcomments()
      }
      
   };
@@ -69,9 +73,21 @@ const result =  await  WithTokenApi.post("/post/like",payload)
        "postId": props.data.id,
        "commentUserId":userData.userinfo.data.id 
     }
+    form.resetFields();
     const commetresult =  await WithTokenApi.post("/post/comment",payload)
     console.log("commetresult",commetresult)
-    
+    // getcomments()
+    var today = new Date();
+    var newComment = {
+      "id": Math.random() * 100,
+      "postId": props.data.id,
+      "commentUserId": userData.userinfo.data.id ,
+      "commet": comment,
+      "createdDate": today.getTime(),
+      "name": userData.userinfo.data.name,
+      "photo": userData.userinfo.data.photo
+    }
+    setcommentlist([...commentlist,newComment])
    }
 
   const items = [
@@ -89,6 +105,13 @@ const result =  await  WithTokenApi.post("/post/like",payload)
       ),
     }
   ];
+  useEffect(()=>{
+    const lastItem = listcommentRef.current?.lastElementChild;
+    if (lastItem) {
+      lastItem.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+    },[commentlist])
+
   // console.log("postId",postId)
   // console.log("props",props)
   return (
@@ -197,6 +220,7 @@ const result =  await  WithTokenApi.post("/post/like",payload)
 <hr/>
 
 <div className={isshowcoment === true ? "show-comment" : "hide-comment"}>
+<div className='comentscroller' ref={listcommentRef}>
 {commentlist.map((item) => {
   return(<div>
 <Row>
@@ -210,7 +234,7 @@ const result =  await  WithTokenApi.post("/post/like",payload)
       >
         {/* <img src={Image1} alt="logo" className="post-image "></img> */}
      <div className='comment-profile-image-div'>
-        {(props.data.photo) ? <img src={"http://localhost:8080/Images/"+props.data.photo} alt="logo" className="comment-user-image "></img>
+        {(item.photo) ? <img src={"http://localhost:8080/Images/"+item.photo} alt="logo" className="comment-user-image "></img>
                             : <img src={Image} className="comment-user-image"/> }
 
         </div>
@@ -226,8 +250,8 @@ const result =  await  WithTokenApi.post("/post/like",payload)
       >
       <div className='coment-name-coment-time'>
       
-          <Link to= {"/userprofile/"+userData.userinfo.data.id+ ""}><h4 style={{color:"black"}}> {item.name} 
-        <div className='comment-time'> {format(props.data.createdDate)}</div><p className='coments'>{item.commet}</p>
+          <Link to= {"/userprofile/"+item.commentUserId+ ""}><h4 style={{color:"black"}}> {item.name} 
+        <div className='comment-time'> {format(item.createdDate)}</div><p className='coments'>{item.commet}</p>
         </h4></Link>
 
      
@@ -235,11 +259,14 @@ const result =  await  WithTokenApi.post("/post/like",payload)
         </div>
       </Col>
     </Row>
+    <hr/>
     </div>
     )
   })}
+  </div>
     <div className='comment-input'>
         <Form
+         form={form}
       name="commet"
       layout="inline"
       onFinish={onFinish}
