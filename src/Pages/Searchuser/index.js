@@ -103,7 +103,7 @@ search();
               title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link> } 
               description={item.email}  
             />
-             {(item.isRequest == 1)? <Button type="primary" htmlType="submit" onClick={()=> friendrequest(item.id)} >Request</Button> : null}
+             {(item.isRequest == 1)? <Button type="primary" style={{marginRight: "-18px"}} htmlType="submit" onClick={()=> friendrequest(item.id)} >Request</Button> : null}
           </List.Item>
         )}
       />

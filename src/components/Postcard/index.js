@@ -18,7 +18,7 @@ const Postcard = (props) => {
   const[isLiked, setIsLiked] = useState(props.data.isLike);
   const [isshowcoment,setisshowcoment] = useState(false);
   const [comment,setcomment] = useState("");
-  // const [showtextcomment,setshowtextcomment] = useState("");
+  const [commentlist,setcommentlist] = useState([]);
   const userData = useSelector((state)=>state.userData);
   // console.log("Image",Image)
   // console.log(comment)
@@ -48,14 +48,15 @@ const result =  await  WithTokenApi.post("/post/like",payload)
 
   }
   // useEffect(()=>{
-  //   onFinish();
+  //   hideandshowcoment();
   // },[])
 
   const hideandshowcoment = async() => {
     setisshowcoment(isshowcoment === true ? false : true )
     if(isshowcoment !== true ){
-      const usercommentshow =  await WithTokenApi.get("/post/comments/"+props.data.id)
-      console.log("usercommentshow",usercommentshow)
+      const result =  await WithTokenApi.get("/post/comments/"+props.data.id)
+      console.log("result",result)
+      setcommentlist(result.data)
      }
      
   };
@@ -120,7 +121,7 @@ const result =  await  WithTokenApi.post("/post/like",payload)
       xl={{span: 21}}
       xxl={{span:21}}
       >
-       <Link to= {"/userprofile/"+userData.userinfo.data.id+ ""}><h3 className='post-name'> {props.data.name} <br />
+       <Link to= {"/userprofile/"+props.data.userId+ ""}><h3 className='post-name'> {props.data.name} <br />
         <span className='post-time'> {format(props.data.createdDate)}</span>
         </h3></Link>
         
@@ -196,8 +197,8 @@ const result =  await  WithTokenApi.post("/post/like",payload)
 <hr/>
 
 <div className={isshowcoment === true ? "show-comment" : "hide-comment"}>
-{/* {.map((e) => { */}
-  
+{commentlist.map((item) => {
+  return(<div>
 <Row>
       <Col  
       xs={{span: 5}}
@@ -225,8 +226,8 @@ const result =  await  WithTokenApi.post("/post/like",payload)
       >
       <div className='coment-name-coment-time'>
       
-          <Link to= {"/userprofile/"+userData.userinfo.data.id+ ""}><h4 style={{color:"black"}}> {props.data.name} 
-        <div className='comment-time'> {format(props.data.createdDate)}</div><p className='coments'>Hii  Coment is here😄{}</p>
+          <Link to= {"/userprofile/"+userData.userinfo.data.id+ ""}><h4 style={{color:"black"}}> {item.name} 
+        <div className='comment-time'> {format(props.data.createdDate)}</div><p className='coments'>{item.commet}</p>
         </h4></Link>
 
      
@@ -234,7 +235,9 @@ const result =  await  WithTokenApi.post("/post/like",payload)
         </div>
       </Col>
     </Row>
-  {/* })} */}
+    </div>
+    )
+  })}
     <div className='comment-input'>
         <Form
       name="commet"

@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Sidebar from '../../components/Sidebar';
-import {Link } from "react-router-dom";
+import {Link,useNavigate } from "react-router-dom";
 import {WithTokenApi} from '../../Helpers/axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
@@ -11,47 +11,13 @@ import Image3 from '../../images/user.jpg';
 import Image  from '../../images/userp.png';
 import { Col, Row , Menu,Input } from 'antd';
 import './myfriends.css'
-
-const data = [
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-  ];
-
+const { Search } = Input;
 
 
 const Myfriends = () => {
 const [myfriendslist,setmyfriendlist] = useState([]);
+const [searchinput,setSearchinputs] =  useState("");
+const navigate = useNavigate()
 
 useEffect(()=>{
   friends()
@@ -62,6 +28,13 @@ const friends =async()=>{
   // console.log("result",result);
   setmyfriendlist(result.data)
 }
+const onSearch = () => {
+  
+  if(searchinput !==""){
+    navigate("/searchuser/"+ searchinput)
+   }
+  
+  }
 
 
     return (
@@ -84,7 +57,7 @@ const friends =async()=>{
           >
                 <Sidebar />
           </Col> 
-         
+       
     
          <Col  
           xs={{span: 24}}
@@ -94,12 +67,14 @@ const friends =async()=>{
           xl={{span: 22}}
           xxl={{span: 22}}
           >
-        
-     <div className='main-Myfriends'>
-    
-         <div className='Myfriends-div' >
+       
+      <div className='main-Myfriends'>
+      <div  className='mobile-input'>
+      <Search  value={searchinput} placeholder="input search text"    className= "myfriend-input"  onSearch={onSearch}z onChange ={(e)=> setSearchinputs(e.target.value)} enterButton 
+     />
+        </div>   
+          <div className='Myfriends-div' >
           <h3 className='title-Myfriends'>Myfriends</h3>
-        
           <hr />
           <List
         itemLayout="horizontal"
@@ -119,7 +94,7 @@ const friends =async()=>{
           </div>
     
      <br/>   
-     
+     <br/> 
          
          </div>
           </Col>
