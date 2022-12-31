@@ -7,7 +7,7 @@ import Sidebar from '../../components/Sidebar';
 import {WithTokenApi} from '../../Helpers/axios';
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button, } from 'antd'
-import Image3 from '../../images/user.jpg';
+import Image  from '../../images/userp.png';
 import {useSelector} from 'react-redux'
 import Onlineusers from '../../components/Onlineusers'
 import MessageUsers from '../../components/MessageUsers'
@@ -22,6 +22,7 @@ const Message = ({socket}) => {
   const userData = useSelector((state)=>state.userData);
   const [onlineUser,setOnlineUser] = useState([]);
   const [reciveMessage,setMessage] = useState("");
+  const [reciveMessageCount,setreciveMessageCount] = useState("");
  
 
    useEffect(() => {
@@ -38,6 +39,7 @@ const Message = ({socket}) => {
             if(data.senderId == userId){
               setMessage(data)
            }
+           setreciveMessageCount(data)
     })  
  
  
@@ -73,11 +75,11 @@ const Message = ({socket}) => {
       >
       <div className='message-div' >
       <h3 className='home-head'>All users</h3>
-     <MessageUsers />
+     <MessageUsers getmessage = {reciveMessageCount} />
 
       </div>
 
-      {onlineUser && onlineUser.length > 0 ? 
+      {onlineUser && onlineUser.length > 1 ? 
      
       <div className='mobile-online-users'>
       {
@@ -86,7 +88,7 @@ const Message = ({socket}) => {
           
           <div className='mobile-label-main'><Link to={"/messages/"+e.id}>
             <label className='online-mobile-label'></label>
-            <Avatar className='mobile-active-user-img' src="https://randomuser.me/api/portraits/men/10.jpg" />
+            <Avatar className='mobile-active-user-img' src={e.photo ? "http://localhost:8080/Images/"+e.photo : Image }  />
             </Link></div>
            : null)
         })

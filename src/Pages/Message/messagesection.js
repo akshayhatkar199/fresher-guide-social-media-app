@@ -7,7 +7,7 @@ import Sidebar from '../../components/Sidebar';
 import {WithTokenApi} from '../../Helpers/axios';
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button, } from 'antd'
-import Image3 from '../../images/user.jpg';
+import Image  from '../../images/userp.png';
 import {useSelector} from 'react-redux'
 import Onlineusers from '../../components/Onlineusers'
 import MessageUsers from '../../components/MessageUsers'
@@ -66,14 +66,14 @@ const Messagesection = ({socket,getmessage}) => {
           "reciverId":userId,
           "message_text":message
         }
-        socket.emit("sendMessage",{...payload,
-          createdDate: today.getTime(),
-          id: Math.floor(Math.random() * 1000)})
+      
         const result= await WithTokenApi.post("/message/send",payload)
         // console.log("result",result);
        
        
         payload.id =result.data.message.insertId
+        socket.emit("sendMessage",{...payload,
+          createdDate: today.getTime()})
         payload.createdDate = today.getTime()
           form.resetFields();
         setMessagelist([...messageList,payload])
@@ -89,11 +89,11 @@ const Messagesection = ({socket,getmessage}) => {
             <div>
                   <div>
                           <div className='image-div'> 
-                          <label className='message-online-label'></label> <img src={Image3} alt="logo" className="message-user-image"></img>   
+                          <label className='message-online-label'></label> <img src={userProfile.photo ? "http://localhost:8080/Images/"+userProfile.photo : Image } alt="logo" className="message-user-image"></img>   
                           </div>
                           <div className='span-text'>
                               <span style={{color: "black"}}>{userProfile.name} </span><br />
-                              <span style={{color: " #ffc5c5"}}> active now</span>
+                              {/* <span style={{color: " #ffc5c5"}}> active now</span> */}
                           </div>
                   </div>
                   <br/>
