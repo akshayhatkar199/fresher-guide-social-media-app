@@ -15,12 +15,27 @@
     color: #746b6b;
     font-size: 16px;
 }
+.myfriend-input{
+    width: 26%;
+    margin: 18px;
+}
+.ant-input-group-wrapper{
+    margin: 18px;
+    width: 89%;
+
+}
+.mobile-input{
+    margin-bottom: -19px;
+}
 
 /* > 576 px */
 @media only screen and (max-width: 576px){ 
    
     .Myfriends-div {
         margin-left: 21px;
+    }
+    .mobile-input{
+        
     }
     
  }
@@ -40,8 +55,14 @@
     .Myfriends-div {
         margin-left: 21px;
     }
-   
-    
+    .mobile-input{
+        display: block;
+    }
+    .ant-input-group-wrapper {
+        margin: 18px;
+        width: 58%;
+        margin-left: 140px;
+    }
  }
  /* > 992 px */
  @media only screen and (min-width: 992px){
@@ -49,7 +70,9 @@
     .Myfriends-div{
         margin-left: 0px;
        }
-     
+       .mobile-input{
+        display: none;
+    }
  }
  /* > 1200 px */
  @media only screen and (min-width: 1200px){
@@ -57,7 +80,9 @@
     .Myfriends-div{
         margin-left: 0px;
        }
-     
+       .mobile-input{
+        display: none;
+    }
        
  }
  /* > 1400 px */
@@ -66,6 +91,8 @@
     .Myfriends-div{
         margin-left: 0px;
        }
-     
+       .mobile-input{
+        display: none;
+    }
        
  }

@@ -124,7 +124,7 @@ console.log("payload",payload)
               title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
               description={item.email}  
             />
-             <Button type="primary" htmlType="submit" onClick={()=>accept(item.requestId)}  >Accept Request</Button>
+             <Button type="primary" style={{marginRight: "-18px"}} htmlType="submit" onClick={()=>accept(item.requestId)}  >Accept </Button>
           </List.Item>
         )}
       />

@@ -125,30 +125,111 @@ transform: scale(1.05,1.05);
     height: 16px;
     padding: 10px;
     border-radius: 50%;
+    
 }
+.mobile-view{
+
+}
+.mobile-text-div{
+    margin-left: 51px;
+    margin-top: -18px;
+}
+.mobile-userprofile-udatecover-icon{
+    position: relative;
+    left: 140px;
+    top: 135px;
+    padding: 3px;
+    /* width: 139px; */
+    margin-left: 39px
+
+}
+.camera-icon-profileuser{
+    position: relative;
+    top: -41px;
+    right: 16px;
+}
+
+
+.mobile-view-profile-user-IMG{
+    /* height: 100px;
+    width: 92px;
+    margin-top: -73px;
+    margin-left: 24px;
+    height: 88px;
+    border-radius: 50px;
+    position: relative;
+    top: -25px;
+    left: 17px;
+    background-color: white;
+    border: 5px solid white; */
+    height: 100px;
+    width: 92px;
+    margin-top: -65px;
+    margin-bottom: 20px;
+    margin-left: 24px;
+    height: 88px;
+    border-radius: 50px;
+    /* position: relative; */
+    top: -25px;
+    left: 17px;
+    background-color: white;
+    border: 5px solid white;
+}
+
+.mobile-maincover-profileimg{
+    margin-top: -3px ;
+    width: 99%;
+    height: 100%;
+}
+.mobile-profilecover-changeicon{
+    position: relative;
+    bottom: 56px;
+    left: 80%;
+    background-color: #e3ecf3;
+    width: 12px;
+    height: 10px;
+    padding: 10px;
+    border-radius: 50%;
+}
+
 
 
 /* > 576 px */
 @media only screen and (max-width: 576px){
-   
-    
+    .mobile-view{
+    display: block;
+}
+.profile-div{
+    display: none;
+ }
     
  }
 
 /* > 576 px */
 @media only screen and (min-width: 576px){
-    
-    
-    
+    .mobile-view{
+        display: block;
+    }
+    .profile-div{
+        display: none;
+     }
+     .profile-div{
+        display: none;
+     }
     
  }
  /* > 768 px */
  @media only screen and (min-width: 768px){
-    
-    
-   
-    
+    .mobile-view{
+        display: none;
  }
+ .profile-div{
+    display: none;
+ }
+ .profile-div{
+    display: block;
+ }
+}
  /* > 992 px */
  @media only screen and (min-width: 992px){
     .profile-about{
@@ -157,6 +238,12 @@ transform: scale(1.05,1.05);
     .profil-post {
         margin-left: 0;
     }
+    .mobile-view{
+        display: none;
+ }
+ .profile-div{
+    display: block;
+ }
      
  }
  /* > 1200 px */
@@ -167,7 +254,12 @@ transform: scale(1.05,1.05);
     .profil-post {
         margin-left: 0;
     }
-     
+    .mobile-view{
+        display: none;
+ }
+ .profile-div{
+    display: block;
+ }
        
  }
  /* > 1400 px */
@@ -179,6 +271,10 @@ transform: scale(1.05,1.05);
     .profil-post {
         margin-left: 0;
     }
-     
-       
+    .mobile-view{
+        display: none;
+ }
+ .profile-div{
+    display: block;
+ }
  }

@@ -3,10 +3,10 @@ import React,{ useEffect, useState }  from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Sidebar from '../../components/Sidebar'
-import { Col, Row  } from 'antd';
+import { Col, Row,Input  } from 'antd';
 import {WithTokenApi} from '../../Helpers/axios';
 import { Avatar, List,Button, } from 'antd'
-import {Link } from "react-router-dom";
+import {Link, } from "react-router-dom";
 import Onlineusers from '../../components/Onlineusers'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faLaptop, faTrophy ,faCalendarDays,faMicrophone,faPersonWalking,faP,faStar,faUserGraduate} from '@fortawesome/free-solid-svg-icons'
@@ -17,21 +17,23 @@ import {useSelector} from 'react-redux'
 import './Home.css'
 
 
-
-
 const Home = () => {
   const userData = useSelector((state)=>state.userData);
   const [posts,setposts] = useState([])
+  // console.log("posts",posts)
   useEffect(()=>{
     postdata()
   },[])
-  
+
   const postdata = async()=>{
     // const result = await WithTokenApi.get("post/byuserId/"+userData.userinfo.data.id) 
     const result = await WithTokenApi.post("/post/searchpost",{searchfield: ""}) 
     // console.log("result",result)
     setposts(result.data)
   }
+ 
+
+
   return (
     <div > 
     <Header />
@@ -81,11 +83,14 @@ const Home = () => {
       xxl={{span: 11}}
       >
       <div className='home-container-2'>
+      
       {
         posts.map((item) => {
           return   <Postcard data={item} />
+          
         })
       }
+    
   
       {/* <Postcard/>
       <Postcard/>

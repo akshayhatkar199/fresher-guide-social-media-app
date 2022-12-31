@@ -2,34 +2,27 @@
 import React,{useState,useEffect} from 'react'
 import { Col, Row,  } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {  faComment, faThumbsUp,faEllipsis} from '@fortawesome/free-solid-svg-icons'
+import {  faComment, faThumbsUp,faEllipsis,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 import {useSelector} from 'react-redux'
 import {WithTokenApi} from '../../Helpers/axios';
 import Image1 from '../../images/user.jpg';
 import Image2 from '../../images/post-image.jpg';
 import Image  from '../../images/userp.png';
 import { useParams,Link } from 'react-router-dom';
-import {Card, Button, Dropdown } from 'antd';
+import {Card, Button, Dropdown,Input ,Result,Form } from 'antd';
 import './postcard.css'
 import { format } from 'timeago.js';
-import { Collapse } from 'antd';
-const { Panel } = Collapse;
-
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.`;
-
 
 const Postcard = (props) => {
   const [likecount,setlikecount] = useState(props.data.totalLike);
   const[isLiked, setIsLiked] = useState(props.data.isLike);
+  const [isshowcoment,setisshowcoment] = useState(false);
+  const [comment,setcomment] = useState("");
+  const [commentlist,setcommentlist] = useState([]);
   const userData = useSelector((state)=>state.userData);
   // console.log("Image",Image)
-  
-  // useEffect(()=>{
-  //   likes()
-  // },[])
+  // console.log(comment)
+ 
   const likes=async()=>{
     var payload = {}
 
@@ -53,12 +46,33 @@ if(isLiked == 1){
 }
 const result =  await  WithTokenApi.post("/post/like",payload)
 
-
   }
+  // useEffect(()=>{
+  //   hideandshowcoment();
+  // },[])
 
-  const onChange = (key) => {
-    console.log(key);
+  const hideandshowcoment = async() => {
+    setisshowcoment(isshowcoment === true ? false : true )
+    if(isshowcoment !== true ){
+      const result =  await WithTokenApi.get("/post/comments/"+props.data.id)
+      console.log("result",result)
+      setcommentlist(result.data)
+     }
+     
   };
+
+  const onFinish = async(values) => {
+    console.log("onFinish",values)
+    console.log('Success:', values);
+  const  payload={
+       "commenttext":comment,
+       "postId": props.data.id,
+       "commentUserId":userData.userinfo.data.id 
+    }
+    const commetresult =  await WithTokenApi.post("/post/comment",payload)
+    console.log("commetresult",commetresult)
+    
+   }
 
   const items = [
     {
@@ -107,7 +121,7 @@ const result =  await  WithTokenApi.post("/post/like",payload)
       xl={{span: 21}}
       xxl={{span:21}}
       >
-       <Link to= {"/userprofile/"+userData.userinfo.data.id+ ""}><h3 className='post-name'> {props.data.name} <br />
+       <Link to= {"/userprofile/"+props.data.userId+ ""}><h3 className='post-name'> {props.data.name} <br />
         <span className='post-time'> {format(props.data.createdDate)}</span>
         </h3></Link>
         
@@ -135,8 +149,9 @@ const result =  await  WithTokenApi.post("/post/like",payload)
             xl={{span: 8}}
             xxl={{span: 8}}
       >
+      <label style={{cursor: "pointer"}}>
        { <FontAwesomeIcon icon={faThumbsUp} className={isLiked == 1 ? "color-icon card-like" : "card-like"}  onClick={likes}/> }
-      <span style={{marginRight:"4px"}}>{likecount}</span>
+      <span style={{marginRight:"4px"}}>{likecount}</span></label>
       Like 
     
       </Col>
@@ -149,14 +164,10 @@ const result =  await  WithTokenApi.post("/post/like",payload)
             xl={{span: 8}}
             xxl={{span: 8}}
       >
-      <FontAwesomeIcon icon={ faComment} className="card-comment"/> 
-       {/* <Collapse defaultActiveKey={['1']} onChange={onChange}>
-      <Panel header="Coment" key="1">
-        <p>{text}</p>
-      </Panel> 
-    </Collapse> */}
+      <label onClick={hideandshowcoment} style={{cursor: "pointer"}}>
+      <FontAwesomeIcon icon={ faComment} className="card-comment" /> 
       Coment
-
+      </label>
       </Col>
       <Col
             xs={{span: 8}}
@@ -172,8 +183,9 @@ const result =  await  WithTokenApi.post("/post/like",payload)
       }}
       placement="bottomLeft"
       arrow
+      style={{cursor: "pointer"}}
     >
-      <label ><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></label>
+      <label ><FontAwesomeIcon icon={faEllipsis} className="dott-comment"  style={{cursor: "pointer"}}/></label>
     </Dropdown>
       {/* <Link to={"/updatepost/"+props.data.id+ ""}><FontAwesomeIcon icon={faEllipsis} className="dott-comment" /></Link> */}
   
@@ -181,6 +193,78 @@ const result =  await  WithTokenApi.post("/post/like",payload)
 
       </Row>
 
+</div>
+<hr/>
+
+<div className={isshowcoment === true ? "show-comment" : "hide-comment"}>
+{commentlist.map((item) => {
+  return(<div>
+<Row>
+      <Col  
+      xs={{span: 5}}
+      sm={{span: 4}}
+      md={{span: 4}}
+      lg={{span: 4}}
+      xl={{span:3 }}
+      xxl={{span:3}}
+      >
+        {/* <img src={Image1} alt="logo" className="post-image "></img> */}
+     <div className='comment-profile-image-div'>
+        {(props.data.photo) ? <img src={"http://localhost:8080/Images/"+props.data.photo} alt="logo" className="comment-user-image "></img>
+                            : <img src={Image} className="comment-user-image"/> }
+
+        </div>
+      </Col>
+
+      <Col  
+      xs={{span: 19 }}
+      sm={{span: 20}}
+      md={{span: 20}}
+      lg={{span: 20 }}
+      xl={{span: 21}}
+      xxl={{span:21}}
+      >
+      <div className='coment-name-coment-time'>
+      
+          <Link to= {"/userprofile/"+userData.userinfo.data.id+ ""}><h4 style={{color:"black"}}> {item.name} 
+        <div className='comment-time'> {format(props.data.createdDate)}</div><p className='coments'>{item.commet}</p>
+        </h4></Link>
+
+     
+    
+        </div>
+      </Col>
+    </Row>
+    </div>
+    )
+  })}
+    <div className='comment-input'>
+        <Form
+      name="commet"
+      layout="inline"
+      onFinish={onFinish}
+    >
+      <Form.Item
+        name="commet"
+        className="messageinput"
+         rules={[
+          {
+            required: true,
+            message: 'Please input your coments!',
+          },
+        ]}
+      >
+        <Input   onChange = {(e) => setcomment(e.target.value)} placeholder='comment type here'/>
+      </Form.Item>
+      <Form.Item
+        className="messagebtnn"
+      >
+        <Button type="primary" htmlType="submit">
+        <FontAwesomeIcon icon={ faPaperPlane} />
+        </Button>
+      </Form.Item>
+    </Form>
+    </div>
 </div>
 
   </Card> <br/>
