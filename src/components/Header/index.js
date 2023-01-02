@@ -75,7 +75,7 @@ const onSearch = () => {
       >
       <div className='header'>
     
-      <img src={Image4} alt="logo" className="img-fluid " style={{height: "57px" ,width: "163px"}}></img> 
+      <Link to="/home"><img src={Image4} alt="logo" className="img-fluid " style={{height: "57px" ,width: "163px"}}></img></Link>
 
     
       <Search  value={searchinput} placeholder="input search text"    className= "header-input"  onSearch={onSearch}z onChange ={(e)=> setSearchinputs(e.target.value)} enterButton style={{
