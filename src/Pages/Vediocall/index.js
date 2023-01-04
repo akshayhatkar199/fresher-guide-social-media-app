@@ -45,12 +45,17 @@ const Vediocall = ({socket}) => {
       setCall({isReceivingCall:true,from,name: callerName,signal})
     })
   },[])
+  // useEffect(() => {
+  //   socket.on("callUser",({from,name: callerName,signal}) => {
+  //     setCall({isReceivingCall:true,from,name: callerName,signal})
+  //   })
+  // })
 
   const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
 
     peer.on('signal', (data) => {
-      socket.emit('callUser', { userToCall: id, signalData: data, from: me, name });
+      socket.emit('callUser', { userToCall: id, signalData: data, from: me, name,to:socketId });
     });
 
     peer.on('stream', (currentStream) => {
@@ -136,7 +141,18 @@ const leaveCall = () => {
                      {
                    callAccepted && !callEnded ? 
                    <><Button type="primary" onClick={leaveCall}>End Call</Button></>:
-                   <><Button type="primary" onClick={() => callUser(socketId)}>Call</Button></>}
+                   <><Button type="primary" onClick={() => callUser(socketId)}>Call</Button></>
+                   
+                   }
+                     </h5>
+
+                     <h5>
+                       {
+                         call.isReceivingCall && !callAccepted ? 
+                         <>
+                         <Button type="primary" onClick={answerCall}>Answer Call</Button>
+                         </> : null
+                       }
                      </h5>
                  <video ref={myvedioRef} autoPlay /> 
                  </> 

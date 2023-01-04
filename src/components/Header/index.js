@@ -25,9 +25,8 @@ const userData = useSelector((state)=>state.userData);
 // console.log("userData",userData);
 // console.log("searchinput",searchinput)
 useEffect(() => {
-  socket.on("callisCome",(data) => {
-    //  console.log("getOnlineUsers",data)
-     console.log("callisCome-----",data)
+  socket.on("callUser",(data) => {
+    console.log("data",data)
   })
 })
 
