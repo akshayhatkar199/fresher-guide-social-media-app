@@ -116,7 +116,7 @@ function App() {
           <Route path="/myfriends" element={<Myfriends/>}/>
           <Route path='/myfriendRequests' element={<MyfriendRequests/>}/>
           <Route path='/searchuser/:searchinput' element={<Searchuser/>}/>
-           <Route  path="/vediocall" element= { <Vediocall />}/>
+           <Route  path="/vediocall/:userId" element= { <Vediocall />}/>
            <Route path='/postdetail/:postId' element={<Postdetail/>}/>
           <Route path='*'  element={<Navigate to="/" />} />
         </Routes>

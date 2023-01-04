@@ -5,13 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { SmileOutlined } from '@ant-design/icons';
 import Sidebar from '../../components/Sidebar';
 import {WithTokenApi} from '../../Helpers/axios';
-import {faPaperPlane} from '@fortawesome/free-solid-svg-icons'
-import { Avatar, List,Button, } from 'antd'
+import {faPaperPlane,faVideoCamera} from '@fortawesome/free-solid-svg-icons'
+import { Avatar, List,Button,Col, Row ,Input ,Result,Form  } from 'antd'
 import Image  from '../../images/userp.png';
 import {useSelector} from 'react-redux'
 import Onlineusers from '../../components/Onlineusers'
 import MessageUsers from '../../components/MessageUsers'
-import { Col, Row ,Input ,Result,Form } from 'antd';
 import './message.css'
 import { format } from 'timeago.js';
 import Footer from '../../components/Footer'
@@ -31,7 +30,7 @@ const Messagesection = ({socket,getmessage,onlineUser}) => {
             }
         }
  },[getmessage]);
-
+console.log("onlineUser",onlineUser)
   useEffect(() => {
     getMessagelist();
   },[userId]);
@@ -92,7 +91,13 @@ const Messagesection = ({socket,getmessage,onlineUser}) => {
                           <label className='message-online-label'></label> <img src={userProfile.photo ? "http://localhost:8080/Images/"+userProfile.photo : Image } alt="logo" className="message-user-image"></img>   
                           </div>
                           <div className='span-text'>
-                              <span style={{color: "black"}}>{userProfile.name} </span><br />
+                              <span style={{color: "black"}}>{userProfile.name} </span>
+                              <span> {onlineUser && onlineUser.length > 0  && onlineUser.some(i => i.id == userId)?
+                                <Link to={"/vediocall/"+userId}>
+                                  <Button type="primary" shape="circle" icon={ <FontAwesomeIcon icon={ faVideoCamera} />} /> 
+                                  </Link>
+                              :null}</span>
+                              <br />
                               {/* <span style={{color: " #ffc5c5"}}> active now</span> */}
                           </div>
                   </div>
