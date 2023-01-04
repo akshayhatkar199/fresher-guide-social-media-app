@@ -69,7 +69,7 @@ const accept=async(id)=>{
 const payload={
   "requestId": id
 }
-console.log("payload",payload)
+// console.log("payload",payload)
  const result = await WithTokenApi.post("/friends/requestaccept",payload)
 //  console.log("result",result)
 

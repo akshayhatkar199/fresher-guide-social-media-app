@@ -31,7 +31,7 @@ const search=async()=>{
   const payload ={
     searchfield: searchinput
   }
-  console.log("localStorage.getItem('token')",localStorage.getItem('token'));
+  // console.log("localStorage.getItem('token')",localStorage.getItem('token'));
   // console.log(payload)
   const result = await WithTokenApi.post("/users/searchuser",payload);
   // console.log("result", result) 
@@ -40,7 +40,7 @@ const search=async()=>{
  }
 
  const friendrequest =async(id)=>{
-console.log(id);
+// console.log(id);
 
 const payload={
    "friendId": id,

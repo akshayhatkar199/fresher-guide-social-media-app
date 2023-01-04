@@ -21,7 +21,7 @@ const Registration = () => {
   
   const getcollege =async() =>{
     const result = await api.get('/colleges');
-    console.log("result", result)
+    // console.log("result", result)
     setColleges(result.data)
    
   }
@@ -29,7 +29,7 @@ const Registration = () => {
 
   
   const onFinish = async(values) => {
-    console.log('Success:', values);
+    // console.log('Success:', values);
 
     const payload ={
            "name":values.name,

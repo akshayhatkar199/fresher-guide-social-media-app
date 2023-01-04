@@ -54,7 +54,7 @@ const result =  await  WithTokenApi.post("/post/like",payload)
   // },[])
 const getcomments = async() => {
   const result =  await WithTokenApi.get("/post/comments/"+props.data.id)
-  console.log("result",result)
+  //console.log("result",result)
   setcommentlist(result.data)
 }
   const hideandshowcoment = async() => {
@@ -66,8 +66,6 @@ const getcomments = async() => {
   };
 
   const onFinish = async(values) => {
-    console.log("onFinish",values)
-    console.log('Success:', values);
   const  payload={
        "commenttext":comment,
        "postId": props.data.id,
@@ -75,7 +73,7 @@ const getcomments = async() => {
     }
     form.resetFields();
     const commetresult =  await WithTokenApi.post("/post/comment",payload)
-    console.log("commetresult",commetresult)
+   // console.log("commetresult",commetresult)
     // getcomments()
     var today = new Date();
     var newComment = {

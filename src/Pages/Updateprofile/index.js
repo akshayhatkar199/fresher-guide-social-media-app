@@ -36,7 +36,7 @@ if(skillss.length > 0){
   });
   formDaata.skills = data
 }
-console.log("formDaata",formDaata)
+// console.log("formDaata",formDaata)
 useEffect(()=>{
   datacollege()
   Skillsdata()
@@ -54,7 +54,7 @@ const Skillsdata = async()=> {
      setskilles(result.data)
 }
     const onFinish = async(values) => {
-        console.log('Success:', values);
+        // console.log('Success:', values);
         values.id = userData.userinfo.data.id
         const result = await WithTokenApi.patch("/users",values)
         // console.log("result",result)

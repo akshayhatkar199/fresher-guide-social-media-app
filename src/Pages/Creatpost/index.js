@@ -45,12 +45,12 @@ const Creatpost = () => {
       formData.append("image",  values.image.file);
     }
     navigate("/home")
-    console.log("formData",formData)
+    // console.log("formData",formData)
     const result= await WithTokenApi.post("/post",formData)
     setFileList([]);
     message.success('upload successfully.');
     setUploading(false);
-    console.log('Success:', values);
+    // console.log('Success:', values);
    
   };
  

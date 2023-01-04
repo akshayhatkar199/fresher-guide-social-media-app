@@ -24,7 +24,7 @@ const Login = () => {
 
     const onformsubmit = async(values) => {
       setLoading(true)
-      console.log('Success:', values);
+     // console.log('Success:', values);
      
       
       const payload ={

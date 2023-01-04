@@ -117,6 +117,7 @@ const Message = ({socket}) => {
       <Messagesection
         socket = {socket}
         getmessage = {reciveMessage}
+        onlineUser = {onlineUser}
        /> 
      }
      

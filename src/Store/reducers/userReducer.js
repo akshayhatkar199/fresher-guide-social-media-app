@@ -9,17 +9,17 @@ import axios from "axios";
 export const checkLogin = createAsyncThunk(
       'login/checkLogin',
       async (token, thunkApi) => {
-		  console.log("token",token)
+		//   console.log("token",token)
      	var userInfoData={};
          var decoded = jwt_decode(token);
-         console.log("decoded",decoded)
+        //  console.log("decoded",decoded)
          
 		   await axios.get( 
 				'http://localhost:8080/users/'+decoded.id,
 				{  headers: { Authorization: `Bearer ${token}` }}
 				
 			  ).then(result => {
-				console.log("result",result)
+				// console.log("result",result)
 				userInfoData.info = result.data;
 			
 			})

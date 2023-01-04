@@ -16,7 +16,7 @@ import './message.css'
 import { format } from 'timeago.js';
 import Footer from '../../components/Footer'
 
-const Messagesection = ({socket,getmessage}) => {
+const Messagesection = ({socket,getmessage,onlineUser}) => {
   let {userId } = useParams();
    const listItems = useRef(null);
    const [form] = Form.useForm();
@@ -53,7 +53,7 @@ const Messagesection = ({socket,getmessage}) => {
   }
   },[messageList])
   const onFinish = (values) => {
-   console.log("onFinish",values)
+  //  console.log("onFinish",values)
    sendMessage()
   }
 

@@ -28,7 +28,7 @@ const Postdetail = () => {
   
   const postdetaildata = async()=>{
     const postresult = await WithTokenApi.get("/post/"+postId+"") 
-    console.log("postresult",postresult)
+    // console.log("postresult",postresult)
     sedetailpost(postresult.data[0])
   }
   return (

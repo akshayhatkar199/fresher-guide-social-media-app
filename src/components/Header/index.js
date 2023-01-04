@@ -34,7 +34,8 @@ const logout =()=>{
         localStorage.removeItem("token");
         window.location.href = "http://localhost:3000/";
        setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-      }).catch(() => console.log('Oops errors!'));
+      }).catch(() => {// console.log('Oops errors!')
+      });
     },
     onCancel() {},
   });
