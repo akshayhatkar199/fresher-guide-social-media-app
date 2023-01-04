@@ -7,7 +7,7 @@ import {Link,useParams } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import { Col, Row,Button  } from 'antd';
 import Peer from 'simple-peer';
-// import Home from "./Home"
+import "./styles.css"
 import "font-awesome/css/font-awesome.min.css";
 
 const Vediocall = ({socket}) => {
@@ -15,11 +15,13 @@ const Vediocall = ({socket}) => {
   const userVideo = useRef();
   const connectionRef = useRef();
   const userData = useSelector((state)=>state.userData);
+  const vediocallSomeOne = useSelector((state)=>state.videocallCome.data);
+  console.log("vediocallSomeOne",vediocallSomeOne);
   let {userId,socketId } = useParams();
 
   const [stream,setStream] = useState(null);
   const [me,setMe] = useState(userId);
-  const [call,setCall] = useState({});
+  const [call,setCall] = useState(vediocallSomeOne && vediocallSomeOne.from ? {...vediocallSomeOne,isReceivingCall:true}: {});
   const [name, setName] = useState(userData.userinfo.data.name);
   const [callAccepted,setCallAccepted] = useState(false);
   const [callEnded,setCallEnded] = useState(false);
@@ -45,11 +47,16 @@ const Vediocall = ({socket}) => {
       setCall({isReceivingCall:true,from,name: callerName,signal})
     })
   },[])
-  // useEffect(() => {
-  //   socket.on("callUser",({from,name: callerName,signal}) => {
-  //     setCall({isReceivingCall:true,from,name: callerName,signal})
-  //   })
-  // })
+  useEffect(() => {
+    socket.on("endCall",() => {
+      setCall({})
+      setCallEnded(true);
+
+      connectionRef.current.destroy();
+      window.location.href = "http://localhost:3000/message";
+    })
+  });
+
 
   const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
@@ -92,8 +99,8 @@ const leaveCall = () => {
   setCallEnded(true);
 
   connectionRef.current.destroy();
-
-  window.location.reload();
+  socket.emit('endCall', { id: socketId });
+  window.location.href = "http://localhost:3000/message";
 };
  
 
@@ -131,8 +138,44 @@ const leaveCall = () => {
      <div className='home-container-2'>
     
                  <h1>Vedio call</h1>   
-                 {/* <Home/> */}
-                 <br/><br/>
+                
+                     <Row>
+
+                     <Col  
+                        xs={{span: 24}}
+                        sm={{span: 24}}
+                        md={{span: 24}}
+                        lg={{span: 12}}
+                        xl={{span: 12}}
+                        xxl={{span: 12}}
+                        >{
+                          stream? 
+                          <div className='VedioFrame'>
+                              <video ref={myvedioRef} autoPlay /> 
+                          </div>:
+                          null
+                        }
+                         
+                      </Col>
+                      <Col  
+                        xs={{span: 24}}
+                        sm={{span: 24}}
+                        md={{span: 24}}
+                        lg={{span: 12}}
+                        xl={{span: 12}}
+                        xxl={{span: 12}}
+                        >
+                         {
+                            callAccepted && !callEnded ? 
+                          <div className='VedioFrame'>
+                              <video ref={userVideo} autoPlay /> 
+                          </div>:
+                          null
+                        }
+                      </Col>
+                     </Row>
+
+
                  {
                    stream ? 
                    <>
@@ -154,20 +197,20 @@ const leaveCall = () => {
                          </> : null
                        }
                      </h5>
-                 <video ref={myvedioRef} autoPlay /> 
+              
                  </> 
                  : null
                  }
 
 
-                    {
+                    {/* {
                    callAccepted && !callEnded ? 
                    <>
                    <h5>user vedio</h5>
                  <video ref={userVideo} autoPlay /> 
                  </> 
                  : null
-                 }
+                 } */}
 
                
                 

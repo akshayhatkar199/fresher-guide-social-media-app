@@ -1,34 +1,43 @@
 import React,{useEffect, useState}from 'react'
-import { Button} from 'antd';
 import {Link } from "react-router-dom";
-import { Col, Row,Modal } from 'antd';
+import { Col, Row,Modal, Input, Space ,Drawer,Button } from 'antd';
 import {HomeOutlined,ExclamationCircleFilled} from '@ant-design/icons'
-import { Input, Space ,Drawer} from 'antd';
 import{MessageOutlined}from '@ant-design/icons'
 import { useNavigate } from "react-router-dom";
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faHome,faMessage,faBell,faBars,faUser,faRightFromBracket,faF,faRegistered,faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import {NotificationOutlined } from '@ant-design/icons'
 import Image2 from '../../images/he-logo.png';
 import Image4  from '../../images/logo-college-removebg-preview.png';
 import Image3 from '../../images/user.jpg';
+import { SomeOnCall } from "../../Store/reducers/vediocallReducers"
 import './header.css'
 const { Search } = Input;
 const { confirm } = Modal;
 
 const Header = ({socket}) => {
+  const dispatch = useDispatch()
 const [searchinput,setSearchinputs] =  useState("");
 const [open, setOpen] = useState(false);
 const navigate = useNavigate()
+const [callData,setCallData] = useState({});
+const [openCall, setCallOpen] = useState(false);
 const userData = useSelector((state)=>state.userData);
 // console.log("userData",userData);
 // console.log("searchinput",searchinput)
 useEffect(() => {
-  socket.on("callUser",(data) => {
+  socket.on("callUser",async (data) => {
     console.log("data",data)
+    setCallData(data)
+    await dispatch(SomeOnCall(data))
+    setCallOpen(true)
+
   })
 })
+const callFutherProceed = () => {
+  navigate("/vediocall/"+callData.to+"/"+callData.from)
+}
 
 const logout =()=>{
   confirm({
@@ -69,6 +78,16 @@ const onSearch = () => {
 
   return (
     <div className='mean-header'> 
+     <Modal
+        title="Vedio Call Notification"
+        open={openCall}
+        onOk={callFutherProceed}
+        onCancel={() => setCallOpen(false)}
+        okText="Goto Video Call page"
+        cancelText="Cancel"
+      >
+      <h3>{callData.name} is calling you !!</h3>
+      </Modal>
     <div>
     <Row>
 

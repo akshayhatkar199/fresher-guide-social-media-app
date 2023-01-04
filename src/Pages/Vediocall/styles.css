@@ -1,0 +1,11 @@
+.VedioFrame{
+    background: white;
+    border-radius: 20px;
+    height: auto;
+    margin: 10px;
+    overflow: hidden;
+}
+.VedioFrame video{
+    width: 100%;
+    height: auto;
+}
