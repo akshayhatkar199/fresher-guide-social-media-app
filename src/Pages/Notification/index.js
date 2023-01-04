@@ -49,10 +49,10 @@ const data = [
     },
   ];
 
-const Notification = () => {
+const Notification = ({socket}) => {
   return (
     <div> 
-    <Header />
+    <Header socket={socket} />
     <div className='body-container'>
     <div className='main-home-container'>
     

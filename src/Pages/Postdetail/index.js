@@ -18,7 +18,7 @@ import {useSelector} from 'react-redux'
 
 
 
-const Postdetail = () => {
+const Postdetail = ({socket}) => {
     let {postId } = useParams();
     // console.log("postId",postId)
   const [detailpost,sedetailpost] = useState({})
@@ -33,7 +33,7 @@ const Postdetail = () => {
   }
   return (
     <div > 
-    <Header />
+    <Header socket={socket} />
     <div className='body-container'>
     <div className='main-home-container'>
     

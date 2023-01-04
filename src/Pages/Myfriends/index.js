@@ -14,7 +14,7 @@ import './myfriends.css'
 const { Search } = Input;
 
 
-const Myfriends = () => {
+const Myfriends = ({socket}) => {
 const [myfriendslist,setmyfriendlist] = useState([]);
 const [searchinput,setSearchinputs] =  useState("");
 const navigate = useNavigate()
@@ -39,7 +39,7 @@ const onSearch = () => {
 
     return (
         <div> 
-        <Header />
+       <Header socket={socket} />
         <div className='body-container'>
         <div className='main-home-container'>
         

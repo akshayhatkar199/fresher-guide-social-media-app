@@ -50,7 +50,7 @@ const data = [
   ];
 
 
-const MyfriendRequests = () => {
+const MyfriendRequests = ({socket}) => {
  const [myfriendrequests, setmyfriendrequest] = useState([])
 
 
@@ -80,7 +80,7 @@ const payload={
 
     return (
         <div> 
-        <Header />
+       <Header socket={socket} />
         <div className='body-container'>
         <div className='main-home-container'>
         

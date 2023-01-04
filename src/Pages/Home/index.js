@@ -17,7 +17,7 @@ import {useSelector} from 'react-redux'
 import './Home.css'
 
 
-const Home = () => {
+const Home = ({socket}) => {
   const userData = useSelector((state)=>state.userData);
   const [posts,setposts] = useState([])
   // console.log("posts",posts)
@@ -36,7 +36,7 @@ const Home = () => {
 
   return (
     <div > 
-    <Header />
+     <Header socket={socket} />
     <div className='body-container'>
     <div className='main-home-container'>
     

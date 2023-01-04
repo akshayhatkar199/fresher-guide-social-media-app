@@ -22,7 +22,7 @@ import './userprofile.css'
 
   
 
-const Userprofile = () => {
+const Userprofile = ({socket}) => {
   const [profileimage, setprofileimage] = useState([]);
   const [updatecover, setupdatecover] = useState([]);
   const [postdata,setpostdata] = useState([])
@@ -136,7 +136,7 @@ const onFinish =  async(values)=>{
 
   return (
     <div> 
-    <Header />
+    <Header socket={socket} />
     <div className='body-container'>
     <div className='main-home-container'>
     

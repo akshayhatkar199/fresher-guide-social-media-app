@@ -21,7 +21,7 @@ import {  Space } from 'antd';
 
 const { RangePicker } = DatePicker;
 
-const Updateprofile = () => {
+const Updateprofile = ({socket}) => {
 const [Collegedata,setcollegedata] = useState([]);
 const [Skilles,setskilles] = useState([]);
 const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const Skillsdata = async()=> {
 
   return (
     <div> 
-    <Header />
+    <Header socket={socket} />
     <div className='body-container'>
     <div className='main-home-container'>
     

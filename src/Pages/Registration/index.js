@@ -9,7 +9,7 @@ import {  Form, Input, Select } from 'antd';
 import "./Registration.css";
 import Image1 from '../../images/registr-removebg.png';
 
-const Registration = () => {
+const Registration = ({socket}) => {
   const [College , setColleges] = useState([]);
   const navigate = useNavigate();
 

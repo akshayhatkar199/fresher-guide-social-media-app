@@ -15,7 +15,7 @@ import './searchuser.css'
 import { ApiFilled } from '@ant-design/icons';
 
 
-const Searchuser = () => {
+const Searchuser = ({socket}) => {
   const [searchuserlist,setserchuserlist] = useState([])
   let {searchinput } = useParams();
   const userData = useSelector((state)=>state.userData);
@@ -58,7 +58,7 @@ search();
 
     return (
         <div> 
-        <Header />
+      <Header socket={socket} />
         <div className='body-container'>
         <div className='main-home-container'>
         

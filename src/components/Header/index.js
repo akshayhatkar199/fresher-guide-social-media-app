@@ -1,4 +1,4 @@
-import React,{useState}from 'react'
+import React,{useEffect, useState}from 'react'
 import { Button} from 'antd';
 import {Link } from "react-router-dom";
 import { Col, Row,Modal } from 'antd';
@@ -17,13 +17,20 @@ import './header.css'
 const { Search } = Input;
 const { confirm } = Modal;
 
-const Header = () => {
+const Header = ({socket}) => {
 const [searchinput,setSearchinputs] =  useState("");
 const [open, setOpen] = useState(false);
 const navigate = useNavigate()
 const userData = useSelector((state)=>state.userData);
 // console.log("userData",userData);
 // console.log("searchinput",searchinput)
+useEffect(() => {
+  socket.on("callisCome",(data) => {
+    //  console.log("getOnlineUsers",data)
+     console.log("callisCome-----",data)
+  })
+})
+
 const logout =()=>{
   confirm({
     title: 'Do you want to Conform for Logout?',

@@ -17,7 +17,7 @@ import './creatpost.css'
 
 
 
-const Creatpost = () => {
+const Creatpost = ({socket}) => {
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ const Creatpost = () => {
  
   return (
     <div> 
-    <Header />
+    <Header socket={socket} />
     <div className='body-container'>
     <div className='main-home-container'>
     

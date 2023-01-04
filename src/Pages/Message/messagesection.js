@@ -30,7 +30,7 @@ const Messagesection = ({socket,getmessage,onlineUser}) => {
             }
         }
  },[getmessage]);
-console.log("onlineUser",onlineUser)
+ console.log("onlineUser",onlineUser)
   useEffect(() => {
     getMessagelist();
   },[userId]);
@@ -93,7 +93,7 @@ console.log("onlineUser",onlineUser)
                           <div className='span-text'>
                               <span style={{color: "black"}}>{userProfile.name} </span>
                               <span> {onlineUser && onlineUser.length > 0  && onlineUser.some(i => i.id == userId)?
-                                <Link to={"/vediocall/"+userId}>
+                                <Link to={"/vediocall/"+onlineUser.find(item => item.id == userData.userinfo.data.id).socketId+"/"+onlineUser.find(item => item.id == userId).socketId}>
                                   <Button type="primary" shape="circle" icon={ <FontAwesomeIcon icon={ faVideoCamera} />} /> 
                                   </Link>
                               :null}</span>

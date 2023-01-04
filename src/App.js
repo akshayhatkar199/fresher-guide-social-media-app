@@ -14,6 +14,7 @@ import MyfriendRequests from './Pages/MyfriendRequests'
 import Searchuser from './Pages/Searchuser';
 import Postdetail from "./Pages/Postdetail";
 import Vediocall from "./Pages/Vediocall";
+import Vediocall2 from "./Pages/Vediocall/Home";
 import socketIOClient from "socket.io-client";
 import {BrowserRouter, Route, Routes,Navigate} from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
@@ -103,21 +104,22 @@ function App() {
     return (
        <BrowserRouter>
       <Routes>
-          <Route exact path="/" element= { <Home />}/>
-          <Route path="/home" element={<Home />} />
+          <Route exact path="/" element= { <Home  socket={socket} />}/>
+          <Route path="/home" element={<Home  socket={socket} />} />
           <Route path="/message" element={<Message socket={socket} />}/>
           <Route path="/messages/:userId" element={<Message socket={socket} />}/>
-          <Route path="/notification" element={< Notification/>}/> 
-          <Route path="/creatpost" element={<Creatpost/>}/>
-          <Route path="/updatepost/:postId" element={<Creatpost/>}/>
-          <Route path="/userprofile" element={<Userprofile/>}/>
-          <Route path="/userprofile/:userId" element={<Userprofile/>}/>
-          <Route path="/updateprofile" element={<Updateprofile/>}/>
-          <Route path="/myfriends" element={<Myfriends/>}/>
-          <Route path='/myfriendRequests' element={<MyfriendRequests/>}/>
-          <Route path='/searchuser/:searchinput' element={<Searchuser/>}/>
-           <Route  path="/vediocall/:userId" element= { <Vediocall />}/>
-           <Route path='/postdetail/:postId' element={<Postdetail/>}/>
+          <Route path="/notification" element={< Notification  socket={socket}/>}/> 
+          <Route path="/creatpost" element={<Creatpost  socket={socket}/>}/>
+          <Route path="/updatepost/:postId" element={<Creatpost  socket={socket}/>}/>
+          <Route path="/userprofile" element={<Userprofile  socket={socket}/>}/>
+          <Route path="/userprofile/:userId" element={<Userprofile  socket={socket}/>}/>
+          <Route path="/updateprofile" element={<Updateprofile  socket={socket}/>}/>
+          <Route path="/myfriends" element={<Myfriends  socket={socket}/>}/>
+          <Route path='/myfriendRequests' element={<MyfriendRequests  socket={socket}/>}/>
+          <Route path='/searchuser/:searchinput' element={<Searchuser  socket={socket}/>}/>
+           <Route  path="/vediocall/:userId/:socketId" element= { <Vediocall  socket={socket} />}/>
+           <Route  path="/Vediocall2" element= { <Vediocall2 />}/>
+           <Route path='/postdetail/:postId' element={<Postdetail  socket={socket}/>}/>
           <Route path='*'  element={<Navigate to="/" />} />
         </Routes>
      </BrowserRouter>

@@ -45,7 +45,7 @@ const Message = ({socket}) => {
  
   return (
     <div> 
-    <Header />
+    <Header socket={socket} />
     <div className='body-container'>
     <div className='main-home-container'>
     
