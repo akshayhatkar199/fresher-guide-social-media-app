@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react'
 import Header from '../../components/Header'
-import {useParams,Link} from "react-router-dom";
+import {useParams,Link,useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { SmileOutlined } from '@ant-design/icons';
 import Sidebar from '../../components/Sidebar';
@@ -8,7 +8,8 @@ import {WithTokenApi} from '../../Helpers/axios';
 import {faPaperPlane,faVideoCamera} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button,Col, Row ,Input ,Result,Form  } from 'antd'
 import Image  from '../../images/userp.png';
-import {useSelector} from 'react-redux'
+import {setCallingUserName} from "../../Store/reducers/vediocallReducers";
+import {useSelector,useDispatch} from 'react-redux'
 import Onlineusers from '../../components/Onlineusers'
 import MessageUsers from '../../components/MessageUsers'
 import './message.css'
@@ -17,8 +18,10 @@ import Footer from '../../components/Footer'
 
 const Messagesection = ({socket,getmessage,onlineUser}) => {
   let {userId } = useParams();
-   const listItems = useRef(null);
-   const [form] = Form.useForm();
+  const dispatch = useDispatch()
+  const listItems = useRef(null);
+  const navigate = useNavigate()
+  const [form] = Form.useForm();
   const userData = useSelector((state)=>state.userData);
   const [messageList,setMessagelist] = useState([]);
   const [userProfile,setUserProfile] = useState({});
@@ -78,6 +81,10 @@ const Messagesection = ({socket,getmessage,onlineUser}) => {
         setMessagelist([...messageList,payload])
       }    
   }
+  const setNameCaller = async(name) => {
+    await dispatch(setCallingUserName(name))
+    navigate("/vediocall/"+onlineUser.find(item => item.id == userData.userinfo.data.id).socketId+"/"+onlineUser.find(item => item.id == userId).socketId)
+  }
   return (
  
 
@@ -93,9 +100,11 @@ const Messagesection = ({socket,getmessage,onlineUser}) => {
                           <div className='span-text'>
                               <span style={{color: "black"}}>{userProfile.name} </span>
                               <span> {onlineUser && onlineUser.length > 0  && onlineUser.some(i => i.id == userId)?
-                                <Link to={"/vediocall/"+onlineUser.find(item => item.id == userData.userinfo.data.id).socketId+"/"+onlineUser.find(item => item.id == userId).socketId}>
-                                  <Button type="primary" shape="circle" icon={ <FontAwesomeIcon icon={ faVideoCamera} />} /> 
-                                  </Link>
+                                // <Link to={"/vediocall/"+onlineUser.find(item => item.id == userData.userinfo.data.id).socketId+"/"+onlineUser.find(item => item.id == userId).socketId}>
+                                  <Button type="primary" shape="circle"
+                                   onClick={() => setNameCaller(onlineUser.find(item => item.id == userId).name)}
+                                  icon={ <FontAwesomeIcon icon={ faVideoCamera} />} /> 
+                                  // </Link>
                               :null}</span>
                               <br />
                               {/* <span style={{color: " #ffc5c5"}}> active now</span> */}

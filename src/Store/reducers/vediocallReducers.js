@@ -11,10 +11,17 @@ export const SomeOnCall = createAsyncThunk(
 		   
 	  }
 );
+export const setCallingUserName = createAsyncThunk(
+	'vediocall/setCallingUserName',
+	async (name, thunkApi) => {
+		  return name;
+		 
+	}
+);
 
 const vediocallSlice = createSlice({ 
           name: 'vediocall', 
-		  initialState: {data:{}},
+		  initialState: {data:{},callingUserName:""},
 		  reducers: {
 		    // standard reducer logic, with auto-generated action types per reducer
 		  },
@@ -22,9 +29,12 @@ const vediocallSlice = createSlice({
 		    // Add reducers for additional action types here, and handle loading state as needed
 		    builder.addCase(SomeOnCall.fulfilled, (state, action) => {
 		      // Add user to the state array
-		      
 		      state.data = action.payload;
 		    })
+			.addCase(setCallingUserName.fulfilled, (state, action) => {
+				// Add user to the state array
+				state.callingUserName = action.payload;
+			  })
 		  },
 	});
 

@@ -16,6 +16,7 @@ const Vediocall = ({socket}) => {
   const connectionRef = useRef();
   const userData = useSelector((state)=>state.userData);
   const vediocallSomeOne = useSelector((state)=>state.videocallCome.data);
+  const CALLUSERNAME = useSelector((state)=>state.videocallCome.callingUserName);
   console.log("vediocallSomeOne",vediocallSomeOne);
   let {userId,socketId } = useParams();
 
@@ -148,8 +149,11 @@ const leaveCall = () => {
                         lg={{span: 12}}
                         xl={{span: 12}}
                         xxl={{span: 12}}
-                        >{
-                          stream? 
+                        >
+                            <h3>{userData.userinfo.data.name}:</h3>
+                            {
+                        
+                          stream ? 
                           <div className='VedioFrame'>
                               <video ref={myvedioRef} autoPlay /> 
                           </div>:
@@ -167,9 +171,13 @@ const leaveCall = () => {
                         >
                          {
                             callAccepted && !callEnded ? 
-                          <div className='VedioFrame'>
-                              <video ref={userVideo} autoPlay /> 
-                          </div>:
+                            <>
+                              <h3>{vediocallSomeOne && vediocallSomeOne.name ? vediocallSomeOne.name+":" 
+                              :CALLUSERNAME  ? CALLUSERNAME : ""}</h3>
+                            <div className='VedioFrame'>
+                                <video ref={userVideo} autoPlay /> 
+                            </div>
+                            </>:
                           null
                         }
                       </Col>
@@ -200,20 +208,7 @@ const leaveCall = () => {
               
                  </> 
                  : null
-                 }
-
-
-                    {/* {
-                   callAccepted && !callEnded ? 
-                   <>
-                   <h5>user vedio</h5>
-                 <video ref={userVideo} autoPlay /> 
-                 </> 
-                 : null
-                 } */}
-
-               
-                
+                 }       
          </div>
           </Col>
           
