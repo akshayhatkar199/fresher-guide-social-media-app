@@ -26,6 +26,10 @@ const Vediocall = ({socket}) => {
   const [name, setName] = useState(userData.userinfo.data.name);
   const [callAccepted,setCallAccepted] = useState(false);
   const [callEnded,setCallEnded] = useState(false);
+  const [myVdoStatus, setMyVdoStatus] = useState(true);
+  const [userVdoStatus, setUserVdoStatus] = useState();
+  const [myMicStatus, setMyMicStatus] = useState(true);
+  const [userMicStatus, setUserMicStatus] = useState();
 
   console.log("userId",userId);
   console.log("socketId",socketId);
@@ -47,6 +51,22 @@ const Vediocall = ({socket}) => {
     socket.on("callUser",({from,name: callerName,signal}) => {
       setCall({isReceivingCall:true,from,name: callerName,signal})
     })
+    socket.on("updateUserMedia", ({ type, currentMediaStatus }) => {
+      if (currentMediaStatus !== null || currentMediaStatus !== []) {
+        switch (type) {
+          case "video":
+            setUserVdoStatus(currentMediaStatus);
+            break;
+          case "mic":
+            setUserMicStatus(currentMediaStatus);
+            break;
+          default:
+            setUserMicStatus(currentMediaStatus[0]);
+            setUserVdoStatus(currentMediaStatus[1]);
+            break;
+        }
+      }
+    });
   },[])
   useEffect(() => {
     socket.on("endCall",() => {
@@ -74,18 +94,24 @@ const Vediocall = ({socket}) => {
       setCallAccepted(true);
 
       peer.signal(signal);
+      socket.emit("updateMyMedia", {
+        type: "both",
+        currentMediaStatus: [myMicStatus, myVdoStatus],
+      });
     });
 
     connectionRef.current = peer;
   };
 const answerCall = () => {
-  setCallAccepted(true);
+  // setCallAccepted(true);
   setCallAccepted(true);
 
   const peer = new Peer({ initiator: false, trickle: false, stream });
 
   peer.on('signal', (data) => {
-    socket.emit('answerCall', { signal: data, to: call.from });
+    socket.emit('answerCall', { signal: data, to: call.from,
+      type: "both",
+      myMediaStatus: [myMicStatus, myVdoStatus] });
   });
 
   peer.on('stream', (currentStream) => {
@@ -103,7 +129,28 @@ const leaveCall = () => {
   socket.emit('endCall', { id: socketId });
   window.location.href = "http://localhost:3000/message";
 };
- 
+const updateVideo = () => {
+  setMyVdoStatus((currentStatus) => {
+    socket.emit("updateMyMedia", {
+      type: "video",
+      currentMediaStatus: !currentStatus,
+    });
+    stream.getVideoTracks()[0].enabled = !currentStatus;
+    return !currentStatus;
+  });
+};
+
+const updateMic = () => {
+  setMyMicStatus((currentStatus) => {
+    socket.emit("updateMyMedia", {
+      type: "mic",
+      currentMediaStatus: !currentStatus,
+    });
+    stream.getAudioTracks()[0].enabled = !currentStatus;
+    return !currentStatus;
+  });
+};
+
 
     return (
         <div> 
