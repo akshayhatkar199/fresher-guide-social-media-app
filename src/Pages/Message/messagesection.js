@@ -95,7 +95,7 @@ const Messagesection = ({socket,getmessage,onlineUser}) => {
             <div>
                   <div>
                           <div className='image-div'> 
-                          <label className='message-online-label'></label> <img src={userProfile.photo ? "http://localhost:8080/Images/"+userProfile.photo : Image } alt="logo" className="message-user-image"></img>   
+                         {onlineUser && onlineUser.length > 0  && onlineUser.some(i => i.id == userId) ?<label className='message-online-label'></label> :null } <img src={userProfile.photo ? "http://localhost:8080/Images/"+userProfile.photo : Image } alt="logo" className="message-user-image"></img>   
                           </div>
                           <div className='span-text'>
                               <span style={{color: "black"}}>{userProfile.name} </span>
