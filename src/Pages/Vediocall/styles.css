@@ -9,3 +9,17 @@
     width: 100%;
     height: auto;
 }
+
+.mic{
+  
+    position: absolute;
+    bottom: 39px;
+    background: white;
+    height: 25px;
+    width: 28px;
+    font-size: 20px;
+    padding: 6px;
+    text-align: center;
+    border-radius: 50%;
+
+}

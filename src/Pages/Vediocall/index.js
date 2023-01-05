@@ -68,16 +68,14 @@ const Vediocall = ({socket}) => {
       }
     });
   },[])
-  useEffect(() => {
-    socket.on("endCall",() => {
-      setCall({})
-      setCallEnded(true);
+  socket.on("endCall",() => {
+    console.log("calll end !!!!!!!!!!")
+    setCall({})
+    setCallEnded(true);
 
-      connectionRef.current.destroy();
-      window.location.href = "http://localhost:3000/message";
-    })
-  });
-
+    connectionRef.current?.destroy();
+    window.location.href = "http://localhost:3000/message";
+  })
 
   const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
@@ -203,6 +201,16 @@ const updateMic = () => {
                           stream ? 
                           <div className='VedioFrame'>
                               <video ref={myvedioRef} autoPlay /> 
+                              <div className='mic'  onClick={() => {
+                                    updateMic();
+                                  }}>
+                              <i
+                                className={`fa fa-microphone${myMicStatus ? "" : "-slash"}`}
+                                style={{ transform: "scaleX(-1)" }}
+                                aria-label={`${myMicStatus ? "mic on" : "mic off"}`}
+                                aria-hidden="true"
+                              ></i>
+                              </div>
                           </div>:
                           null
                         }
