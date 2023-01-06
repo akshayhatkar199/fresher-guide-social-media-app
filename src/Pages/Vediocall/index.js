@@ -6,6 +6,8 @@ import Image3 from '../../images/user.jpg';
 import {Link,useParams } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import { Col, Row,Button  } from 'antd';
+import VideoIcon from "./assests/video.svg";
+import VideoOff from "./assests/video-off.svg";
 import Peer from 'simple-peer';
 import "./styles.css"
 import "font-awesome/css/font-awesome.min.css";
@@ -210,6 +212,16 @@ const updateMic = () => {
                                 aria-label={`${myMicStatus ? "mic on" : "mic off"}`}
                                 aria-hidden="true"
                               ></i>
+                              </div>
+                              <div className='vedioCam'  onClick={() => {
+                                    updateVideo();
+                                  }}>
+                                      {myVdoStatus ? (
+                                        <img src={VideoIcon} alt="video on icon" />
+                                      ) : (
+                                        <img src={VideoOff} alt="video off icon" />
+                                      )}
+                           
                               </div>
                           </div>:
                           null
