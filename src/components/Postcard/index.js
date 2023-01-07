@@ -18,6 +18,7 @@ const Postcard = (props) => {
   const listcommentRef = useRef(null);
   const [likecount,setlikecount] = useState(props.data.totalLike);
   const[isLiked, setIsLiked] = useState(props.data.isLike);
+  const [commentCount,setCommentCOunt] = useState(props.data.totalComments);
   const [isshowcoment,setisshowcoment] = useState(false);
   const [comment,setcomment] = useState("");
   const [commentlist,setcommentlist] = useState([]);
@@ -86,6 +87,7 @@ const getcomments = async() => {
       "photo": userData.userinfo.data.photo
     }
     setcommentlist([...commentlist,newComment])
+    setCommentCOunt(commentCount+1)
    }
 
   const items = [
@@ -187,7 +189,7 @@ const getcomments = async() => {
       >
       <label onClick={hideandshowcoment} style={{cursor: "pointer"}}>
       <FontAwesomeIcon icon={ faComment} className="card-comment" /> 
-      Coment
+     {commentCount && commentCount > 0 ? commentCount : null} Coment
       </label>
       </Col>
       <Col

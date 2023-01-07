@@ -3,7 +3,7 @@ import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar';
 import Footer from '../../components/Footer'
 import {Link,useParams } from "react-router-dom";
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import Api, {WithTokenApi} from '../../Helpers/axios';
 import Image from '../../images/profile-img.jpg';
 import Image1  from '../../images/userp.png';
@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faCamera,faLaptop, faTrophy ,faCalendarDays,faMicrophone,faPersonWalking,faP,faStar,faUserGraduate} from '@fortawesome/free-solid-svg-icons'
 import { Avatar, List,Button,Form,Upload } from 'antd'
 import Image3 from '../../images/user.jpg';
+import {checkLogin} from '../../Store/reducers/userReducer'
 import { SmileOutlined ,UploadOutlined } from '@ant-design/icons';
 import { Col, Row , Menu,Input,Modal ,Result,message  } from 'antd';
 import './userprofile.css'
@@ -23,6 +24,7 @@ import './userprofile.css'
   
 
 const Userprofile = ({socket}) => {
+  const dispatch = useDispatch()
   const [profileimage, setprofileimage] = useState([]);
   const [updatecover, setupdatecover] = useState([]);
   const [postdata,setpostdata] = useState([])
@@ -32,7 +34,6 @@ const Userprofile = ({socket}) => {
   const userData = useSelector((state)=>state.userData);
   const [profile,setprofile] = useState(userData.userinfo)
   // console.log("userData",userData)
-
 useEffect(()=>{
   post()
 },[])
@@ -101,11 +102,17 @@ const onformsubmit = async(values)=>{
   formData.append("image",  values.image.file);
   // console.log("formData",formData)
   
-
+ 
   const profileresult = await WithTokenApi.patch("/updateprofilephoto",formData)  
-  // console.log("profileresult",profileresult)
-   message.success('Update Profile Image success full')
-   setIsModalOpen(false)
+  var profilee = {};
+  profilee = {...profilee,...profile.data};
+  profilee.photo = ""+profileresult.data?.image+"";
+  setprofile({...profile,data:profilee})
+  await dispatch(checkLogin(localStorage.getItem("token")))
+  message.success('Update Profile Image success full')
+  setprofileimage([])
+  setIsModalOpen(false)
+  
 }
 
 const propss = {
@@ -130,6 +137,11 @@ const onFinish =  async(values)=>{
 
   const updatecoveresult = await WithTokenApi.patch("/updatecoverphoto",formData)  
   // console.log("updatecoveresult",updatecoveresult)
+  var profilee = {};
+  profilee = {...profilee,...profile.data};
+  profilee.coverimage = ""+updatecoveresult.data?.image+"";
+  setprofile({...profile,data:profilee})
+  setupdatecover([])
   message.success('Update Profile Image success full')
      setcoverphoto(false)
 }
@@ -177,7 +189,7 @@ const onFinish =  async(values)=>{
       <FontAwesomeIcon icon={faPen} className="userprofile-udatecover-icon" />
       </label>
     
-      <Modal title="Update Cover Photo" open={coverphoto} onOk={Updateok} onCancel={Updatecancel}>
+      <Modal title="Update Cover Photo "  open={coverphoto} onOk={Updateok} onCancel={Updatecancel} footer={<></>}>
       <Form
        layout="vertical"
       name="basic"
@@ -237,7 +249,7 @@ const onFinish =  async(values)=>{
       </label>
      { profile.data?.id === userData.userinfo.data.id ?
       
-      <Modal title="Update Profile Image" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal title="Update Profile Image " open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={<></>}>
       <Form
        layout="vertical"
       name="basic"
@@ -344,63 +356,9 @@ const onFinish =  async(values)=>{
        <div>
       <label type="primary" onClick={popup}>
       <FontAwesomeIcon icon={faPen} className="mobile-profilecover-changeicon" />
-      {/* <Button type="primary" size={25} className="mobile-userprofile-udatecover-icon">
-      Updatecover Profile
-        </Button> */}
       </label>
-    
-      <Modal title="Update Cover Photo" open={coverphoto} onOk={Updateok} onCancel={Updatecancel}>
-      <Form
-       layout="vertical"
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-     
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      autoComplete="off"
-     
-    >
-    <Form.Item
-    label=" Image"
-      name='image'
-    
-    >
-         <Upload {...propss}>
-      <Button icon={<UploadOutlined />}>Select File</Button>
-    </Upload>
-    
-    </Form.Item>
-  
-  
-
-  <Form.Item
-      // wrapperCol={{
-      //   offset: 5,
-      //   span: 16,
-      // }}
-    >
-      <Button type="primary"  htmlType="submit" >
-        Submit
-      </Button>
-
-     
-    </Form.Item>
-
-
-
-</Form>
- 
-
-      </Modal>
-
-      </div>
-      :null
-      }
-    
+      </div> 
+      :null}  
 
     <div className='mobile-sub-profile-div'>
     <label type="primary" onClick={showModal}>
@@ -410,58 +368,7 @@ const onFinish =  async(values)=>{
                          { profile.data?.id === userData.userinfo.data.id ? <FontAwesomeIcon icon={faCamera} className="camera-icon-profileuser" /> 
                                                                            : null} 
     </label>
-     { profile.data?.id === userData.userinfo.data.id ?
-      
-      <Modal title="Update Profile Image" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-      <Form
-       layout="vertical"
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-     
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onformsubmit}
-      autoComplete="off"
-     id='myForm'
-    >
-    <Form.Item
-    label=" Image"
-      name='image'
     
-    >
-         <Upload {...props}>
-      <Button icon={<UploadOutlined />}>Select File</Button>
-    </Upload>
-    
-    </Form.Item>
-  
-  
-
-  <Form.Item
-      // wrapperCol={{
-      //   offset: 5,
-      //   span: 16,
-      // }}
-    >
-      <Button type="primary"  htmlType="submit" >
-        Submit
-      </Button>
-
-     
-    </Form.Item>
-
-
-
-</Form>
-      
-      </Modal> 
-   
-    : null 
-     }
-
     {/* <img src={Image3} alt="logo" className='profile-user-IMG'></img> */}
     <div className='mobile-text-div'>
    <span style={{color: "black",fontSize: "18px",fontWeight: "500"}}>{profile.data.name} </span><br />
