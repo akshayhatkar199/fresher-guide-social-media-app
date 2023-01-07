@@ -36,7 +36,6 @@ const Vediocall = ({socket}) => {
   console.log("userId",userId);
   console.log("socketId",socketId);
 
-
   useEffect(() => {
     navigator.mediaDevices
     .getUserMedia({ video: true, audio:true })
@@ -44,7 +43,40 @@ const Vediocall = ({socket}) => {
       setStream(stream)
       let video = myvedioRef.current;
       video.srcObject = stream;
-      // video.play();
+       video.play();
+    })
+    .catch(err => {
+      console.error("error:", err);
+    });
+
+    socket.on("callUser",({from,name: callerName,signal}) => {
+      setCall({isReceivingCall:true,from,name: callerName,signal})
+    })
+    socket.on("updateUserMedia", ({ type, currentMediaStatus }) => {
+      if (currentMediaStatus !== null || currentMediaStatus !== []) {
+        switch (type) {
+          case "video":
+            setUserVdoStatus(currentMediaStatus);
+            break;
+          case "mic":
+            setUserMicStatus(currentMediaStatus);
+            break;
+          default:
+            setUserMicStatus(currentMediaStatus[0]);
+            setUserVdoStatus(currentMediaStatus[1]);
+            break;
+        }
+      }
+    });
+  },[socketId,userId])
+  useEffect(() => {
+    navigator.mediaDevices
+    .getUserMedia({ video: true, audio:true })
+    .then(stream => {
+      setStream(stream)
+      let video = myvedioRef.current;
+      video.srcObject = stream;
+       video.play();
     })
     .catch(err => {
       console.error("error:", err);
