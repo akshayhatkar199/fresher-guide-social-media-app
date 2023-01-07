@@ -137,12 +137,12 @@ const getcomments = async() => {
    }
 
   const items = [
-    {
-      key: '1',
-      label: (
-        <Link to={"/updatepost/"+props.data.id+ ""}>Update Post</Link>
-      ),
-    },
+    // {
+    //   key: '1',
+    //   label: (
+    //     <Link to={"/updatepost/"+props.data.id+ ""}>Update Post</Link>
+    //   ),
+    // },
     {
       key: '2',
       label: (
