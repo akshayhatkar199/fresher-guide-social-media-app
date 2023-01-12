@@ -19,32 +19,42 @@ import socketIOClient from "socket.io-client";
 import {BrowserRouter, Route, Routes,Navigate} from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
 const ENDPOINT = "http://localhost:8080/";
- 
+const newSocket = socketIOClient(ENDPOINT, { transports : ['websocket'] });
 function App() {
 
 
- 
+  const [onlineUser,setOnlineUser] = useState([]);
   const dispatch = useDispatch()  
+  const userData = useSelector((state)=>state.userData);
   const [isLogin,setIsLogin] = useState(false);
   const [loading,setLoading] = useState(true);
-  const [socket, setSocket] = useState(null);
+  const [socket, setSocket] = useState(newSocket);
   useEffect(() => {
     checkIsLogin();
   },[]);
-  useEffect(() => {
-    const newSocket = socketIOClient(ENDPOINT, { transports : ['websocket'] });
-    setSocket(newSocket);
+  // useEffect(() => {
+    // const newSocket = socketIOClient(ENDPOINT, { transports : ['websocket'] });
+    // setSocket(newSocket);
     // return () => newSocket.close();
-  }, []);
+  // }, []);
   const checkIsLogin = async() => {
     //console.log("localStorage.getItem(token)",localStorage.getItem("token"))
     const token = localStorage.getItem("token");
     if(token){
-      await dispatch(checkLogin(token))
+      const data=await dispatch(checkLogin(token))
+      // console.log("userData.userinfo",data)
+        socket.emit("addUser", data.payload?.info?.data);
+     
+    
       setIsLogin(true);
     }
     setLoading(false);
   }
+  
+  socket.on("getOnlineUsers",(data) => {
+    //  console.log("getOnlineUsers",data)
+     setOnlineUser(data)
+})
  //   return (
  // <BrowserRouter>
  //      <Routes>
@@ -104,22 +114,22 @@ function App() {
     return (
        <BrowserRouter>
       <Routes>
-          <Route exact path="/" element= { <Home  socket={socket} />}/>
-          <Route path="/home" element={<Home  socket={socket} />} />
-          <Route path="/message" element={<Message socket={socket} />}/>
-          <Route path="/messages/:userId" element={<Message socket={socket} />}/>
-          <Route path="/notification" element={< Notification  socket={socket}/>}/> 
-          <Route path="/creatpost" element={<Creatpost  socket={socket}/>}/>
-          <Route path="/updatepost/:postId" element={<Creatpost  socket={socket}/>}/>
-          <Route path="/userprofile" element={<Userprofile  socket={socket}/>}/>
-          <Route path="/userprofile/:userId" element={<Userprofile  socket={socket}/>}/>
-          <Route path="/updateprofile" element={<Updateprofile  socket={socket}/>}/>
-          <Route path="/myfriends" element={<Myfriends  socket={socket}/>}/>
-          <Route path='/myfriendRequests' element={<MyfriendRequests  socket={socket}/>}/>
-          <Route path='/searchuser/:searchinput' element={<Searchuser  socket={socket}/>}/>
-           <Route  path="/vediocall/:userId/:socketId" element= { <Vediocall  socket={socket} />}/>
+          <Route exact path="/" element= { <Home  socket={socket} onlineUser={onlineUser}/>}/>
+          <Route path="/home" element={<Home  socket={socket} onlineUser={onlineUser} />} />
+          <Route path="/message" element={<Message socket={socket} onlineUser={onlineUser} />}/>
+          <Route path="/messages/:userId" element={<Message socket={socket} onlineUser={onlineUser} />}/>
+          <Route path="/notification" element={< Notification  socket={socket} onlineUser={onlineUser}/>}/> 
+          <Route path="/creatpost" element={<Creatpost  socket={socket} onlineUser={onlineUser}/>}/>
+          <Route path="/updatepost/:postId" element={<Creatpost  socket={socket} onlineUser={onlineUser}/>}/>
+          <Route path="/userprofile" element={<Userprofile  socket={socket} onlineUser={onlineUser}/>}/>
+          <Route path="/userprofile/:userId" element={<Userprofile  socket={socket} onlineUser={onlineUser}/>}/>
+          <Route path="/updateprofile" element={<Updateprofile  socket={socket} onlineUser={onlineUser}/>}/>
+          <Route path="/myfriends" element={<Myfriends  socket={socket} onlineUser={onlineUser}/>}/>
+          <Route path='/myfriendRequests' element={<MyfriendRequests  socket={socket} onlineUser={onlineUser}/>}/>
+          <Route path='/searchuser/:searchinput' element={<Searchuser  socket={socket} onlineUser={onlineUser}/>}/>
+           <Route  path="/vediocall/:userId/:socketId" element= { <Vediocall  socket={socket} onlineUser={onlineUser} />}/>
            <Route  path="/Vediocall2" element= { <Vediocall2 />}/>
-           <Route path='/postdetail/:postId' element={<Postdetail  socket={socket}/>}/>
+           <Route path='/postdetail/:postId' element={<Postdetail  socket={socket} onlineUser={onlineUser}/>}/>
           <Route path='*'  element={<Navigate to="/" />} />
         </Routes>
      </BrowserRouter>

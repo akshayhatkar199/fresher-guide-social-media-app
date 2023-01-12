@@ -3,17 +3,14 @@ import React,{ useEffect, useState }  from 'react'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Sidebar from '../../components/Sidebar'
-import { Col, Row,Input  } from 'antd';
+import { Col, Row  } from 'antd';
 import {WithTokenApi} from '../../Helpers/axios';
-import { Avatar, List,Button, } from 'antd'
-import {Link, } from "react-router-dom";
+import { Result } from 'antd'
 import Onlineusers from '../../components/Onlineusers'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCakeCandles, faGraduationCap ,faDiploma,faPen ,faLaptop, faTrophy ,faCalendarDays,faMicrophone,faPersonWalking,faP,faStar,faUserGraduate} from '@fortawesome/free-solid-svg-icons'
-import {  faHome,faMessage,faBell, faBars, faUser, faAnchor} from '@fortawesome/free-solid-svg-icons' 
 import Postcard from "../../components/Postcard"
 import Aboutus from "../../components/Aboutus"
 import {useSelector} from 'react-redux'
+import { SmileOutlined , } from '@ant-design/icons';
 import './Home.css'
 
 
@@ -83,14 +80,18 @@ const Home = ({socket}) => {
       xxl={{span: 11}}
       >
       <div className='home-container-2'>
-      
       {
+        posts.length > 0  ?
         posts.map((item) => {
           return   <Postcard data={item} />
-          
-        })
+        }) :
+        <Result
+        style={{background:"white"}}
+          icon={<SmileOutlined />}
+          title="No posts yet!!!"
+        />
       }
-    
+     
   
       {/* <Postcard/>
       <Postcard/>

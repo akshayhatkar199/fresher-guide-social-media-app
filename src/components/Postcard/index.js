@@ -9,15 +9,62 @@ import Image1 from '../../images/user.jpg';
 import Image2 from '../../images/post-image.jpg';
 import Image  from '../../images/userp.png';
 import { useParams,Link } from 'react-router-dom';
+import {
+  EmailIcon,
+  FacebookIcon,
+  FacebookMessengerIcon,
+  HatenaIcon,
+  InstapaperIcon,
+  LineIcon,
+  LinkedinIcon,
+  LivejournalIcon,
+  MailruIcon,
+  OKIcon,
+  PinterestIcon,
+  PocketIcon,
+  RedditIcon,
+  TelegramIcon,
+  TumblrIcon,
+  TwitterIcon,
+  ViberIcon,
+  VKIcon,
+  WeiboIcon,
+  WhatsappIcon,
+  WorkplaceIcon
+} from "react-share";
 import {Card, Button, Dropdown,Input ,Result,Form } from 'antd';
 import './postcard.css'
 import { format } from 'timeago.js';
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  HatenaShareButton,
+  InstapaperShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  OKShareButton,
+  PinterestShareButton,
+  PocketShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TumblrShareButton,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton
+} from "react-share";
 
+const shareUrl = 'http://github.com';
+const title = 'GitHub';
 const Postcard = (props) => {
   const [form] = Form.useForm();
   const listcommentRef = useRef(null);
   const [likecount,setlikecount] = useState(props.data.totalLike);
   const[isLiked, setIsLiked] = useState(props.data.isLike);
+  const [commentCount,setCommentCOunt] = useState(props.data.totalComments);
   const [isshowcoment,setisshowcoment] = useState(false);
   const [comment,setcomment] = useState("");
   const [commentlist,setcommentlist] = useState([]);
@@ -33,7 +80,9 @@ if(isLiked == 1){
   payload={
    "isLike":0,
     "postId": props.data.id,
-    "likeuserId":userData.userinfo.data.id 
+    "likeuserId":userData.userinfo.data.id,
+    "likeuserName":userData.userinfo.data.name,
+    "postuserId":props.data.userId
  }
  setlikecount(likecount-1)
 }else{
@@ -41,7 +90,9 @@ if(isLiked == 1){
    payload={
     "isLike":1,
      "postId": props.data.id,
-     "likeuserId":userData.userinfo.data.id 
+     "likeuserId":userData.userinfo.data.id,
+     "likeuserName":userData.userinfo.data.name,
+    "postuserId":props.data.userId
   }
   setlikecount(likecount+1)
  
@@ -69,7 +120,9 @@ const getcomments = async() => {
   const  payload={
        "commenttext":comment,
        "postId": props.data.id,
-       "commentUserId":userData.userinfo.data.id 
+       "commentUserId":userData.userinfo.data.id,
+       "likeuserName":userData.userinfo.data.name,
+       "postuserId":props.data.userId
     }
     form.resetFields();
     const commetresult =  await WithTokenApi.post("/post/comment",payload)
@@ -86,19 +139,54 @@ const getcomments = async() => {
       "photo": userData.userinfo.data.photo
     }
     setcommentlist([...commentlist,newComment])
+    setCommentCOunt(commentCount+1)
    }
 
   const items = [
-    {
-      key: '1',
-      label: (
-        <Link to={"/updatepost/"+props.data.id+ ""}>Update Post</Link>
-      ),
-    },
+    // {
+    //   key: '1',
+    //   label: (
+    //     <Link to={"/updatepost/"+props.data.id+ ""}>Update Post</Link>
+    //   ),
+    // },
     {
       key: '2',
       label: (
-        <Link to={"/postdetail/"+props.data.id+ ""}>Post details</Link>
+        <>
+       <Link to={"/postdetail/"+props.data.id+ ""}>Post details</Link>
+        </>
+      
+        
+      ),
+    },
+    {
+      key: '3',
+      label: (
+        <>
+        <FacebookShareButton
+            url={shareUrl}
+            quote={title}
+            className="Demo__some-network__share-button"
+          >
+            <FacebookIcon size={32} round />
+          </FacebookShareButton>
+          <EmailShareButton
+          style={{marginLeft: "10px"}}
+            url={shareUrl}
+            subject={title}
+            body="body"
+            className="Demo__some-network__share-button"
+          >
+            <EmailIcon size={32} round />
+          </EmailShareButton>
+          <LinkedinShareButton 
+           style={{marginLeft: "10px"}}
+           url={shareUrl} className="Demo__some-network__share-button">
+            <LinkedinIcon size={32} round />
+          </LinkedinShareButton>
+          {/* <FacebookShareCount url={"http://localhost:3000/postdetail/"+props.data.id+ ""} /> */}
+       </>
+      
         
       ),
     }
@@ -112,6 +200,7 @@ const getcomments = async() => {
 
   // console.log("postId",postId)
   // console.log("props",props)
+
   return (
     <div> 
       <Card
@@ -187,7 +276,7 @@ const getcomments = async() => {
       >
       <label onClick={hideandshowcoment} style={{cursor: "pointer"}}>
       <FontAwesomeIcon icon={ faComment} className="card-comment" /> 
-      Coment
+     {commentCount && commentCount > 0 ? commentCount : null} Coment
       </label>
       </Col>
       <Col

@@ -10,7 +10,7 @@ import {  faHome,faMessage,faBell,faBars,faUser,faRightFromBracket,faF,faRegiste
 import {NotificationOutlined } from '@ant-design/icons'
 import Image2 from '../../images/he-logo.png';
 import Image4  from '../../images/logo-college-removebg-preview.png';
-import Image3 from '../../images/user.jpg';
+import Image3 from '../../images/userp.png';
 import { SomeOnCall } from "../../Store/reducers/vediocallReducers"
 import './header.css'
 const { Search } = Input;
@@ -104,7 +104,7 @@ const onSearch = () => {
       <Link to="/home"><img src={Image4} alt="logo" className="img-fluid " style={{height: "57px" ,width: "163px"}}></img></Link>
 
     
-      <Search  value={searchinput} placeholder="input search text"    className= "header-input"  onSearch={onSearch}z onChange ={(e)=> setSearchinputs(e.target.value)} enterButton style={{
+      <Search  value={searchinput} placeholder="input search text"   className= "header-input"  onSearch={onSearch}z onChange ={(e)=> setSearchinputs(e.target.value)} enterButton style={{
         width: "50%", margin: "18px"
       
       }}/>   
@@ -130,7 +130,7 @@ const onSearch = () => {
       <Link to ="/message"> <FontAwesomeIcon icon={ faMessage} className="message-icon"  /></Link>
       <Link to= '/notification'> <FontAwesomeIcon icon={ faBell} className="bell-icon"  /></Link>
       <label onClick={showDrawer} >
-      <label className='header-online-label'></label> <img src={Image3} alt="logo" className="user-image"></img> 
+      <label className='header-online-label'></label> <img src={userData.userinfo.data.photo ? "http://localhost:8080/Images/"+userData.userinfo.data.photo :Image3} alt="logo" className="user-image"></img> 
       {/* <FontAwesomeIcon icon={faBars} className ="baricon-header" /> */}
       </label>
       <Drawer title="Pages" placement="right" onClose={onClose} open={open}>
