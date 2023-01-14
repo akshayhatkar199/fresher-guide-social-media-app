@@ -17,22 +17,22 @@ import { format } from 'timeago.js';
 import Footer from '../../components/Footer'
 import Messagesection from "./messagesection";
 
-const Message = ({socket}) => {
+const Message = ({socket , onlineUser}) => {
   let {userId } = useParams();
   const userData = useSelector((state)=>state.userData);
-  const [onlineUser,setOnlineUser] = useState([]);
+  // const [onlineUser,setOnlineUser] = useState([]);
   const [reciveMessage,setMessage] = useState("");
   const [reciveMessageCount,setreciveMessageCount] = useState("");
- 
+ console.log("onlineUser",onlineUser)
 
-   useEffect(() => {
-      socket.emit("addUser", userData.userinfo.data);
-    }, []);
+  //  useEffect(() => {
+  //     socket.emit("addUser", userData.userinfo.data);
+  //   }, []);
 
-    socket.on("getOnlineUsers",(data) => {
-            //  console.log("getOnlineUsers",data)
-             setOnlineUser(data)
-    })
+  //   socket.on("getOnlineUsers",(data) => {
+  //           //  console.log("getOnlineUsers",data)
+  //            setOnlineUser(data)
+  //   })
     socket.on("getMessage",(data) => {
             // console.log("getMessage",data)
             // console.log("userId",userId)
