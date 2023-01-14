@@ -74,9 +74,12 @@ const Postdetail = ({socket}) => {
       xxl={{span: 11}}
       >
       <div className='home-container-2'>
-     
+      {
+      detailpost && detailpost.id > 0 ?
       <Postcard data={detailpost}/>
-  
+      :null
+     }
+     
       </div>
       </Col>
       <Col  

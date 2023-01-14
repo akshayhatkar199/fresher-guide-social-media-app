@@ -19,7 +19,7 @@ import { SmileOutlined ,UploadOutlined } from '@ant-design/icons';
 import { Col, Row , Menu,Input,Modal ,Result,message  } from 'antd';
 import './userprofile.css'
 
-
+ 
 
   
 
