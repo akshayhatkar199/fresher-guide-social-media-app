@@ -80,7 +80,9 @@ if(isLiked == 1){
   payload={
    "isLike":0,
     "postId": props.data.id,
-    "likeuserId":userData.userinfo.data.id 
+    "likeuserId":userData.userinfo.data.id,
+    "likeuserName":userData.userinfo.data.name,
+    "postuserId":props.data.userId
  }
  setlikecount(likecount-1)
 }else{
@@ -88,7 +90,9 @@ if(isLiked == 1){
    payload={
     "isLike":1,
      "postId": props.data.id,
-     "likeuserId":userData.userinfo.data.id 
+     "likeuserId":userData.userinfo.data.id,
+     "likeuserName":userData.userinfo.data.name,
+    "postuserId":props.data.userId
   }
   setlikecount(likecount+1)
  
@@ -116,7 +120,9 @@ const getcomments = async() => {
   const  payload={
        "commenttext":comment,
        "postId": props.data.id,
-       "commentUserId":userData.userinfo.data.id 
+       "commentUserId":userData.userinfo.data.id,
+       "likeuserName":userData.userinfo.data.name,
+       "postuserId":props.data.userId
     }
     form.resetFields();
     const commetresult =  await WithTokenApi.post("/post/comment",payload)

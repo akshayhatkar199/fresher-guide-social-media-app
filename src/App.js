@@ -42,7 +42,7 @@ function App() {
     const token = localStorage.getItem("token");
     if(token){
       const data=await dispatch(checkLogin(token))
-      console.log("userData.userinfo",data)
+      // console.log("userData.userinfo",data)
         socket.emit("addUser", data.payload?.info?.data);
      
     

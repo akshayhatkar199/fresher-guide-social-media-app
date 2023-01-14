@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Header from '../../components/Header'
 import {Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,48 +8,26 @@ import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortaweso
 import { Avatar, List,Button, } from 'antd'
 import Image3 from '../../images/user.jpg';
 import { Col, Row , Menu,Input } from 'antd';
+import Image  from '../../images/userp.png';
+import {WithTokenApi} from '../../Helpers/axios';
 import './notification.css'
 import Footer from '../../components/Footer'
+import { format } from 'timeago.js';
 
-
-
-const data = [
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-  ];
 
 const Notification = ({socket}) => {
+  //notifications
+  const [notifications,setNotifications] = useState([]);
+  
+useEffect(()=>{
+  getotifications()
+},[])
+
+const getotifications =async()=>{
+  const result = await WithTokenApi.get("/notifications")
+  // console.log("result",result);
+  setNotifications(result.data)
+}
   return (
     <div> 
     <Header socket={socket} />
@@ -88,15 +66,16 @@ const Notification = ({socket}) => {
       <hr />
       <List
     itemLayout="horizontal"
-    dataSource={data}
+    dataSource={notifications}
     renderItem={(item ) => (
       <List.Item>
-        <List.Item.Meta
-          avatar={<div ><label className='online-label'></label><Avatar src="https://randomuser.me/api/portraits/men/10.jpg" /></div>}
-          title={<a href="https://ant.design">{item.title}</a>}
-          description="Ant Design, a design language for background applications, is refined by Ant UED Team"  
-        />
-      </List.Item>
+            <List.Item.Meta
+              avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /></div>}
+              title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
+              description={item.text + " " + format(item.createdDate) } 
+            />
+             <Link to={"/messages/"+item.id+""}><FontAwesomeIcon icon={faMessage}  className="friend-message-icon"/></Link>
+          </List.Item>
     )}
   />
 
