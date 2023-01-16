@@ -443,7 +443,7 @@ const onFinish =  async(values)=>{
       {
         postdata.length > 0  ?
         postdata.map((item) => {
-          return   <Postcard data={item} />
+          return   <Postcard data={item} socket={socket} />
         }) :
         <Result
         style={{background:"white"}}

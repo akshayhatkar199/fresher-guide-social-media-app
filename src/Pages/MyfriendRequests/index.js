@@ -64,7 +64,7 @@ const friendsrequest=async()=>{
   setmyfriendrequest(result.data)
 }
 
-const accept=async(id)=>{
+const accept=async(id,frienduserId)=>{
 //  console.log("id",id);
 const payload={
   "requestId": id
@@ -72,7 +72,9 @@ const payload={
 // console.log("payload",payload)
  const result = await WithTokenApi.post("/friends/requestaccept",payload)
 //  console.log("result",result)
-
+socket.emit("newNotification", {
+  id: frienduserId
+});
  message.success("Request Accepted Successfully")
  friendsrequest()
 }
@@ -124,7 +126,7 @@ const payload={
               title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
               description={item.email}  
             />
-             <Button type="primary" style={{marginRight: "-18px"}} htmlType="submit" onClick={()=>accept(item.requestId)}  >Accept </Button>
+             <Button type="primary" style={{marginRight: "-18px"}} htmlType="submit" onClick={()=>accept(item.requestId,item.id)}  >Accept </Button>
           </List.Item>
         )}
       />

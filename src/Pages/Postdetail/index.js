@@ -76,7 +76,7 @@ const Postdetail = ({socket}) => {
       <div className='home-container-2'>
       {
       detailpost && detailpost.id > 0 ?
-      <Postcard data={detailpost}/>
+      <Postcard data={detailpost} socket={socket}/>
       :null
      }
      

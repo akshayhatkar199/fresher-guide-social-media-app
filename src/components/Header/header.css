@@ -272,3 +272,16 @@
     }
     
 }
+
+.notificationLabel{
+    position: absolute;
+    background: red;
+    height: 19px;
+    width: 17px;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    right: 30%;
+    top: 16px;
+    font-size: 13px;
+}

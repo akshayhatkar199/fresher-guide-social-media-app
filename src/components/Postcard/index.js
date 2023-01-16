@@ -75,7 +75,7 @@ const Postcard = (props) => {
   const likes=async()=>{
     var payload = {}
 
-if(isLiked == 1){
+if(isLiked == 1){ 
   setIsLiked(0);
   payload={
    "isLike":0,
@@ -95,9 +95,12 @@ if(isLiked == 1){
     "postuserId":props.data.userId
   }
   setlikecount(likecount+1)
- 
+  props.socket.emit("newNotification", {
+    id: props.data.userId
+  });
 }
 const result =  await  WithTokenApi.post("/post/like",payload)
+ 
 
   }
   // useEffect(()=>{
@@ -140,6 +143,9 @@ const getcomments = async() => {
     }
     setcommentlist([...commentlist,newComment])
     setCommentCOunt(commentCount+1)
+    props.socket.emit("newNotification", {
+      id: props.data.userId
+    });
    }
 
   const items = [

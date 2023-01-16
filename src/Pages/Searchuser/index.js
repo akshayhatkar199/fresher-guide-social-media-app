@@ -58,6 +58,9 @@ const payload={
 // console.log("payload", payload)
 
 const result = await WithTokenApi.post("/friends/request",payload)
+socket.emit("newNotification", {
+  id: id
+});
 // console.log("result",result);
 message.success('Friends Request successfully Send');
 search();
