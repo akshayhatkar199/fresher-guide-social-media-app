@@ -35,6 +35,19 @@
     font-size: 23px;
     font-weight: 700;
 }
+.notificationLabel-mobile{
+    position: absolute;
+    background: red;
+    height: 19px;
+    width: 17px;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    right: 20%;
+    left: 40px;
+    top: 16px;
+    font-size: 13px;
+}
 
 /* > 576 px */
 @media only screen and (max-width: 576px){

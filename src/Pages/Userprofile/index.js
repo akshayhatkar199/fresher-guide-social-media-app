@@ -184,7 +184,7 @@ const onFinish =  async(values)=>{
                                       : <img src={coverimage1} className="main-profileimg"/>}
 
     { profile.data?.id === userData.userinfo.data.id ? 
-       <div>
+       <div >
       <label type="primary" onClick={popup}>
       <FontAwesomeIcon icon={faPen} className="userprofile-udatecover-icon" />
       </label>
@@ -210,7 +210,7 @@ const onFinish =  async(values)=>{
     
     >
          <Upload {...propss}>
-      <Button icon={<UploadOutlined />}>Select File</Button>
+      <Button icon={<UploadOutlined/>}>Select File</Button>
     </Upload>
     
     </Form.Item>
@@ -223,7 +223,7 @@ const onFinish =  async(values)=>{
       //   span: 16,
       // }}
     >
-      <Button type="primary"  htmlType="submit" >
+      <Button type="primary"  htmlType="submit"  >
         Submit
       </Button>
 
@@ -251,7 +251,7 @@ const onFinish =  async(values)=>{
       </label> 
      { profile.data?.id === userData.userinfo.data.id ?
       
-      <Modal title="Update Profile Image " open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={<></>} destroyOnClose>
+      <Modal title="Update Profile Image " open={isModalOpen}  onOk={handleOk} onCancel={handleCancel} footer={<></>} destroyOnClose >
       <Form
        layout="vertical"
       name="basic"
@@ -311,7 +311,7 @@ const onFinish =  async(values)=>{
     {
       profile.data?.id === userData.userinfo.data.id ?
       <Link to="/updateprofile">
-        <Button type="primary" size={25} className="">
+        <Button type="primary" size={25} className="" >
            Update Profile
         </Button>
       </Link>

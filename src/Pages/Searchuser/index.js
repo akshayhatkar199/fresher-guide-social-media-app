@@ -16,17 +16,17 @@ import { ApiFilled } from '@ant-design/icons';
 const { Search } = Input;
 
 const Searchuser = ({socket}) => {
+   const [searchinputlist,setsearchinputlist] =  useState("");
   const [searchuserlist,setserchuserlist] = useState([])
-  const [searchinput,setSearchinput] =  useState("");
-  // let {searchinput } = useParams();
+  let {searchinput } = useParams();
   const userData = useSelector((state)=>state.userData);
 //  console.log("searchinput",searchinput)
 const navigate = useNavigate()
 
 const onSearch = () => {
   
-  if(searchinput !==""){
-    navigate("/searchuser/"+ searchinput)
+  if(searchinputlist !==""){
+    navigate("/searchuser/"+ searchinputlist)
    }
   
   }
@@ -101,7 +101,7 @@ search();
         
      <div className='main-Searchuser'>
      <div  className='mobile-input'>
-      <Search  value={searchinput} placeholder="input search text"    className= "myfriend-input"  onSearch={onSearch}z onChange ={(e)=> setSearchinput(e.target.value)} enterButton 
+      <Search  value={searchinputlist} placeholder="input search text"    className= "myfriend-input"  onSearch={onSearch} onChange ={(e)=> setsearchinputlist(e.target.value)} enterButton 
      />
         </div>  
          <div className='Searchuser-div' >
@@ -113,7 +113,9 @@ search();
         renderItem={(item ) => ( 
           <List.Item>
             <List.Item.Meta
-              avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /> 
+            //   avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /> 
+            //  </div>}
+            avatar={<div ><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /> 
              </div>}
               title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link> } 
               description={item.email}  

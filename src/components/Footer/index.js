@@ -2,6 +2,7 @@ import React from 'react'
 import './footer.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link ,useNavigate } from "react-router-dom";
+import {useSelector} from 'react-redux'
 import Image2 from '../../images/he-logo.png';
 import Image4  from '../../images/logo-college-removebg-preview.png';
 import {  faHome,faMessage,faBell ,faUser,faRightFromBracket,faSquarePlus} from '@fortawesome/free-solid-svg-icons'
@@ -9,7 +10,7 @@ import { Col, Row , Menu } from 'antd';
 
 
 const Footer = () => {
-
+  const userData = useSelector((state)=>state.userData);
   const navigate = useNavigate();
 
   const logout =()=>{
@@ -154,7 +155,7 @@ const Footer = () => {
       xxl={{span: 4}}
       >
       <div className=''>
-      <Link to= '/notification'>  <FontAwesomeIcon icon={ faBell} className="footer-icon"  /></Link>
+      <Link to= '/notification'>  <FontAwesomeIcon icon={faBell} className="footer-icon"/>{userData.userinfo.notificationCount ? <span className='notificationLabel-mobile'>{userData.userinfo.notificationCount}</span> : null}</Link>
   
       </div>
       </Col>

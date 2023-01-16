@@ -94,6 +94,19 @@
     font-size: bold;
     font-size: 17px;
 }
+.notificationLabel{
+    position: absolute;
+    background: red;
+    height: 19px;
+    width: 17px;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    right: 31%;
+    top: 16px;
+    font-size: 13px;
+}
+
 
 
 
@@ -167,7 +180,9 @@
         font-size: 28px;
         color: white;
     }
-
+    .notificationLabel {
+        display:none;
+      }
 }
 /* > 576 px */
 @media only screen and (min-width: 576px){
@@ -186,7 +201,6 @@
     .baricon-header{
         visibility: hidden;
     }
-   
    
 }
 /* > 768 px */
@@ -207,6 +221,10 @@
     .baricon-header{
         visibility: hidden;
     }
+    .notificationLabel {
+        right: 40%;
+      }
+   
 }
 /* > 992 px */
 @media only screen and (min-width: 992px){
@@ -228,6 +246,10 @@
     .baricon-header{
         visibility: hidden;
     }
+    .notificationLabel {
+        right: 42%;
+      }
+  
 }
 /* > 1200 px */
 @media only screen and (min-width: 1200px){
@@ -249,6 +271,10 @@
     .baricon-header{
         visibility: hidden;
     }
+    .notificationLabel {
+        right: 30%;
+      }
+    
 }
 /* > 1400 px */
 @media only screen and (min-width: 1400px){
@@ -270,18 +296,9 @@
     .baricon-header{
         visibility: hidden;
     }
+    .notificationLabel {
+        right: 30%;
+      }
     
 }
 
-.notificationLabel{
-    position: absolute;
-    background: red;
-    height: 19px;
-    width: 17px;
-    color: white;
-    text-align: center;
-    border-radius: 50%;
-    right: 30%;
-    top: 16px;
-    font-size: 13px;
-}
