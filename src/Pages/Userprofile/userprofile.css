@@ -147,6 +147,9 @@ transform: scale(1.05,1.05);
     position: relative;
     top: -41px;
     right: 16px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid white;
 }
 .desktop-camera-icon-profileuser{
     position: relative;

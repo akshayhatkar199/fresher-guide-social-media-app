@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link, useNavigate } from "react-router-dom";
 import {  faHome,faMessage,faBell ,faUser,faBars ,fauserGroup,faRightFromBracket,faRegistered,faF,faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import { Col, Row ,Button, Modal, Space  } from 'antd';
+import {useSelector} from 'react-redux'
 import { ExclamationCircleFilled } from '@ant-design/icons';
 import './sidebar.css'
 const { confirm } = Modal;
 const Sidebar = () => {
   const navigate = useNavigate();
-
+  const userData = useSelector((state)=>state.userData);
 const logout =()=>{
   confirm({
     title: 'Do you want to Conform for Logout?',
@@ -117,7 +118,7 @@ const logout =()=>{
       >
       <div className="left-side-icone">
       <div className='icone-back'>
-     <Link to= '/notification'> <FontAwesomeIcon icon={faBell} className="icone-size" /></Link>
+     <Link to= '/notification'> <FontAwesomeIcon icon={faBell} className="icone-size" /> {userData.userinfo.notificationCount ? <span className='notificationLabel'>{userData.userinfo.notificationCount}</span> : null}</Link>
       </div>
       </div>
 
