@@ -25,11 +25,11 @@ const Aboutus = (props) => {
       icons:  faGraduationCap,
       description: profile.data.collegeName
     },
-    {
-      title: 'Date of Birth',
-      icons: faCakeCandles,
-      description: profile.data.dateOfBirth
-    },
+    // {
+    //   title: 'Date of Birth',
+    //   icons: faCakeCandles,
+    //   description: profile.data.dateOfBirth
+    // },
     {
       title: 'Passout Year',
       icons:  faUserGraduate,
