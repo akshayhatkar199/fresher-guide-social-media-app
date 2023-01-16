@@ -24,6 +24,7 @@ const { RangePicker } = DatePicker;
 const Updateprofile = ({socket}) => {
 const [Collegedata,setcollegedata] = useState([]);
 const [Skilles,setskilles] = useState([]);
+const [loading , setLoading] = useState(false);
 const dispatch = useDispatch();
 const navigate = useNavigate();
 const userData = useSelector((state)=>state.userData)
@@ -61,7 +62,7 @@ const Skillsdata = async()=> {
         // message.success('Update profile successfully.');
         await dispatch(checkLogin(localStorage.getItem("token")))
         navigate("/userprofile")
-       
+        setLoading(false)
       };
      
 
@@ -207,13 +208,13 @@ const Skillsdata = async()=> {
       label=" About"
         name= 'about'
         
-        rules={[
-          {
-            required: true,
-            message: 'Please input your About!',
+        // rules={[
+        //   {
+        //     required: true,
+        //     message: 'Please input your About!',
           
-          },
-        ]}
+        //   },
+        // ]}
       >
           <Input.TextArea />
       
@@ -247,13 +248,13 @@ const Skillsdata = async()=> {
         label="Technical Knowledge"
         name='technicalKnowledge'
         
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Technical Knowledge!',
+        // rules={[
+        //   {
+        //     required: true,
+        //     message: 'Please input your Technical Knowledge!',
           
-          },
-        ]}
+        //   },
+        // ]}
       >
          <Input.TextArea />
       
@@ -265,13 +266,13 @@ const Skillsdata = async()=> {
         label=" Achievement"
         name= 'achievement'
         
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Achievement!',
+        // rules={[
+        //   {
+        //     required: true,
+        //     message: 'Please input your Achievement!',
           
-          },
-        ]}
+        //   },
+        // ]}
       >
          <Input.TextArea />
       
@@ -281,13 +282,13 @@ const Skillsdata = async()=> {
         label="Year of Experience"
         name="yearOfExperience"
         
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Year of Experience!',
+        // rules={[
+        //   {
+        //     required: true,
+        //     message: 'Please input your Year of Experience!',
           
-          },
-        ]}
+        //   },
+        // ]}
       >
         <Input type= "Number" style={{  width: "100%"  }} /> 
       
@@ -298,13 +299,13 @@ const Skillsdata = async()=> {
         label=" Worked Projects"
         name= 'workedProjects'
         
-        rules={[
-          {
-            required: true,
-            message: 'Please input your Area of Expertise!',
+        // rules={[
+        //   {
+        //     required: true,
+        //     message: 'Please input your Area of Expertise!',
           
-          },
-        ]}
+        //   },
+        // ]}
       >
         <Input.TextArea />
       
@@ -320,7 +321,7 @@ const Skillsdata = async()=> {
         //   span: 16,
         // }}
       >
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" loading ={loading}>
           Submit
         </Button>
 

@@ -3,7 +3,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import Sidebar from '../../components/Sidebar';
 import {useSelector} from 'react-redux'
-import {Link,useParams } from "react-router-dom";
+import {Link,useParams,useNavigate } from "react-router-dom";
 import {WithTokenApi} from '../../Helpers/axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortawesome/free-solid-svg-icons'
@@ -13,14 +13,23 @@ import Image  from '../../images/userp.png';
 import { Col, Row , Menu,Input,message } from 'antd';
 import './searchuser.css'
 import { ApiFilled } from '@ant-design/icons';
-
+const { Search } = Input;
 
 const Searchuser = ({socket}) => {
   const [searchuserlist,setserchuserlist] = useState([])
-  let {searchinput } = useParams();
+  const [searchinput,setSearchinput] =  useState("");
+  // let {searchinput } = useParams();
   const userData = useSelector((state)=>state.userData);
 //  console.log("searchinput",searchinput)
+const navigate = useNavigate()
 
+const onSearch = () => {
+  
+  if(searchinput !==""){
+    navigate("/searchuser/"+ searchinput)
+   }
+  
+  }
 
 
 useEffect(()=>{
@@ -88,14 +97,17 @@ search();
           >
         
      <div className='main-Searchuser'>
-    
+     <div  className='mobile-input'>
+      <Search  value={searchinput} placeholder="input search text"    className= "myfriend-input"  onSearch={onSearch}z onChange ={(e)=> setSearchinput(e.target.value)} enterButton 
+     />
+        </div>  
          <div className='Searchuser-div' >
           <h3 className='title-Searchuser'>Search User</h3>
           <hr />
           <List
         itemLayout="horizontal"
         dataSource={searchuserlist}
-        renderItem={(item ) => (
+        renderItem={(item ) => ( 
           <List.Item>
             <List.Item.Meta
               avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /> 

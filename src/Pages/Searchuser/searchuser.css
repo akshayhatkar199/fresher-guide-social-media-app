@@ -10,8 +10,11 @@
     margin-right: 18px;
     border-radius: 10px;
     background: white;
+    
 }
-
+/* .main-Searchuser{
+    overflow-x: auto;
+} */
 
 
 /* > 576 px */

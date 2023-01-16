@@ -189,7 +189,7 @@ const onFinish =  async(values)=>{
       <FontAwesomeIcon icon={faPen} className="userprofile-udatecover-icon" />
       </label>
     
-      <Modal title="Update Cover Photo "  open={coverphoto} onOk={Updateok} onCancel={Updatecancel} footer={<></>}>
+      <Modal title="Update Cover Photo "  open={coverphoto} onOk={Updateok} onCancel={Updatecancel} footer={<></>} destroyOnClose>
       <Form
        layout="vertical"
       name="basic"
@@ -245,11 +245,13 @@ const onFinish =  async(values)=>{
     <div className='sub-profile-div'>
     <label type="primary" onClick={showModal}>
     {(profile.data.photo) ? <img src={"http://localhost:8080/Images/"+profile.data.photo}  className='profile-user-IMG'></img> 
-                          : <img src={Image1} className="profile-user-IMG"/>}
-      </label>
+                          : <img src={Image1} className="profile-user-IMG"/>} 
+                          { profile.data?.id === userData.userinfo.data.id ? <FontAwesomeIcon icon={faCamera} className="desktop-camera-icon-profileuser"/> 
+                          : null}
+      </label> 
      { profile.data?.id === userData.userinfo.data.id ?
       
-      <Modal title="Update Profile Image " open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={<></>}>
+      <Modal title="Update Profile Image " open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={<></>} destroyOnClose>
       <Form
        layout="vertical"
       name="basic"
