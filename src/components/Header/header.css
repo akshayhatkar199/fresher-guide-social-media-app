@@ -13,7 +13,7 @@
 }
 
 .img-fluid{
-    margin-top: 11px;
+    margin-top: 7px;
     margin-left: 24px;
 }
 
@@ -94,6 +94,26 @@
     font-size: bold;
     font-size: 17px;
 }
+.notificationLabel{
+    position: absolute;
+    background: #7f87b5;
+    height: 19px;
+    width: 17px;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+    right: 31%;
+    top: 16px;
+    font-size: 13px;
+}
+.baricon-header{
+    margin-top: 21px;
+    color: withe;
+    font-size: 28px;
+    color: #181717;
+    margin-left: 14px;
+}
+
 
 
 
@@ -110,6 +130,18 @@
         left: -1px;
         bottom: 47px;
     }
+    .notificationLabel {
+        position: absolute;
+        background: #7f87b5;
+        height: 19px;
+        width: 17px;
+        color: white;
+        text-align: center;
+        border-radius: 50%;
+        right: 50%;
+        top: 16px;
+        font-size: 13px;
+    }
  
  }
 
@@ -119,7 +151,18 @@
      .ant-drawer-wrapper-body{
          margin-left: 50px;
      }
- 
+     .notificationLabel {
+        position: absolute;
+        background: #7f87b5;
+        height: 19px;
+        width: 17px;
+        color: white;
+        text-align: center;
+        border-radius: 50%;
+        right: 64%;
+        top: 16px;
+        font-size: 13px;
+    }
  }
 
 /* < 428 px */
@@ -136,8 +179,37 @@
     .message-icon{
         visibility: hidden;
     }
-   
-
+    .bell-icon{
+        visibility: visible;
+       }
+    .user-image{
+        display:none;
+    }
+    .header-online-label{
+        display:none;
+    }
+    .notificationLabel{
+        display: block;
+    }
+    .bell-icon {
+        margin-right: 32px;
+        margin-left: -24px;
+        color: white;
+        font-size: 20px;
+        margin-bottom: -15px;
+    }
+    /* .notificationLabel {
+        position: absolute;
+        background: red;
+        height: 19px;
+        width: 17px;
+        color: white;
+        text-align: center;
+        border-radius: 50%;
+        right: 50%;
+        top: 16px;
+        font-size: 13px;
+    } */
 }
 
 /* < 576 px */
@@ -165,9 +237,16 @@
         margin-top: 21px;
         color: withe;
         font-size: 28px;
-        color: white;
+        color: #181717;
+        margin-left: 14px;
     }
-
+    .notificationLabel {
+        display:block;
+      }
+      .bell-icon{
+        visibility: visible;
+       }
+       
 }
 /* > 576 px */
 @media only screen and (min-width: 576px){
@@ -186,7 +265,9 @@
     .baricon-header{
         visibility: hidden;
     }
-   
+    .bell-icon{
+        visibility: visible;
+       }
    
 }
 /* > 768 px */
@@ -205,8 +286,15 @@
         visibility: hidden;
     }
     .baricon-header{
-        visibility: hidden;
+        display:none;
     }
+    .notificationLabel {
+        right: 40%;
+      }
+      .bell-icon{
+        visibility: visible;
+       }
+   
 }
 /* > 992 px */
 @media only screen and (min-width: 992px){
@@ -228,6 +316,16 @@
     .baricon-header{
         visibility: hidden;
     }
+    .notificationLabel {
+        right: 42%;
+      }
+      .bell-icon{
+        visibility: visible;
+       }
+       .baricon-header{
+        display:none;
+    }
+
 }
 /* > 1200 px */
 @media only screen and (min-width: 1200px){
@@ -249,6 +347,16 @@
     .baricon-header{
         visibility: hidden;
     }
+    .notificationLabel {
+        right: 30%;
+      }
+      .bell-icon{
+        visibility: visible;
+       }
+       .baricon-header{
+        display:none;
+    }
+    
 }
 /* > 1400 px */
 @media only screen and (min-width: 1400px){
@@ -267,21 +375,14 @@
     .message-icon{
         visibility: visible;
     }
-    .baricon-header{
-        visibility: hidden;
+    .notificationLabel {
+        right: 28%;
+      }
+      .bell-icon{
+        visibility: visible;
+       }
+       .baricon-header{
+        display:none;
     }
     
-}
-
-.notificationLabel{
-    position: absolute;
-    background: red;
-    height: 19px;
-    width: 17px;
-    color: white;
-    text-align: center;
-    border-radius: 50%;
-    right: 30%;
-    top: 16px;
-    font-size: 13px;
 }

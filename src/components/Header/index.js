@@ -117,7 +117,11 @@ const onSearch = () => {
       xxl={{span: 12}}
       >
       <div className='header'>
-    
+      
+      <label onClick={showDrawer} >
+      {/* <label className='header-online-label'></label> <img src={userData.userinfo.data.photo ? "http://localhost:8080/Images/"+userData.userinfo.data.photo :Image3} alt="logo" className="user-image"></img>  */}
+      <FontAwesomeIcon icon={faBars} className ="baricon-header" />
+      </label>
       <Link to="/home"><img src={Image4} alt="logo" className="img-fluid " style={{height: "57px" ,width: "163px"}}></img></Link>
 
     
@@ -144,13 +148,14 @@ const onSearch = () => {
       >
       
       <div className='col2-header'>
-      <Link to ="/message"> <FontAwesomeIcon icon={ faMessage} className="message-icon"  /></Link>
-      <Link to= '/notification'> <FontAwesomeIcon icon={ faBell} className="bell-icon"  />{userData.userinfo.notificationCount ? <span className='notificationLabel'>{userData.userinfo.notificationCount}</span> : null}</Link>
+      <Link to ="/message"> <FontAwesomeIcon icon={ faMessage} className="message-icon"/></Link>
+      <Link to= '/notification'> <FontAwesomeIcon icon={ faBell} className="bell-icon"/>{userData.userinfo.notificationCount ? <span className='notificationLabel'>{userData.userinfo.notificationCount}</span> : null}</Link>
       <label onClick={showDrawer} >
       <label className='header-online-label'></label> <img src={userData.userinfo.data.photo ? "http://localhost:8080/Images/"+userData.userinfo.data.photo :Image3} alt="logo" className="user-image"></img> 
       {/* <FontAwesomeIcon icon={faBars} className ="baricon-header" /> */}
       </label>
-      <Drawer title="Pages" placement="right" onClose={onClose} open={open}>
+  
+      <Drawer title="Pages" placement="left" onClose={onClose} open={open}>
         <Link to="/home"><FontAwesomeIcon icon={faHome} className="header-drawer-icon"/> <span className='pages-name'>Home</span></Link>
         <Link to="/message"> <FontAwesomeIcon icon={ faMessage}  className="header-drawer-icon"/> <span className='pages-name'>Message</span></Link>
         <Link to= '/notification'>  <FontAwesomeIcon icon={ faBell}  className="header-drawer-icon"/> <span className='pages-name'>Notification</span></Link>

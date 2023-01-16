@@ -98,7 +98,7 @@ const Messagesection = ({socket,getmessage,onlineUser}) => {
                          {onlineUser && onlineUser.length > 0  && onlineUser.some(i => i.id == userId) ?<label className='message-online-label'></label> :null } <img src={userProfile.photo ? "http://localhost:8080/Images/"+userProfile.photo : Image } alt="logo" className="message-user-image"></img>   
                           </div>
                           <div className='span-text'>
-                              <span style={{color: "black"}}>{userProfile.name} </span>
+                          {<Link to= {"/userprofile/"+userProfile.id+ ""}><span style={{color: "black"}}>{userProfile.name} </span></Link>}
                               <span> {onlineUser && onlineUser.length > 0  && onlineUser.some(i => i.id == userId)?
                                 // <Link to={"/vediocall/"+onlineUser.find(item => item.id == userData.userinfo.data.id).socketId+"/"+onlineUser.find(item => item.id == userId).socketId}>
                                   <Button type="primary" shape="circle"

@@ -13,43 +13,6 @@ import { Col, Row , Menu,Input, } from 'antd';
 import './myfriendRequests.css'
 
 
-const data = [
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-    {
-      title: 'Ant Design Title 1',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-    {
-      title: 'Ant Design Title 2',
-    },
-    {
-      title: 'Ant Design Title 3',
-    },
-    {
-      title: 'Ant Design Title 4',
-    },
-  ];
-
-
 const MyfriendRequests = ({socket}) => {
  const [myfriendrequests, setmyfriendrequest] = useState([])
 
@@ -122,8 +85,10 @@ socket.emit("newNotification", {
         renderItem={(item ) => (
           <List.Item>
             <List.Item.Meta
-              avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image }/></div>}
-              title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
+              // avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image }/></div>}
+              avatar={<div ><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image }/></div>}
+              // title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
+              title={item.name}
               description={item.email}  
             />
              <Button type="primary" style={{marginRight: "-18px"}} htmlType="submit" onClick={()=>accept(item.requestId,item.id)}  >Accept </Button>
