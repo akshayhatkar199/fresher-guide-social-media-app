@@ -83,7 +83,7 @@ const Home = ({socket}) => {
       {
         posts.length > 0  ?
         posts.map((item) => {
-          return   <Postcard data={item} />
+          return   <Postcard data={item} socket={socket} />
         }) :
         <Result
         style={{background:"white"}}

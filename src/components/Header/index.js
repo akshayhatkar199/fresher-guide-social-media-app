@@ -12,6 +12,7 @@ import Image2 from '../../images/he-logo.png';
 import Image4  from '../../images/logo-college-removebg-preview.png';
 import Image3 from '../../images/userp.png';
 import { SomeOnCall } from "../../Store/reducers/vediocallReducers"
+import {updateNotificationCount} from "../../Store/reducers/userReducer";
 import Teams from "../../Pages/Vediocall/assests/teams.mp3";
 import './header.css'
 const { Search } = Input;
@@ -40,6 +41,13 @@ useEffect(() => {
     setCallData(data)
     await dispatch(SomeOnCall(data))
     setCallOpen(true)
+
+  })
+  socket.on("newNotification",async (data) => {
+    console.log("data",data)
+    var newData = userData.userinfo;
+    await dispatch(updateNotificationCount({...newData,notificationCount:userData.userinfo.notificationCount + 1}))
+    
 
   })
 }) 
@@ -137,7 +145,7 @@ const onSearch = () => {
       
       <div className='col2-header'>
       <Link to ="/message"> <FontAwesomeIcon icon={ faMessage} className="message-icon"  /></Link>
-      <Link to= '/notification'> <FontAwesomeIcon icon={ faBell} className="bell-icon"  /></Link>
+      <Link to= '/notification'> <FontAwesomeIcon icon={ faBell} className="bell-icon"  />{userData.userinfo.notificationCount ? <span className='notificationLabel'>{userData.userinfo.notificationCount}</span> : null}</Link>
       <label onClick={showDrawer} >
       <label className='header-online-label'></label> <img src={userData.userinfo.data.photo ? "http://localhost:8080/Images/"+userData.userinfo.data.photo :Image3} alt="logo" className="user-image"></img> 
       {/* <FontAwesomeIcon icon={faBars} className ="baricon-header" /> */}

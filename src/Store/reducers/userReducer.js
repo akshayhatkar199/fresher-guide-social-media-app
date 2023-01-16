@@ -31,6 +31,15 @@ export const checkLogin = createAsyncThunk(
 	  }
 );
 
+export const updateNotificationCount = createAsyncThunk(
+	'login/updateNotificationCount',
+	async (data, thunkApi) => {
+	   var userInfoData={...data}; 
+		  return userInfoData;
+		 
+	}
+);
+
 const loginSlice = createSlice({ 
           name: 'login',
 		  initialState: { userinfo: {}   },
@@ -44,6 +53,11 @@ const loginSlice = createSlice({
 		      
 		      state.userinfo = action.payload.info;
 		    })
+			.addCase(updateNotificationCount.fulfilled, (state, action) => {
+				// Add user to the state array
+				
+				state.userinfo = action.payload;
+			  })
 		  },
 	});
 
