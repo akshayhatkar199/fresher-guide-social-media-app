@@ -8,17 +8,21 @@ import {  faHome,faMessage,faBell ,faUser,faBars ,faPaperPlane} from '@fortaweso
 import { Avatar, List,Button, } from 'antd'
 import Image3 from '../../images/user.jpg';
 import { Col, Row , Menu,Input } from 'antd';
+import {updateNotificationCount} from "../../Store/reducers/userReducer"
 import Image  from '../../images/userp.png';
 import {WithTokenApi} from '../../Helpers/axios';
 import './notification.css'
+import {useSelector,useDispatch} from 'react-redux'
 import Footer from '../../components/Footer'
 import { format } from 'timeago.js';
 
 
 const Notification = ({socket}) => {
+  const dispatch = useDispatch()
+  const userData = useSelector((state)=>state.userData);
   //notifications
   const [notifications,setNotifications] = useState([]);
-  
+   
 useEffect(()=>{
   getotifications()
 },[])
@@ -27,6 +31,9 @@ const getotifications =async()=>{
   const result = await WithTokenApi.get("/notifications")
   // console.log("result",result);
   setNotifications(result.data)
+  var newData = userData.userinfo;
+  await dispatch(updateNotificationCount({...newData,notificationCount:0}))
+  
 }
   return (
     <div> 
