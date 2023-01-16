@@ -32,6 +32,8 @@ const Vediocall = ({socket}) => {
   const [userVdoStatus, setUserVdoStatus] = useState();
   const [myMicStatus, setMyMicStatus] = useState(true);
   const [userMicStatus, setUserMicStatus] = useState();
+  const [callBtnLoading, setcallBtnLoading] = useState(false);
+ 
 
   console.log("userId",userId);
   console.log("socketId",socketId);
@@ -112,6 +114,7 @@ const Vediocall = ({socket}) => {
   })
 
   const callUser = (id) => {
+    setcallBtnLoading(true);
     const peer = new Peer({ initiator: true, trickle: false, stream });
 
     peer.on('signal', (data) => {
@@ -123,6 +126,7 @@ const Vediocall = ({socket}) => {
     });
 
     socket.on('callAccepted', (signal) => {
+      setcallBtnLoading(false);
       setCallAccepted(true);
 
       peer.signal(signal);
@@ -286,12 +290,13 @@ const updateMic = () => {
                  {
                    stream ? 
                    <>
-                     <h5>My vedio id  `{'->'}` {me}</h5>
+                     {/* <h5>My vedio id  `{'->'}` {me}</h5> */}
                      <h5>
                      {
                    callAccepted && !callEnded ? 
                    <><Button type="primary" onClick={leaveCall}>End Call</Button></>:
-                   <><Button type="primary" onClick={() => callUser(socketId)}>Call</Button></>
+                   <>{!(call.isReceivingCall && !callAccepted ) ?
+                    <Button type="primary" disabled={callBtnLoading} onClick={() => callUser(socketId)}>{callBtnLoading ? "Calling..":"Call"}</Button> : null}</>
                    
                    }
                      </h5>
