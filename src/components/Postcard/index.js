@@ -32,9 +32,10 @@ import {
   WhatsappIcon,
   WorkplaceIcon
 } from "react-share";
-import {Card, Button, Dropdown,Input ,Result,Form } from 'antd';
+import {Card, Button, Dropdown,Input ,Result,Form,Modal } from 'antd';
 import './postcard.css'
 import { format } from 'timeago.js';
+import { ExclamationCircleFilled } from '@ant-design/icons';
 import {
   EmailShareButton,
   FacebookShareButton,
@@ -59,6 +60,7 @@ import {
 
 const shareUrl = 'http://github.com';
 const title = 'GitHub';
+const { confirm } = Modal;
 const Postcard = (props) => {
   const [form] = Form.useForm();
   const listcommentRef = useRef(null);
@@ -68,6 +70,7 @@ const Postcard = (props) => {
   const [isshowcoment,setisshowcoment] = useState(false);
   const [comment,setcomment] = useState("");
   const [commentlist,setcommentlist] = useState([]);
+  const [isDelete , setIsDelete] = useState(false);
   const userData = useSelector((state)=>state.userData);
   // console.log("Image",Image)
   // console.log(comment)
@@ -147,19 +150,35 @@ const getcomments = async() => {
       id: props.data.userId
     });
    }
-
+const deletepost = async() => {
+   await WithTokenApi.delete("/post/"+props.data.id)
+   setIsDelete(true)
+}
+const showConfirmDelete = () => {
+  confirm({
+    title: 'Do you Want to delete these post?',
+    icon: <ExclamationCircleFilled />,
+    content: '',
+    onOk() {
+      deletepost();
+    },
+    onCancel() {
+      console.log('Cancel');
+    },
+  });
+};
   const items = [
-    // {
-    //   key: '1',
-    //   label: (
-    //     <Link to={"/updatepost/"+props.data.id+ ""}>Update Post</Link>
-    //   ),
-    // },
+    {
+      key: '1',
+      label: (
+        <Link to={"/postdetail/"+props.data.id+ ""}>Post details</Link>
+      ),
+    },
     {
       key: '2',
       label: (
         <>
-       <Link to={"/postdetail/"+props.data.id+ ""}>Post details</Link>
+       {props.data.userId == userData.userinfo.data.id ?<label onClick={showConfirmDelete}>Delete</label> :null} 
         </>
       
         
@@ -208,6 +227,7 @@ const getcomments = async() => {
   // console.log("props",props)
 
   return (
+    isDelete == false ? 
     <div> 
       <Card
     className='post-card'
@@ -389,6 +409,7 @@ const getcomments = async() => {
 
   </Card> <br/>
       </div>
+      : <></> 
   )
 }
 
