@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {Link ,useNavigate } from "react-router-dom";
 import {useSelector} from 'react-redux'
 import Image2 from '../../images/he-logo.png';
+import Image3 from '../../images/userp.png';
 import Image4  from '../../images/logo-college-removebg-preview.png';
-import {  faHome,faMessage,faBell ,faUser,faRightFromBracket,faSquarePlus} from '@fortawesome/free-solid-svg-icons'
+import {  faHome,faMessage,faBell ,faUser,faRightFromBracket,faSquarePlus,faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import { Col, Row , Menu } from 'antd';
 
 
@@ -101,9 +102,9 @@ const Footer = () => {
       </Menu>
       </div>
       </Col>
-
+  
+     <p style={{marginLeft:"40%",fontSize:"smaller"}}> Designed & Developed by Akshay s Hatkar @ 2023 </p>
      
-      
     
     </Row>
 
@@ -139,8 +140,8 @@ const Footer = () => {
       >
       <div className=''>
 
-      <Link to="/message"> <FontAwesomeIcon icon={ faMessage} className="footer-icon"  /></Link>
      
+      <Link to= '/searchuser/:searchinput'><FontAwesomeIcon icon={faMagnifyingGlass} className="footer-icon"/></Link>
       
   
       </div>
@@ -155,38 +156,42 @@ const Footer = () => {
       xxl={{span: 4}}
       >
       <div className=''>
-      <Link to= '/notification'>  <FontAwesomeIcon icon={faBell} className="footer-icon"/>{userData.userinfo.notificationCount ? <span className='notificationLabel-mobile'>{userData.userinfo.notificationCount}</span> : null}</Link>
-  
-      </div>
-      </Col>
-
-      <Col  
-      xs={{span: 4}}
-      sm={{span: 5}}
-      md={{span: 4}}
-      lg={{span: 4}}
-      xl={{span: 4}}
-      xxl={{span: 4}}
-      >
-      <div className=''>
-      
-      <Link to="/userprofile"><FontAwesomeIcon icon= {faUser}  className="footer-icon"/></Link>
-  
-      </div>
-      </Col>
-
-      <Col  
-      xs={{span: 4}}
-      sm={{span: 5}}
-      md={{span: 4}}
-      lg={{span: 4}}
-      xl={{span: 4}}
-      xxl={{span: 4}}
-      >
-      <div className=''>
+      {/* <Link to= '/notification'>  <FontAwesomeIcon icon={faBell} className="footer-icon"/>{userData.userinfo.notificationCount ? <span className='notificationLabel-mobile'>{userData.userinfo.notificationCount}</span> : null}</Link> */}
       <Link to="/creatpost" ><FontAwesomeIcon icon={faSquarePlus} className="footer-icon" /></Link>
+      </div>
+      </Col>
+
+      <Col  
+      xs={{span: 4}}
+      sm={{span: 5}}
+      md={{span: 4}}
+      lg={{span: 4}}
+      xl={{span: 4}}
+      xxl={{span: 4}}
+      >
+      <div className=''>
+      
+      {/* <Link to="/userprofile"><FontAwesomeIcon icon= {faUser}  className="footer-icon"/></Link> */}
+      <Link to="/myfriends"> <FontAwesomeIcon icon={ faMessage} className="footer-icon"  /></Link>
+      </div>
+      </Col>
+
+      <Col  
+      xs={{span: 4}}
+      sm={{span: 5}}
+      md={{span: 4}}
+      lg={{span: 4}}
+      xl={{span: 4}}
+      xxl={{span: 4}}
+      >
+      <div style={{marginLeft: "32px"}}>
+    
       {/* <Link to="/myfriends"> <FontAwesomeIcon icon={faMessage} className="footer-icon" /></Link> */}
-  
+      <label>
+      <Link to="/userprofile">
+      <label className='footer-online-label'></label> <img src={userData.userinfo.data.photo ? "http://localhost:8080/Images/"+userData.userinfo.data.photo :Image3} alt="logo" className="user-image-mobile"></img> 
+      </Link>
+      </label>
       </div>
       </Col>
 

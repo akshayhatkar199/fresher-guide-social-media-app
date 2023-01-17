@@ -77,11 +77,12 @@ const getotifications =async()=>{
     renderItem={(item ) => (
       <List.Item>
             <List.Item.Meta
-              avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /></div>}
+              // avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /></div>}
+              avatar={<div><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /></div>}
               title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
               description={item.text + " " + format(item.createdDate) } 
             />
-             <Link to={"/messages/"+item.id+""}><FontAwesomeIcon icon={faMessage}  className="friend-message-icon"/></Link>
+             {/* <Link to={"/messages/"+item.id+""}><FontAwesomeIcon icon={faMessage}  className="friend-message-icon"/></Link> */}
           </List.Item>
     )}
   />

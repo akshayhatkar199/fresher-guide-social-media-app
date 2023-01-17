@@ -87,7 +87,8 @@ socket.emit("newNotification", {
             <List.Item.Meta
               // avatar={<div ><label className='online-label'></label><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image }/></div>}
               avatar={<div ><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image }/></div>}
-              title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
+              // title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link>}
+              title={item.name}
               description={item.email}  
             />
              <Button type="primary" style={{marginRight: "-18px"}} htmlType="submit" onClick={()=>accept(item.requestId,item.id)}  >Accept </Button>

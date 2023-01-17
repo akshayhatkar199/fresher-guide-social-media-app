@@ -48,6 +48,24 @@
     top: 16px;
     font-size: 13px;
 }
+.user-image-mobile{
+    border-radius: 50%;
+    height: 36px;
+    width: 41px;
+    margin-top: 12px;
+    margin-right: 14px;
+}
+.footer-online-label {
+    width: 10px;
+    height: 10px;
+    background: green;
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    border: 2px solid white;
+    /* left: 47px; */
+    bottom: 45px;
+}
 
 /* > 576 px */
 @media only screen and (max-width: 576px){
