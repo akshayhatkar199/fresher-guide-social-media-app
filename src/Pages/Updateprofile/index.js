@@ -224,7 +224,13 @@ const Skillsdata = async()=> {
       <Form.Item
         label="Skills"
         name="skills"
-       
+        rules={[
+          {
+            required: true,
+            message: 'Please select skills!',
+          
+          },
+        ]}
        
       >
       <Select  mode="multiple"  >
@@ -298,6 +304,24 @@ const Skillsdata = async()=> {
       <Form.Item
         label=" Worked Projects"
         name= 'workedProjects'
+        
+        // rules={[
+        //   {
+        //     required: true,
+        //     message: 'Please input your Area of Expertise!',
+          
+        //   },
+        // ]}
+      >
+        <Input.TextArea />
+      
+      
+     
+        
+      </Form.Item>
+      <Form.Item
+        label="Worked/Working Companies"
+        name= 'workedCompanies'
         
         // rules={[
         //   {

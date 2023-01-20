@@ -156,11 +156,21 @@ const onFinish =  async(values)=>{
      setcoverphoto(false)
 }
 
-const blockUser = () => {
-
+const blockUser = async() => {
+  const payload={
+    blockUserId:profile.data.id
+  }
+  const profileresult = await WithTokenApi.post("/friends/blockuser",payload)
+  message.success('Block user successfully')
+  useres()
 }
-const unblockUser = () => {
-  
+const unblockUser = async() => {
+  const payload={
+    blockUserId: profile.data.id
+  }
+  const profileresult = await WithTokenApi.post("/friends/unblockuser",payload)
+  message.success('UnBlock user successfully')
+  useres()
 }
 
   return (
