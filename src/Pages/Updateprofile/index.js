@@ -56,6 +56,7 @@ const Skillsdata = async()=> {
 }
     const onFinish = async(values) => {
         // console.log('Success:', values);
+        setLoading(true)
         values.id = userData.userinfo.data.id
         const result = await WithTokenApi.patch("/users",values)
         // console.log("result",result)

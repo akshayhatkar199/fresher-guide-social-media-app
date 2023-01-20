@@ -18,6 +18,8 @@ import Vediocall2 from "./Pages/Vediocall/Home";
 import socketIOClient from "socket.io-client";
 import {BrowserRouter, Route, Routes,Navigate} from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
+import { SyncOutlined} from '@ant-design/icons';
+import { Space } from 'antd';
 const ENDPOINT = "http://localhost:8080/";
 const newSocket = socketIOClient(ENDPOINT, { transports : ['websocket'] });
 function App() {
@@ -65,8 +67,12 @@ function App() {
  //  );
   if(loading){
     return(
-      <div>
-        Loading...
+      <div style={{gap: "8px",display: "grid",placeItems: "center", marginTop: "237px"}}>
+        {/* Loading... */}
+        <Space >
+           <SyncOutlined spin style={{fontSize:"33px",padding: "10px" ,color:"black"}} className="loading-symbol"  />
+          
+        </Space>
       </div>
     )
   }

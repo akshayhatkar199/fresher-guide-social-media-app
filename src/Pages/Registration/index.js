@@ -211,7 +211,7 @@ const Registration = ({socket}) => {
       </Form.Item>
     </Form>
 
-
+    <p style={{fontSize:"7px",fontStyle: "oblique",float: "right"}}> Designed & Developed by Akshay s Hatkar @ 2023 </p>
     </Card>
     </Col>
 

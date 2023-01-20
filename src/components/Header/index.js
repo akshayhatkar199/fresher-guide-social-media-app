@@ -155,7 +155,7 @@ const onSearch = () => {
       {/* <FontAwesomeIcon icon={faBars} className ="baricon-header" /> */}
       </label>
   
-      <Drawer title="Pages" placement="left" onClose={onClose} open={open}>
+      <Drawer title="Pages"  placement="left" onClose={onClose} open={open}>
         <Link to="/home"><FontAwesomeIcon icon={faHome} className="header-drawer-icon"/> <span className='pages-name'>Home</span></Link>
         <Link to="/message"> <FontAwesomeIcon icon={ faMessage}  className="header-drawer-icon"/> <span className='pages-name'>Message</span></Link>
         <Link to= '/notification'>  <FontAwesomeIcon icon={ faBell}  className="header-drawer-icon"/> <span className='pages-name'>Notification</span></Link>

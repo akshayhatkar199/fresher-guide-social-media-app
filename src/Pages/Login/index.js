@@ -143,7 +143,7 @@ const Login = () => {
       </Form.Item>
     </Form>
 
-
+    <p style={{fontSize:"9px",fontStyle: "oblique",float: "right"}}> Designed & Developed by Akshay s Hatkar @ 2023 </p>
     </Card>
     </Col>
 
