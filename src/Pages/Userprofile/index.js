@@ -33,16 +33,21 @@ const Userprofile = ({socket}) => {
   let {userId } = useParams();
   const userData = useSelector((state)=>state.userData);
   const [profile,setprofile] = useState(userData.userinfo)
-  // console.log("userData",userData)
+   console.log("profile",profile)
 useEffect(()=>{
-  post()
+  if(!userId) {
+    post()
+  }
+ 
 },[])
 
 const post = async()=>{
   // console.log("----------------------------------calllll",userId)
+ 
   var url = userId ? "post/byuserId/"+userId : "post/byuserId/"+userData.userinfo.data.id
   const result = await WithTokenApi.get(url) 
   setpostdata(result.data)
+  
 }
 
 const showModal = () => {
@@ -68,17 +73,22 @@ const Updatecancel = () =>{
 
 useEffect(()=>{
   useres()
-  post()
+  
 },[userId])
 
 const useres =async()=>{ 
   // console.log("hii")
   if(userId){
   const result = await WithTokenApi.get("/users/"+userId+"")
-  // console.log("result...",result)
-  setprofile(result.data)
+  console.log("result...",result)
+ await setprofile(result.data)
+ if(userId == userData.userinfo.data.id || result.data.isFriend == true && result.data.isBlock == false || result.data.blockuserData.length > 0 && result.data.blockuserData[0].userId  == userData.userinfo.data.id){
+ console.log("hello")
+  post()
+ }
   }else{
-    setprofile(userData.userinfo)
+   await setprofile(userData.userinfo)
+    post()
   }
 }
 
@@ -144,6 +154,23 @@ const onFinish =  async(values)=>{
   setupdatecover([])
   message.success('Update Profile Image success full')
      setcoverphoto(false)
+}
+
+const blockUser = async() => {
+  const payload={
+    blockUserId:profile.data.id
+  }
+  const profileresult = await WithTokenApi.post("/friends/blockuser",payload)
+  message.success('Block user successfully')
+  useres()
+}
+const unblockUser = async() => {
+  const payload={
+    blockUserId: profile.data.id
+  }
+  const profileresult = await WithTokenApi.post("/friends/unblockuser",payload)
+  message.success('UnBlock user successfully')
+  useres()
 }
 
   return (
@@ -315,7 +342,14 @@ const onFinish =  async(values)=>{
            Update Profile
         </Button>
       </Link>
-      : null
+      :  profile.isFriend == true && profile.isBlock == false ?
+      <Button type="primary" size={25} className="" onClick={blockUser}>
+          Block
+      </Button> :
+      profile.blockuserData.length > 0 && profile.blockuserData[0].userId  == userData.userinfo.data.id ? 
+       <Button type="primary" size={25} className="" onClick={unblockUser}>
+           UnBlock
+        </Button> :null
     }
      
     </div>
@@ -386,7 +420,14 @@ const onFinish =  async(values)=>{
            Update Profile
         </Button>
       </Link>
-      : null
+      :  profile.isFriend == true && profile.isBlock == false ?
+          <Button type="primary" size={25} className="" onClick={blockUser}>
+              Block
+          </Button> :
+          profile.blockuserData.length > 0 && profile.blockuserData[0].userId  == userData.userinfo.data.id ? 
+           <Button type="primary" size={25} className=""  onClick={unblockUser}>
+               UnBlock
+            </Button> :null
     }
      
     </div>
@@ -448,7 +489,7 @@ const onFinish =  async(values)=>{
         <Result
         style={{background:"white"}}
           icon={<SmileOutlined />}
-          title="No posts are created yet!!!"
+          title={profile.isFriend == false ? "Please send request to see post!!": "No posts are created yet!!!"}
         />
       }
       {/* <Postcard />

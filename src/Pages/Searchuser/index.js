@@ -117,8 +117,8 @@ search();
             //  </div>}
             avatar={<div ><Avatar src={item.photo ? "http://localhost:8080/Images/"+item.photo : Image } /> 
              </div>}
-              // title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link> } 
-              title={item.name } 
+              title={<Link to= {"/userprofile/"+item.id+ ""}>{item.name}</Link> } 
+              // title={item.name } 
               description={item.email}  
             />
              {(item.isRequest == 1)? <Button type="primary" style={{marginRight: "-18px"}} htmlType="submit" onClick={()=> friendrequest(item.id)} >Request</Button> : null}
