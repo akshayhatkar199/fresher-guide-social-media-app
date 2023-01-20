@@ -63,6 +63,11 @@ const Aboutus = (props) => {
       title: 'Worked Projects',
       icons: faP,
       description: profile.data.workedProjects
+    },
+    {
+      title: 'Worked/Working Companies Info',
+      icons: faP,
+      description: profile.data.workedCompanies
     }
     
     
